@@ -1,0 +1,3 @@
+sxhkd &
+panel &
+exec bspwm
