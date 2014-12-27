@@ -2,8 +2,10 @@
 
 bspwm is a tiling window manager that I use over a more conventional Desktop Environment such as KDE, as it provides me with more control and speed to perform tasks.
 
-To set up bspwm, please follow the instructions in the [Arch Wiki - bspwm](https://wiki.archlinux.org/index.php/Bspwm).
-
 ## Dependencies
 
 Please also note that bspwm utilises `sxhkd`, as a lightweight wm-independent keybinding daemon, which is installed alongside bspwm in the above wiki page. My configs are avaiable in this repo.
+
+## Setup
+
+To set up bspwm, please follow the instructions in the [Arch Wiki - bspwm](https://wiki.archlinux.org/index.php/Bspwm).
