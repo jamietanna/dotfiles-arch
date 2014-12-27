@@ -35,7 +35,3 @@ $HOME
 As you can see, there is a `home` and a `global` directory - `home` deploys config into `$HOME`, and `global` deploys into `/`. This allows easily pushing config into both user- and system-level adoption.
 
 `$pkgname` denotes config for an application - for instance, `zsh` or `vim`.
-
-## TODO
-
-- TODO: $PKG/README.md ?, how to use
