@@ -1,0 +1,22 @@
+## Zsh Vi-Mode
+# Allow us to use colours, as below
+autoload -U colors && colors
+
+# Use Vi-keybindings
+bindkey -v
+# Disable lag - 0.1s
+export KEYTIMEOUT=1
+
+# Set up a right prompt to display when we're in normal mode
+function zle-line-init zle-keymap-select {
+	VIM_PROMPT="%{$fg_bold[red]%} [% NORMAL ]% %{$reset_color%}"
+	RPS1="${${KEYMAP/vicmd/$VIM_PROMPT}/(main|viins)/} $EPS1"
+	zle reset-prompt
+}
+# Actually hook it in
+zle -N zle-line-init
+zle -N zle-keymap-select
+
+# And allow us to reverse search history
+bindkey '^r' history-incremental-search-backward
+## End
