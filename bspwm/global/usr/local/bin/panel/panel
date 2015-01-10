@@ -10,10 +10,34 @@ trap 'trap - TERM; kill 0' INT TERM QUIT EXIT
 [ -e "$PANEL_FIFO" ] && rm "$PANEL_FIFO"
 mkfifo "$PANEL_FIFO"
 
+battery () {
+	if which acpi > /dev/null 2>&1;
+	then
+		while true;
+		do
+			DATA=$(acpi -b)
+	
+			remainder=$(echo $DATA | cut -d" " -f5)
+			percent=$(echo $DATA | cut -d" " -f4 | sed 's/,//g')
+	
+			echo -n "B"
+			echo $DATA | grep "Discharging" > /dev/null
+			if [ $? -eq 0 ];
+			then
+			    echo "$percent% $remainder"
+			else
+			    echo "$percent% +$remainder"
+			fi
+			sleep 10
+		done
+	fi
+}
+
 bspc config top_padding $PANEL_HEIGHT
 bspc control --subscribe > "$PANEL_FIFO" &
 xtitle -sf 'T%s' > "$PANEL_FIFO" &
 clock -sf 'S%a %H:%M' > "$PANEL_FIFO" &
+battery > "$PANEL_FIFO" &
 echo "H$(hostname)" > "$PANEL_FIFO" &
 
 . panel_colors
