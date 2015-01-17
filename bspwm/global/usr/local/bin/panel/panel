@@ -38,6 +38,7 @@ bspc control --subscribe > "$PANEL_FIFO" &
 xtitle -sf 'T%s' > "$PANEL_FIFO" &
 clock -sf 'S%a %H:%M' > "$PANEL_FIFO" &
 battery > "$PANEL_FIFO" &
+echo "V$(vol.sh get)" > "$PANEL_FIFO" &
 echo "H$(hostname)" > "$PANEL_FIFO" &
 
 . panel_colors
