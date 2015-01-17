@@ -9,7 +9,12 @@ num_mon=$(bspc query -M | wc -l)
 while read -r line ; do
 	case $line in
 		V*)
-			volume="%{F$COLOR_STATUS_FG}%{B$COLOR_STATUS_BG} ${line#?}%% %{B-}%{F-}"
+			if [ ${line#?} -le 15 ];
+			then
+				volume="%{F$COLOR_STATUS_FG}%{B$_PURPLE} ${line#?}%% %{B-}%{F-}"
+			else
+				volume="%{F$COLOR_STATUS_FG}%{B$COLOR_STATUS_BG} ${line#?}%% %{B-}%{F-}"
+			fi
 			;;
 		B*)
 			percentage=$(echo $line | grep -oP '\d+(?=%)')
