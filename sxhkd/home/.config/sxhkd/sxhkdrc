@@ -89,6 +89,12 @@ XF86AudioRaiseVolume
 XF86AudioMute
 	$HOME/bin/vol.sh toggle
 
+XF86MonBrightnessUp
+	xbacklight -inc 10
+
+XF86MonBrightnessDown
+	xbacklight -dec 10
+
 super + Return
 	xterm
 
