@@ -51,3 +51,5 @@ XTerm*faceName:Terminus:style=Regular:size=10
 *.color19:      base02
 *.color20:      base04
 *.color21:      base06
+
+Xft.dpi: 180
