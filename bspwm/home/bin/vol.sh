@@ -1,11 +1,12 @@
 #!/bin/bash
 
-DEVICE=IEC958
+AMIXER="amixer -c 1"
+DEVICE=Master
 
 get_volume () {
 	# http://unix.stackexchange.com/a/89583
-	VOL=$(awk -F"[][]" '/dB/ { print $2 }' <(amixer sget $DEVICE))
-	SOUND_ON=$(awk -F"[][]" '/dB/ { print $6 }' <(amixer sget $DEVICE))
+	VOL=$(awk -F"[][]" '/dB/ { print $2 }' <($AMIXER sget $DEVICE))
+	SOUND_ON=$(awk -F"[][]" '/dB/ { print $6 }' <($AMIXER sget $DEVICE))
 	if [ "$SOUND_ON" == "off" ];
 	then
 		VOL=0
@@ -15,13 +16,13 @@ get_volume () {
 
 case "$1" in
 	up )
-		amixer -q sset $DEVICE 5%+
+		$AMIXER -q sset $DEVICE 5%+
 		;;
 	down )
-		amixer -q sset $DEVICE 5%-
+		$AMIXER -q sset $DEVICE 5%-
 		;;
 	toggle )
-		amixer -q sset $DEVICE toggle
+		$AMIXER -q sset $DEVICE toggle
 		;;
 	get )
 		get_volume
