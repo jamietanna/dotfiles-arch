@@ -31,3 +31,11 @@ alias gd="git diff"
 alias ga="git add"
 alias gr="git remote"
 alias glg="git log --stat"
+
+function mkd () {
+	mkdir $2 $1 && cd $1
+}
+
+function mkdp () {
+	mkd $1 -p
+}
