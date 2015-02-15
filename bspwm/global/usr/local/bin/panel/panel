@@ -1,4 +1,4 @@
-#! /bin/sh
+#!/bin/bash
 
 if [ $(pgrep -cx panel) -gt 1 ] ; then
 	printf "%s\n" "The panel is already running." >&2
@@ -16,10 +16,10 @@ battery () {
 		while true;
 		do
 			DATA=$(acpi -b)
-	
+
 			remainder=$(echo $DATA | cut -d" " -f5)
 			percent=$(echo $DATA | cut -d" " -f4 | sed 's/,//g')
-	
+
 			echo -n "B"
 			echo $DATA | grep "Discharging" > /dev/null
 			if [ $? -eq 0 ];
