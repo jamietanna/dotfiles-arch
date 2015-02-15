@@ -1,0 +1,26 @@
+tag=""
+output=""
+for iface_path in /sys/class/net/*;
+do
+	iface=$(basename $iface_path)
+    if [[ "$iface" == "lo" ]];
+    then
+        continue
+    fi
+
+	if [ -n "$output" ];
+	then
+		output="$output $iface"
+	else
+		output="$output$iface"
+	fi
+	#SO:
+	ip_addr=$(ip a | sed -rn '/: '"$iface"':.*state UP/{N;N;s/.*inet (\S*).*/\1/p}')
+	if [ -z "$ip_addr" ];
+	then
+		tag="XD"
+	else
+		tag="XC"
+	fi
+done
+echo "$tag$output"
