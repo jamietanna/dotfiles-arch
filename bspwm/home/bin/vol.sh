@@ -17,9 +17,11 @@ get_volume () {
 case "$1" in
 	up )
 		$AMIXER -q sset $DEVICE 5%+
+		$AMIXER -q sset $DEVICE unmute
 		;;
 	down )
 		$AMIXER -q sset $DEVICE 5%-
+		$AMIXER -q sset $DEVICE unmute
 		;;
 	toggle )
 		$AMIXER -q sset $DEVICE toggle
