@@ -1,3 +1,4 @@
+#!/bin/bash
 tag=""
 output=""
 for iface_path in /sys/class/net/*;
