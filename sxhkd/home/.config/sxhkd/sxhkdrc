@@ -80,6 +80,12 @@ super + @button{1-3}
 # wm independent hotkeys
 #
 
+Super + >
+	mpc next
+
+Super + <
+	mpc prev
+
 XF86AudioLowerVolume
 	$HOME/bin/vol.sh down
 
