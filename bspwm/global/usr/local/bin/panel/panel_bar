@@ -37,8 +37,8 @@ while read -r line ; do
 			fi
 			;;
 		B*)
-			percentage=$(echo $line | grep -op '\d+(?=%)')
-			if [ $percentage -le 20 ];
+			percentage=$(echo $line | grep -oP '\d+(?=%)')
+			if [[ $percentage -le 20 ]];
 			then
 				battery="%{F$COLOR_STATUS_FG}%{B$_MAGENTA} ${line#?} %{B-}%{F-}"
 			else
