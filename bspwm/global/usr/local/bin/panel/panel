@@ -46,6 +46,15 @@ first_time () {
 	echo "V$($HOME/bin/vol.sh get)"
 }
 
+packages_to_update () {
+	# http://www.reddit.com/r/archlinux/comments/2xbf71/script_to_update_arch/coyolos
+	while true;
+	do
+		echo "P$(checkupdates | wc -l)"
+		sleep $((60*60*3))
+	done
+}
+
 bspc config top_padding $PANEL_HEIGHT
 bspc control --subscribe > "$PANEL_FIFO" &
 xtitle -sf 'T%s' > "$PANEL_FIFO" &
@@ -53,6 +62,7 @@ clock -sf 'S%a %H:%M' > "$PANEL_FIFO" &
 battery > "$PANEL_FIFO" &
 notify_network_loop > "$PANEL_FIFO" &
 first_time > "$PANEL_FIFO" &
+packages_to_update > "$PANEL_FIFO" &
 
 . panel_colors
 

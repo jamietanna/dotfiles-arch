@@ -6,6 +6,12 @@ num_mon=$(bspc query -M | wc -l)
 
 while read -r line ; do
 	case $line in
+		P*)
+			if [[ ${line#?} -gt 0 ]];
+			then
+				packages="%{F$COLOR_STATUS_FG}%{B$_ORANGE} ${line#?} %{B-}%{F-}"
+			fi
+			;;
 		X*)
 			line_out=$(echo $line | cut -c 3-)
 			case $line in
@@ -105,5 +111,5 @@ while read -r line ; do
 			done
 			;;
 	esac
-	printf "%s\n" "%{l}${wm_infos}%{c}${title}%{r}${network}${battery}${volume}${hostname}${sys_infos}"
+	printf "%s\n" "%{l}${wm_infos}%{c}${title}%{r}${network}${battery}${volume}${hostname}${packages}${sys_infos}"
 done
