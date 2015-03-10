@@ -1,6 +1,6 @@
 #!/bin/bash
 
-AMIXER="amixer -c 1"
+AMIXER="amixer -c 0"
 DEVICE=Master
 
 get_volume () {
