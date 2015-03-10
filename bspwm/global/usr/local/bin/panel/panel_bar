@@ -10,6 +10,8 @@ while read -r line ; do
 			if [[ ${line#?} -gt 0 ]];
 			then
 				packages="%{F$COLOR_PACKAGE_FG}%{B$COLOR_PACKAGE_BG} ${line#?} %{B-}%{F-}"
+			else
+				packages=""
 			fi
 			;;
 		X*)
