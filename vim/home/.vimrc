@@ -16,6 +16,10 @@ syntax on
 " force markdown syntax
 au BufRead,BufNewFile *.md set filetype=markdown
 
+" highlight matches
+set hlsearch
+" and make sure we can toggle it with a CR
+:nnoremap <CR> :nohlsearch<cr>
 
 " use comma as a leader - more convenient than \
 let mapleader = ","
