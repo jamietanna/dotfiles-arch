@@ -1,6 +1,7 @@
 #!/bin/bash
 
-DEVICE=IEC958
+AMIXER="amixer -c 0"
+DEVICE=Master
 
 get_volume () {
 	# http://unix.stackexchange.com/a/89583
