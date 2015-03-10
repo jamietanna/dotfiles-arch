@@ -55,6 +55,29 @@ packages_to_update () {
 	done
 }
 
+get_playing () {
+	while true;
+	do
+		echo -n "M"
+
+		mpc_status=$(mpc status)
+
+		if echo $mpc_status | grep "playing" 2>&1 > /dev/null;
+		then
+			echo -n "pl"
+		elif echo $mpc_status | grep "paused" 2>&1 > /dev/null;
+		then
+			echo -n "pa"
+		else
+			echo -n "st"
+			echo
+		fi
+
+		mpc current
+		sleep $((60*3))
+	done
+}
+
 bspc config top_padding $PANEL_HEIGHT
 bspc control --subscribe > "$PANEL_FIFO" &
 xtitle -sf 'T%s' > "$PANEL_FIFO" &
@@ -63,6 +86,7 @@ battery > "$PANEL_FIFO" &
 notify_network_loop > "$PANEL_FIFO" &
 first_time > "$PANEL_FIFO" &
 packages_to_update > "$PANEL_FIFO" &
+get_playing > "$PANEL_FIFO" &
 
 . panel_colors
 

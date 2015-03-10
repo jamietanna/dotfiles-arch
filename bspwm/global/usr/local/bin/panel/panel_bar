@@ -6,6 +6,20 @@ num_mon=$(bspc query -M | wc -l)
 
 while read -r line ; do
 	case $line in
+		M*)
+			line_out=$(echo $line | cut -c 4-)
+			case $line in
+				Mpl*)
+					music="%{F$COLOR_MUSIC_PLAYING_FG}%{B$COLOR_MUSIC_PLAYING_BG} ${line_out} %{B-}%{F-}"
+				;;
+				Mpa*)
+					music="%{F$COLOR_MUSIC_PAUSED_FG}%{B$COLOR_MUSIC_PAUSED_BG} ${line_out} %{B-}%{F-}"
+				;;
+				*)
+					music="%{F$COLOR_MUSIC_STOPPED_FG}%{B$COLOR_MUSIC_STOPPED_BG}%{B-}%{F-}"
+				;;
+			esac
+			;;
 		P*)
 			if [[ ${line#?} -gt 0 ]];
 			then
@@ -118,5 +132,5 @@ while read -r line ; do
 			done
 			;;
 	esac
-	printf "%s\n" "%{l}${wm_infos}%{c}${title}%{r}${network}${battery}${volume}${hostname}${packages}${sys_infos}"
+	printf "%s\n" "%{l}${wm_infos}%{c}${title}%{r}${network}${battery}${music}${volume}${hostname}${packages}${sys_infos}"
 done
