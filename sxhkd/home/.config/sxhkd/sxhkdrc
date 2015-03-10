@@ -14,6 +14,9 @@ super + t
 super + b
 	bspc desktop -B
 
+super + e
+	bspc desktop -E
+
 super + {s,f}
 	bspc window -t {floating,fullscreen}
 
