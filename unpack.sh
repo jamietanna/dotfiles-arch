@@ -2,8 +2,21 @@
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
+debug () {
+	$DEBUG && echo -e "\033[34mDEBUG: " $* "\033[0m"
+}
+
+error () {
+	echo -e "\033[31mERROR: " $* "\033[0m" >&2
+	exit 1
+}
+
+warn () {
+	echo -e "\033[33mWARNING: " $* "\033[0m"
+}
+
 cmd () {
-	echo "CMD: $2"
+	debug "CMD: $2"
 	if [ "$1" == "home" ];
 	then
 		$2
@@ -29,8 +42,7 @@ unpack () {
 			path_create_final="${path_create//$1\/global/}"
 			;;
 			* )
-			echo "ERR"
-			exit 1
+			error "Invalid unpack location"
 			;;
 		esac
 		path_split=(${path_create//\// })
@@ -55,15 +67,14 @@ unpack () {
 			path_create_final="${path_create//$1\/global/}"
 			;;
 			* )
-			echo "ERR"
-			exit 1
+			error "Invalid unpack location"
 			;;
 		esac
 		path_split=(${path_create//\// })
 
 		if [ -e "$OUT$path_create_final" ];
 		then
-			echo "$OUT$path_create_final already exists"
+			warn "$OUT$path_create_final already exists"
 			continue
 		fi
 
@@ -73,7 +84,7 @@ unpack () {
 
 if [ -z "$1" ];
 then
-	echo "ERROR: Please enter name of package to install"
+	error "Please enter name of package to install"
 	exit 1
 fi
 
