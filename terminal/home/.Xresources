@@ -1,5 +1,4 @@
 XTerm*faceName:Terminus:style=Regular:size=10
-Xft.dpi: 180
 
 #define col_bg 					#262626
 #define col_fg 					#d0d0d0
@@ -76,3 +75,4 @@ Xft.dpi: 180
 ! white
 *.color7:						col_white
 *.color15:						col_white_dark
+Xft.dpi: 96
