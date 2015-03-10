@@ -79,14 +79,13 @@ super + !button{1-3}
 super + @button{1-3}
 	bspc pointer -u
 
-#
-# wm independent hotkeys
-#
+super + space
+	mpc toggle
 
-Super + >
+super + greater
 	mpc next
 
-Super + <
+super + less
 	mpc prev
 
 XF86AudioLowerVolume
