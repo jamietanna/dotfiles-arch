@@ -113,3 +113,6 @@ super + d
 # make sxhkd reload its configuration files:
 super + Escape
 	pkill -USR1 -x sxhkd
+
+super + alt + Delete
+	i3lock -i $HOME/.currbg
