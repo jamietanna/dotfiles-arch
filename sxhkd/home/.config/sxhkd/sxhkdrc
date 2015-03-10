@@ -110,7 +110,7 @@ super + Return
 	xterm
 
 super + d
-	dmenu_run -fn "-*-terminus-medium-r-normal-*-22-*-*-*-c-*-*-1" -nb "#d22d72" -nf "#FFFFFF" -sb "#568c3b" -sf "#FFFFFF"
+	dmenu_run -fn "-*-terminus-medium-r-normal-*-12-*-*-*-c-*-*-1" -nb "#d22d72" -nf "#FFFFFF" -sb "#568c3b" -sf "#FFFFFF"
 
 # make sxhkd reload its configuration files:
 super + Escape
