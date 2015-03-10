@@ -6,8 +6,6 @@ As part of my move to Arch Linux, I'm rebuilding my dotfiles from the ground up 
 
 In each package directory (see [Directory Structure](#directory-structure) for clarification), there will be instructions on where the package will be available, and any additional requirements needed.
 
-In order to run `unpack.sh`, you will need to have installed GNU `stow`.
-
 ## How to Use
 
 To use this repo, you simply need to run `/path/to/repo/unpack.sh $packages`, where `$packages` is a space separated list i.e. `unpack.sh bspwm sxhkd`. Note that this will unpack configs to the home and root directories.
