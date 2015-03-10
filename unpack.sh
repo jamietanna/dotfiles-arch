@@ -27,6 +27,13 @@ cmd () {
 
 unpack () {
 	# PKG home|global
+
+	if [ -x "$1/install.pre.sh" ];
+	then
+		debug "Running install.pre.sh"
+		"$1/install.pre.sh"
+	fi
+
 	for f in $(find "$1/$2" -type d);
 	do
 		full_path="$(readlink -f "$f")"
@@ -80,6 +87,12 @@ unpack () {
 
 		cmd "$2" "ln -s $full_path $OUT$path_create_final"
 	done
+
+	if [ -x "$1/install.post.sh" ];
+	then
+		debug "Running install.post.sh"
+		"$1/install.post.sh"
+	fi
 }
 
 if [ -z "$1" ];
