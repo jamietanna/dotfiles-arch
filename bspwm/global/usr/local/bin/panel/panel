@@ -58,22 +58,7 @@ packages_to_update () {
 get_playing () {
 	while true;
 	do
-		echo -n "M"
-
-		mpc_status=$(mpc status)
-
-		if echo $mpc_status | grep "playing" 2>&1 > /dev/null;
-		then
-			echo -n "pl"
-		elif echo $mpc_status | grep "paused" 2>&1 > /dev/null;
-		then
-			echo -n "pa"
-		else
-			echo -n "st"
-			echo
-		fi
-
-		mpc current
+		mpc.sh current
 		sleep $((60*3))
 	done
 }

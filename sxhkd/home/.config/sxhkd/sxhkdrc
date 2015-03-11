@@ -80,13 +80,13 @@ super + @button{1-3}
 	bspc pointer -u
 
 super + space
-	mpc toggle
+	mpc.sh toggle
 
 super + greater
-	mpc next
+	mpc.sh next
 
 super + less
-	mpc prev
+	mpc.sh prev
 
 XF86AudioLowerVolume
 	$HOME/bin/vol.sh down
