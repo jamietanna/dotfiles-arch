@@ -15,6 +15,20 @@ syntax on
 
 " force markdown syntax
 au BufRead,BufNewFile *.md set filetype=markdown
+" and highlight code in fenced blocks!
+let g:markdown_fenced_languages = [
+\	'css',
+\	'erb=eruby',
+\	'javascript',
+\	'js=javascript',
+\	'json=javascript',
+\	'ruby',
+\	'sass',
+\	'xml',
+\	'html',
+\	'c',
+\	'cpp'
+\]
 
 " highlight matches
 set hlsearch
