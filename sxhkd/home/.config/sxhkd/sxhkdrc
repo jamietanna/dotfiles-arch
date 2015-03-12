@@ -79,6 +79,9 @@ super + !button{1-3}
 super + @button{1-3}
 	bspc pointer -u
 
+super + shift + n
+	xterm -e ncmpcpp
+
 super + space
 	mpc.sh toggle
 
