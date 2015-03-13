@@ -41,3 +41,10 @@ function mkd () {
 function mkdp () {
 	mkd $1 -p
 }
+
+# Remove trailing whitespace from file(s)
+function rmws () {
+	# make sure our symlinks - i.e. config files - are followed
+	# TODO maybe warn?
+	sed --follow-symlinks -i 's/[ \t]$//' $*
+}
