@@ -1,5 +1,33 @@
-runtime bundle/vim-pathogen/autoload/pathogen.vim
-execute pathogen#infect()
+function! BuildCommandT(info)
+	" info is a dictionary with 3 fields
+	" - name:   name of the plugin
+	" - status: 'installed', 'updated', or 'unchanged'
+	" - force:  set on PlugInstall! or PlugUpdate!
+	if a:info.status == 'installed' || a:info.force
+		!$HOME/dotfiles-arch/vim/install.commandt.sh
+	endif
+endfunction
+
+function! BuildYCM(info)
+	" info is a dictionary with 3 fields
+	" - name:   name of the plugin
+	" - status: 'installed', 'updated', or 'unchanged'
+	" - force:  set on PlugInstall! or PlugUpdate!
+	if a:info.status == 'installed' || a:info.force
+		!$HOME/dotfiles-arch/vim/install.ycm.sh
+	endif
+endfunction
+
+
+call plug#begin('~/.vim/plugged')
+
+Plug 'Wincent/command-t/', { 'do': function('BuildCommandT') }
+Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
+
+call plug#end()
+
+
+
 
 """ General settings
 
