@@ -1,22 +1,11 @@
 #!/bin/bash
 
-mkdir -p $HOME/.vim/bundle
-cd $HOME/.vim/bundle
-git clone https://github.com/tpope/vim-pathogen
+mkdir -p $HOME/.vim
+cd $HOME/.vim
+git clone https://github.com/junegunn/vim-plug
+mkdir -p $HOME/.vim/autoload
+ln -s $HOME/.vim/vim-plug/plug.vim autoload/plug.vim
 
-git clone https://github.com/wincent/command-t
-(
-	cd command-t
-	cd ruby/command-t
-	ruby extconf.rb
-	make
-)
-
+echo "To install, run \`:PlugInstall\` inside Vim"
 echo -e "\033[33mWARNING: This next step will max out your CPU while compiling. Please ^C and comment out the following steps if you wish.\033[0m"
 read
-sudo pacman -S clang cmake
-git clone https://github.com/Valloric/YouCompleteMe
-(
-	cd YouCompleteMe
-	./install.sh --clang-completer --system-libclang
-)
