@@ -23,6 +23,7 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'Wincent/command-t/', { 'do': function('BuildCommandT') }
 Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
+" Eclim can be installed automagically via the AUR
 
 call plug#end()
 
@@ -71,3 +72,6 @@ let g:ycm_semantic_triggers =  {
   \   'lua' : ['.', ':'],
   \   'erlang' : [':'],
   \ }
+
+
+let g:EclimCompletionMethod = 'omnifunc'
