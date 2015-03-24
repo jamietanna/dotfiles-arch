@@ -6,5 +6,8 @@ xbacklight -set 50
 mpc pause
 
 sxhkd &
+
+setxkbmap gb &
+
 panel &
 exec bspwm
