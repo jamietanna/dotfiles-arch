@@ -18,15 +18,19 @@ battery () {
 			DATA=$(acpi -b)
 
 			remainder=$(echo $DATA | cut -d" " -f5)
-			percent=$(echo $DATA | cut -d" " -f4 | sed 's/,//g')
+			percent=$(echo $DATA | cut -d" " -f4 | sed 's/[,%]//g')
+			percent_str="$percent%%"
 
 			echo -n "B"
 			echo $DATA | grep "Discharging" > /dev/null
 			if [ $? -eq 0 ];
 			then
-			    echo "$percent% $remainder"
+			    echo "$percent_str $remainder"
+			elif [ $percent -eq 100 ];
+			then
+				echo "$percent_str"
 			else
-			    echo "$percent% +$remainder"
+			    echo "$percent_str +$remainder"
 			fi
 			sleep 10
 		done
