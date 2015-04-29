@@ -118,3 +118,9 @@ super + Escape
 
 super + alt + Delete
 	i3lock -i $HOME/.currbg
+
+shift + Print
+	scrot --focused --exec 'mv $f ~/'
+
+super + Print
+	scrot --exec 'mv $f ~/'
