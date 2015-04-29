@@ -10,4 +10,4 @@ bspc config focus_by_distance   true
 bspc config focus_follows_pointer true
 
 bspc monitor DP-1 -d I II III IV V
-bspc monitor HDMI-1 -d VI VII VIII IX X
+bspc monitor HDMI-0 -d VI VII VIII IX X
