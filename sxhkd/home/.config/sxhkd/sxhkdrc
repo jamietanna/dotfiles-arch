@@ -127,3 +127,6 @@ shift + Print
 
 super + Print
 	scrot --exec 'mv $f ~/'
+
+XF86HomePage
+	chromium
