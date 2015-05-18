@@ -66,11 +66,7 @@ function pretty_git_log () {
 alias glg="pretty_git_log"
 
 function mkd () {
-	mkdir $2 $1 && cd $1
-}
-
-function mkdp () {
-	mkd $1 -p
+	mkdir -p $1 && cd $1
 }
 
 # Remove trailing whitespace from file(s)
