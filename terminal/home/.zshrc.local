@@ -75,3 +75,8 @@ function rmws () {
 	# TODO maybe warn?
 	sed --follow-symlinks -i 's/[ \t]$//' $*
 }
+
+# get to the top of our git repo
+function git-root () {
+	cd "$(git rev-parse --show-toplevel)"
+}
