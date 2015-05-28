@@ -1,12 +1,13 @@
 #!/bin/bash
 
-AMIXER="amixer -c 1"
-DEVICE=Master
+SINK_NUMBER=0
+AMIXER_CMD="amixer"
+AMIXER_DEVICE=Master
 
 get_volume () {
 	# http://unix.stackexchange.com/a/89583
-	VOL=$(awk -F"[][]" '/dB/ { print $2 }' <($AMIXER sget $DEVICE))
-	SOUND_ON=$(awk -F"[][]" '/dB/ { print $6 }' <($AMIXER sget $DEVICE))
+	VOL=$(awk -F"[][]" '/dB/ { print $2 }' <($AMIXER_CMD sget $AMIXER_DEVICE))
+	SOUND_ON=$(awk -F"[][]" '/dB/ { print $6 }' <($AMIXER_CMD sget $AMIXER_DEVICE))
 	if [ "$SOUND_ON" == "off" ];
 	then
 		VOL=0
@@ -14,17 +15,33 @@ get_volume () {
 	echo "${VOL//%/}"
 }
 
+mute () {
+	do_mute "true"
+}
+
+unmute () {
+	do_mute "false"
+}
+
+toggle () {
+	do_mute "toggle"
+}
+
+do_mute () {
+	pactl set-sink-mute $SINK_NUMBER "$1"
+}
+
 case "$1" in
 	up )
-		$AMIXER -q sset $DEVICE 5%+
-		$AMIXER -q sset $DEVICE unmute
+		$AMIXER_CMD -q sset $AMIXER_DEVICE 5%+
+		unmute
 		;;
 	down )
-		$AMIXER -q sset $DEVICE 5%-
-		$AMIXER -q sset $DEVICE unmute
+		$AMIXER_CMD -q sset $AMIXER_DEVICE 5%-
+		unmute
 		;;
 	toggle )
-		$AMIXER -q sset $DEVICE toggle
+		toggle
 		;;
 	get )
 		get_volume
