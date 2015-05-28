@@ -1,7 +1,8 @@
 #!/bin/bash
 
-AMIXER="amixer -c 1"
-DEVICE=Master
+SINK_NUMBER=0
+AMIXER_CMD="amixer"
+AMIXER_DEVICE=Master
 
 get_volume () {
 	# http://unix.stackexchange.com/a/89583
