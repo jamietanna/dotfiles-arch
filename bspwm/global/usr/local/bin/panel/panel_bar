@@ -1,6 +1,7 @@
 #!/bin/bash
 
-. panel_colors
+
+TEMPERATURE_THRESHOLD=60
 
 num_mon=$(bspc query -M | wc -l)
 
@@ -78,6 +79,21 @@ while read -r line ; do
 			# xtitle output
 			title="%{F$COLOR_TITLE_FG}%{B$COLOR_TITLE_BG} ${line#?} %{B-}%{F-}"
 			;;
+		CPU*)
+			# CPU temp and load
+			cpu_data=$(echo $line | cut -c4-)
+			# http://stackoverflow.com/questions/10586153/split-string-into-an-array-in-bash
+			IFS='@ ' read -a arr_cpu_data <<< "$cpu_data"
+			COLOR_LOAD_HIGH_TEMP_BG=$_RED
+			cpu_colour_bg="$COLOR_LOAD_NORMAL_TEMP_BG"
+
+			cpu_temperature=$(egrep -o [0-9]+ <<< "${arr_cpu_data[1]}")
+			if [[ "$cpu_temperature" -ge "$TEMPERATURE_THRESHOLD" ]];
+			then
+				cpu_colour_bg="$COLOR_LOAD_HIGH_TEMP_BG"
+			fi
+			cpu_load_info="%{F$COLOR_TITLE_FG}%{B$cpu_colour_bg} $cpu_data %{B-}%{F-}"
+			;;
 		W*)
 			# bspwm internal state
 			wm_infos=""
@@ -132,5 +148,5 @@ while read -r line ; do
 			done
 			;;
 	esac
-	printf "%s\n" "%{l}${wm_infos}%{c}${title}%{r}${network}${battery}${music}${volume}${hostname}${packages}${sys_infos}"
+	printf "%s\n" "%{l}${wm_infos}%{c}${title}%{r}${network}${cpu_load_info}${battery}${music}${volume}${hostname}${packages}${sys_infos}"
 done
