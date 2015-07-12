@@ -22,7 +22,11 @@ while read -r line ; do
 			esac
 			;;
 		P*)
-			if [[ ${line#?} -gt 0 ]];
+			# if we have a kernel update, we want to make it more visible
+			if [[ $line == *"linux"* ]];
+			then
+				packages="%{F$COLOR_PACKAGE_IMPORTANT_FG}%{B$COLOR_PACKAGE_IMPORTANT_BG} ${line#?} %{B-}%{F-}"
+			elif [[ ${line#?} -gt 0 ]];
 			then
 				packages="%{F$COLOR_PACKAGE_FG}%{B$COLOR_PACKAGE_BG} ${line#?} %{B-}%{F-}"
 			else
