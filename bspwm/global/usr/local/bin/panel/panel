@@ -57,7 +57,19 @@ packages_to_update () {
 	# http://www.reddit.com/r/archlinux/comments/2xbf71/script_to_update_arch/coyolos
 	while true;
 	do
-		echo "P$(checkupdates | wc -l)"
+		updates="$(checkupdates)"
+		update_count=$(echo "$updates" | wc -l)
+		out_str="P"
+		if [ "$update_count" -eq "0" ];
+		then
+			out_str+=""
+		elif [[ $updates == *"linux"* ]];
+		then
+			out_str+="k$update_count"
+		else
+			out_str+="p$update_count"
+		fi
+		echo "$out_str"
 		sleep $((60*60*3))
 	done
 }
