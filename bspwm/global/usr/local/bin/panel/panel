@@ -36,13 +36,6 @@ battery () {
 		done
 	fi
 }
-notify_network_loop () {
-	while true;
-	do
-		notify_network
-		sleep 5
-	done
-}
 
 first_time () {
 	sleep 1
@@ -59,11 +52,13 @@ packages_to_update () {
 	done
 }
 
-get_playing () {
+main_loop () {
 	while true;
 	do
+		battery	
 		mpc.sh current
-		sleep $((60*3))
+		notify_network
+		sleep 30
 	done
 }
 
@@ -71,11 +66,10 @@ bspc config top_padding $PANEL_HEIGHT
 bspc control --subscribe > "$PANEL_FIFO" &
 xtitle -sf 'T%s' > "$PANEL_FIFO" &
 clock -sf 'S%a %H:%M' > "$PANEL_FIFO" &
-battery > "$PANEL_FIFO" &
-notify_network_loop > "$PANEL_FIFO" &
 first_time > "$PANEL_FIFO" &
 packages_to_update > "$PANEL_FIFO" &
-get_playing > "$PANEL_FIFO" &
+
+main_loop > "$PANEL_FIFO" &
 
 . panel_colors
 
