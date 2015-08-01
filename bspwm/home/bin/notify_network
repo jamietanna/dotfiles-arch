@@ -15,13 +15,17 @@ do
 	else
 		output="$output$iface"
 	fi
-	#SO:
-	ip_addr=$(ip a | sed -rn '/: '"$iface"':.*state UP/{N;N;s/.*inet (\S*).*/\1/p}')
-	if [ -z "$ip_addr" ];
+
+	# if a single connection is valid, that's enough
+	[ "$tag" != "" ] && continue
+
+	# use sysfs' information to find out whether we're connected or not
+	operstate=$(cat $iface_path/operstate)
+	if [ "$operstate" == "up" ];
 	then
-		tag="XD"
-	else
 		tag="XC"
+	else
+		tag="XD"
 	fi
 done
 echo "$tag$output"
