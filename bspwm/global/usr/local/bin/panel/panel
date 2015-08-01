@@ -14,29 +14,27 @@ trap 'trap - TERM; kill 0' INT TERM QUIT EXIT
 mkfifo "$PANEL_FIFO"
 
 battery () {
-	if which acpi > /dev/null 2>&1;
+	# http://askubuntu.com/a/309146
+	if [ -e "/sys/class/power_supply/BAT0" ];
 	then
-		while true;
-		do
-			DATA=$(acpi -b)
+		DATA=$(acpi -b)
 
-			remainder=$(echo $DATA | cut -d" " -f5)
-			percent=$(echo $DATA | cut -d" " -f4 | sed 's/[,%]//g')
-			percent_str="$percent%%"
+		remainder=$(echo $DATA | cut -d" " -f5)
+		percent=$(echo $DATA | cut -d" " -f4 | sed 's/[,%]//g')
+		percent_str="$percent%%"
 
-			echo -n "B"
-			echo $DATA | grep "Discharging" > /dev/null
-			if [ $? -eq 0 ];
-			then
-			    echo "$percent_str $remainder"
-			elif [ $percent -eq 100 ];
-			then
-				echo "$percent_str"
-			else
-			    echo "$percent_str +$remainder"
-			fi
-			sleep 10
-		done
+		echo -n "B"
+		echo $DATA | grep "Discharging" > /dev/null
+		if [ $? -eq 0 ];
+		then
+		    echo "$percent_str $remainder"
+		elif [[ "$percent" -eq "100" ]];
+		then
+			echo "$percent_str"
+		else
+		    echo "$percent_str +$remainder"
+		fi
+		sleep 10
 	fi
 }
 
