@@ -39,7 +39,7 @@ set shiftwidth=4
 " tab master race
 set noexpandtab
 
-set ignorecase smartcase
+set ignorecase smartcase incsearch
 
 " need syntax highlighting
 syntax on
