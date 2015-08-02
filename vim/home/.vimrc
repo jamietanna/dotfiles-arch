@@ -20,13 +20,11 @@ endfunction
 
 
 call plug#begin('~/.vim/plugged')
-
-Plug 'Wincent/command-t/', { 'do': function('BuildCommandT') }
-Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
-Plug 'Airblade/vim-gitgutter'
-Plug 'Tpope/vim-fugitive'
-" Eclim can be installed automagically via the AUR
-
+	Plug 'Wincent/command-t/', { 'do': function('BuildCommandT') }
+	Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
+	Plug 'Airblade/vim-gitgutter'
+	Plug 'Tpope/vim-fugitive'
+	" Eclim can be installed automagically via the AUR
 call plug#end()
 
 
