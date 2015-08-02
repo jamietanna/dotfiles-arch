@@ -84,3 +84,6 @@ augroup END
 
 set background=dark
 colorscheme PaperColor
+
+" fix our SignColumn - make sure we have proper colour highlighting!
+hi clear SignColumn
