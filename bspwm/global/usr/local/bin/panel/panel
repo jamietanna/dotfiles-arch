@@ -54,7 +54,8 @@ packages_to_update () {
 		if [ "$update_count" -eq "0" ];
 		then
 			out_str+=""
-		elif [[ $updates == *"linux"* ]];
+		# only match the full `linux` package, not things like `linux-firmware`
+		elif [[ "${updates//$'\n'/|}" == *"|linux|"* ]];
 		then
 			out_str+="k$update_count"
 		else
