@@ -24,6 +24,7 @@ call plug#begin('~/.vim/plugged')
 	Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
 	Plug 'Airblade/vim-gitgutter'
 	Plug 'Tpope/vim-fugitive'
+	Plug 'NLKNguyen/papercolor-theme'
 	" Eclim can be installed automagically via the AUR
 call plug#end()
 
@@ -80,3 +81,6 @@ augroup myvimrc
 au!
     au BufWritePost .vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc so $MYVIMRC | if has('gui_running') | so $MYGVIMRC | endif
 augroup END
+
+set background=dark
+colorscheme PaperColor
