@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+
+extract_xresources_field () {
+	sed -n "s/#define $1[ \t]*\([c\#].*\)/\1/p" $HOME/.Xresources
+}
+
+colour_from_xresources () {
+	local tmp_colour
+	tmp_colour="$(extract_xresources_field "$1")"
+	while true;
+	do
+		# make sure that we fail if we don't have any matches
+		[[ -z "$tmp_colour" ]] && return 1
+		# if we have an actual #RGB colour, break now
+		[[ "$(echo "$tmp_colour" | cut -c 1)" == "#" ]] && break
+		# otherwise recursively re-extract the colour to get the base #RGB value
+		tmp_colour="$(extract_xresources_field "$tmp_colour")"
+
+	done
+
+	echo "$tmp_colour"
+}
+
+rgb_to_rgba () {
+	# if we don't have a valid #RGB number, error
+	[[ "$(echo "$1" | cut -c 1)" != "#" ]] && return 1
+	# 7 == '#' + RRGGBB
+	[[ "${#1}" -ne "7" ]] && return 1
+
+	local alpha
+	# allow the alpha value to be passed in, otherwise default to `FF`
+	if [[ -n "$2" ]];
+	then
+		alpha="$2"
+	else
+		alpha="FF"
+	fi
+
+	echo "#${alpha}$(echo "$1" | cut -c 2-)"
+}
+
+
