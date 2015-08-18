@@ -38,6 +38,7 @@ Xft.dpi: 96
 #define col_cyan_dark 			col_cyan2
 #define col_white_dark 			col_white2
 
+
 ! Based off NLKNguyen/papercolor-theme
 
 ! special
