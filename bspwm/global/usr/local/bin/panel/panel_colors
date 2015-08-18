@@ -1,16 +1,19 @@
 #!/usr/bin/env bash
+
+. $HOME/.Xresourceshelper
+
 ## Colours taken from NLKNguyen/papercolor-theme
-_RED="#ffe82a41"
-_ORANGE="#ffdf875f"
-_YELLOW="#ffdfaf00"
-_GREEN="#ff00af5f"
-_CYAN="#ff25e8d87"
-_BLUE="#ff00afaf"
-_BLUE_DARK="#ff00e0e0"
-_VIOLET="#ff85678f"
-_MAGENTA="#ffff5faf"
+_RED="$(rgb_to_rgba $(colour_from_xresources "col_red"))"
+_ORANGE="$(rgb_to_rgba $(colour_from_xresources "col_yellow"))"
+_YELLOW="$(rgb_to_rgba $(colour_from_xresources "col_yellow_dark"))"
+_GREEN="$(rgb_to_rgba $(colour_from_xresources "col_green"))"
+_GREY="$(rgb_to_rgba $(colour_from_xresources "col_white"))"
+_BLUE="$(rgb_to_rgba $(colour_from_xresources "col_blue"))"
+_BLUE_DARK="$(rgb_to_rgba $(colour_from_xresources "col_blue_dark"))"
+_VIOLET="$(rgb_to_rgba $(colour_from_xresources "col_magenta"))"
+_MAGENTA="$(rgb_to_rgba $(colour_from_xresources "col_red_dark"))"
 _WHITE='#ffffffff'
-_FG_COL=$_WHITE
+_FG_COL="$_WHITE"
 # 0f
 _BG_COL=$_BLUE
 
@@ -29,7 +32,7 @@ COLOR_FOCUSED_OCCUPIED_BG=$_RED
 
 ## empty selected
 COLOR_FOCUSED_FREE_FG=$_FG_COL
-COLOR_FOCUSED_FREE_BG=$_CYAN
+COLOR_FOCUSED_FREE_BG=$_GREY
 
 COLOR_OCCUPIED_FG=$_FG_COL
 COLOR_OCCUPIED_BG=$_MAGENTA
