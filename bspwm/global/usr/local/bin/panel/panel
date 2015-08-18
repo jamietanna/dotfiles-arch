@@ -1,5 +1,8 @@
 #!/bin/bash
 
+DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+. $DIR/panel_colors
+
 if [ $(pgrep -cx panel) -gt 1 ] ; then
 	printf "%s\n" "The panel is already running." >&2
 	exit 1
@@ -73,15 +76,32 @@ main_loop () {
 	done
 }
 
+load_info () {
+	while true;
+	do
+		cpu_temp=$(sensors|awk 'BEGIN{i=0;t=0;b=0}/id [0-9]/{b=$4};/Core/{++i;t+=$3}END{if(i>0){printf("%0.1f\n",t/i)}else{sub(/[^0-9.]/,"",b);print b}}')
+		cpu_load=$(bc <<< $(ps -eo pcpu |grep -vE '^\s*(0.0|%CPU)' |sed -n '1h;$!H;$g;s/\n/ +/gp'))
+		# http://stackoverflow.com/a/10586020
+		mem_used=$(free | grep Mem | awk '{ print $3/$2 * 100.0 }')
+
+		echo "LOAD$(round $cpu_load)%%@$(round $cpu_temp)c $(round $mem_used)%%"
+		sleep 5
+	done
+}
+
+round () {
+	# http://unix.stackexchange.com/questions/131073/awk-printf-number-in-width-and-round-it-up
+	awk "BEGIN{printf \"%.0f\n\", $1}"
+}
+
 bspc config top_padding $PANEL_HEIGHT
 bspc control --subscribe > "$PANEL_FIFO" &
 xtitle -sf 'T%s' > "$PANEL_FIFO" &
 clock -sf 'S%a %H:%M' > "$PANEL_FIFO" &
 first_time > "$PANEL_FIFO" &
 packages_to_update > "$PANEL_FIFO" &
-
+load_info > "$PANEL_FIFO" &
 main_loop > "$PANEL_FIFO" &
-
 . panel_colors
 
 cat "$PANEL_FIFO" | panel_bar | lemonbar -g x$PANEL_HEIGHT -f "$PANEL_FONT_FAMILY" -F "$COLOR_FOREGROUND" -B "$COLOR_BACKGROUND" &
