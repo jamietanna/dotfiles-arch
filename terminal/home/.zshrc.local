@@ -89,3 +89,5 @@ function git-root () {
 eval $(dircolors $HOME/.dir_colors)
 # ensure zsh's autocomplete uses the same colours as our `LS_COLORS`
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+
+. $HOME/.Xresourceshelper
