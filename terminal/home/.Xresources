@@ -1,42 +1,79 @@
 XTerm*faceName:Terminus:style=Regular:size=10
 Xft.dpi: 96
 
+#define col_bg 					#262626
+#define col_fg 					#d0d0d0
+#define col_black1 				#3a3a3a
+#define col_black2 				#585858
+#define col_red1 				#e82a41
+#define col_red2 				#ff5faf
+#define col_green1 				#00af5f
+#define col_green2 				#afdf00
+#define col_yellow1 			#df875f
+#define col_yellow2 			#dfaf00
+#define col_blue1 				#00afaf
+#define col_blue2 				#00e0e0
+#define col_magenta1 			#85678f
+#define col_magenta2 			#af87af
+#define col_cyan1 				#5e8d87
+#define col_cyan2 				#8abeb7
+#define col_white1 				#707880
+#define col_white2 				#c5c8c6
+
+#define col_black 				col_black1
+#define col_red 				col_red1
+#define col_green 				col_green1
+#define col_yellow 				col_yellow1
+#define col_blue 				col_blue1
+#define col_magenta 			col_magenta1
+#define col_cyan 				col_cyan1
+#define col_white 				col_white1
+
+#define col_black_dark 			col_black2
+#define col_red_dark 			col_red2
+#define col_green_dark 			col_green2
+#define col_yellow_dark 		col_yellow2
+#define col_blue_dark 			col_blue2
+#define col_magenta_dark 		col_magenta2
+#define col_cyan_dark 			col_cyan2
+#define col_white_dark 			col_white2
+
 
 ! Based off NLKNguyen/papercolor-theme
 
 ! special
-*.foreground:   #d0d0d0
-*.background:   #262626
-*.cursorColor:  #d0d0d0
+*.foreground:   				col_fg
+*.background:   				col_bg
+*.cursorColor:  				col_fg
 
 ! black
-*.color0:       #3a3a3a
-*.color8:       #585858
+*.color0:	 					col_black
+*.color8:	 					col_black_dark
 
 ! red
-*.color1:       #E82A41
-*.color9:       #ff5faf
+*.color1:						col_red
+*.color9:						col_red_dark
 
 ! green
-*.color2:       #00af5f
-*.color10:      #afdf00
+*.color2:   					col_green
+*.color10:  					col_green_dark
 
 ! yellow
-*.color3:       #df875f
-*.color11:      #dfaf00
+*.color3:  						col_yellow
+*.color11: 						col_yellow_dark
 
 ! blue
-*.color4:       #00afaf
-*.color12:      #00e0e0
+*.color4: 						col_blue
+*.color12:						col_blue_dark
 
 ! magenta
-*.color5:       #85678f
-*.color13:      #af87af
+*.color5:  					 	col_magenta
+*.color13: 					 	col_magenta_dark
 
 ! cyan
-*.color6:       #5e8d87
-*.color14:      #8abeb7
+*.color6:  						col_cyan
+*.color14: 						col_cyan_dark
 
 ! white
-*.color7:       #707880
-*.color15:      #c5c8c6
+*.color7:						col_white
+*.color15:						col_white_dark
