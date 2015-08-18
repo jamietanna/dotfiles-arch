@@ -87,3 +87,6 @@ colorscheme PaperColor
 
 " fix our SignColumn - make sure we have proper colour highlighting!
 hi clear SignColumn
+
+" allow us to save a file if we forgot to open with sudo
+cmap w!! w !sudo tee > /dev/null %
