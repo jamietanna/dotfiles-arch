@@ -19,6 +19,7 @@ Xft.dpi: 180
 #define col_cyan2 				#8abeb7
 #define col_white1 				#707880
 #define col_white2 				#c5c8c6
+#define col_white_true			#FFFFFF
 
 #define col_black 				col_black1
 #define col_red 				col_red1
@@ -76,3 +77,23 @@ Xft.dpi: 180
 ! white
 *.color7:						col_white
 *.color15:						col_white_dark
+
+
+rofi.font:       				LiberationMono 10
+rofi.terminal:   				xterm
+rofi.key-run:    				mod4-d
+rofi.key-ssh:    				mod4-shift-Return
+rofi.key-window: 				mod4-w
+rofi.background: 				col_bg
+rofi.foreground: 				col_fg
+rofi.highlightbg: 				col_cyan
+rofi.highlightfg: 				col_fg
+rofi.bordercolor: 				col_white
+rofi.color-enabled:				true
+
+rofi.color-normal: 				col_cyan,col_bg,col_cyan_dark,col_blue_dark,col_bg
+rofi.color-urgent: 				col_yellow_dark,col_white_true,col_yellow_dark,col_green_dark,col_white_true
+rofi.color-active: 				col_red_dark,col_fg,col_red_dark,col_red,col_fg
+! color-window - window-background, border
+! (NOTE: second one won't be parsed if it's a variable)
+rofi.color-window: 				col_cyan,#FFFFFF
