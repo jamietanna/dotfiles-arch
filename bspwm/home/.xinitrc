@@ -6,6 +6,7 @@ xbacklight -set 50
 mpc pause
 
 sxhkd &
+rofi &
 
 setxkbmap gb &
 
