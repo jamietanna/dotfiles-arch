@@ -45,7 +45,7 @@ function rmws () {
 # -----------------------------------------------------------------------------
 # {{{
 # don't like `eval` but unfortunately we have to use it here
-eval $(dircolors --sh $HOME/.dir_colors)
+eval $(dircolors $HOME/.dir_colors)
 # ensure zsh's autocomplete uses the same colours as our `LS_COLORS`
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 # }}}
