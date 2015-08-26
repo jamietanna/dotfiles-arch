@@ -109,9 +109,8 @@ XF86MonBrightnessDown
 super + Return
 	xterm
 
-# make sxhkd reload its configuration files:
 super + Escape
-	pkill -USR1 -x sxhkd
+	pkill -USR1 -x sxhkd; xrdb ~/.Xresources
 
 super + alt + Delete
 	i3lock -i $HOME/.currbg
