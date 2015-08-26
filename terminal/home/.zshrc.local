@@ -77,9 +77,8 @@ function rmws () {
 }
 
 # get to the top of our git repo
-function git-root () {
-	cd "$(git rev-parse --show-toplevel)"
-}
+alias gitroot='git rev-parse --show-toplevel'
+alias groot='cd $(gitroot)'
 
 # don't like `eval` but have to use it here
 # by default, the colours for 777 dirs is unreadable (i.e. on an NTFS volume) -
