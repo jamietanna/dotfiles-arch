@@ -50,7 +50,13 @@ while read -r line ; do
 			hostname="%{F$COLOR_HOSTNAME_FG}%{B$COLOR_HOSTNAME_BG} ${line#?} %{B-}%{F-}"
 			;;
 		S*)
-			sys_infos="%{F$COLOR_CLOCK_FG}%{B$COLOR_CLOCK_BG} ${line#?} %{B-}%{F-}"
+			hour=$(echo "$line" | sed 's/.* \([0-9]*\).*/\1/')
+			if [[ $hour -ge 22 ]] || [[ $hour -lt 9 ]];
+			then
+				sys_infos="%{f$COLOR_CLOCK_LATE_FG}%{b$COLOR_CLOCK_LATE_BG} ${line#?} %{b-}%{f-}"
+			else
+				sys_infos="%{f$COLOR_CLOCK_NORMAL_FG}%{b$COLOR_CLOCK_NORMAL_BG} ${line#?} %{b-}%{f-}"
+			fi
 			;;
 		T*)
 			# xtitle output
