@@ -1,0 +1,2 @@
+REPOS=(vim clang cmake)
+AUR=()

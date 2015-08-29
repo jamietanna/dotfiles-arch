@@ -1,0 +1,2 @@
+REPOS=(ttf-liberation xorg-xrdb xterm zsh grml-zsh-config git)
+AUR=(rofi)

@@ -8,9 +8,11 @@ In each package directory (see [Directory Structure](#directory-structure) for c
 
 ## How to Use
 
-To use this repo, you simply need to run `/path/to/repo/unpack.sh $packages`, where `$packages` is a space separated list i.e. `unpack.sh bspwm sxhkd`. Note that this will unpack configs to the home and root directories.
+To simply use my dotfiles for yourself, you need to run `$GITROOT/unpack.sh $package` where `$package` is i.e. `bspwm`, `vim`, etc. Note that this may unpack to both your home directory, and global locations on disk.
 
-## Directory Structure ##
+To completely set up the same environment that I have, you will need to bootstrap. To do this, simply run `$GITROOT/bootstrap.sh`. This will set up my dotfiles and any packages required to use them. Note that for this method you will need the AUR helper `pacaur`, or will need to edit the `bootstrap.sh` script to use your own helper.
+
+## Directory Structure
 
 I've decided to organise my dotfiles in the following method:
 

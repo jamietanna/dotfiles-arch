@@ -1,0 +1,2 @@
+REPOS=(xterm i3lock scrot chromium ncmpcpp openssh)
+AUR=(sxhkd-git)
