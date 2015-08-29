@@ -1,18 +1,22 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
+# TODO make these work
+# set pipefail
+# set errexit
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 debug () {
-	$DEBUG && echo -e "\033[34mDEBUG: " $* "\033[0m"
+	[[ -n "$DEBUG" ]] && echo -e "\033[34mDEBUG: " $* "\033[0m"
 }
 
 error () {
-	echo -e "\033[31mERROR: " $* "\033[0m" >&2
+	echo -e "\033[31mERROR: $@\033[0m" >&2
 	exit 1
 }
 
 warn () {
-	echo -e "\033[33mWARNING: " $* "\033[0m"
+	echo -e "\033[33mWARNING: $@\033[0m"
 }
 
 cmd () {
@@ -28,71 +32,56 @@ cmd () {
 unpack () {
 	# PKG home|global
 
-	if [ -x "$1/install.pre.sh" ];
-	then
-		debug "Running install.pre.sh"
-		"$1/install.pre.sh"
-	fi
+	# TODO remove hack workaround to make `./` from `./folder` disappear
+	working_dir_path="${1//\/.\//\/}"
 
 	for f in $(find "$1/$2" -type d);
 	do
 		full_path="$(readlink -f "$f")"
-		path_create="${full_path//$DIR\/$1/}"
+		path_create="${full_path//$working_dir_path/}"
 
 		case "$2" in
 			home )
-			OUT=$HOME
-			path_create_final="${path_create//$1\/home/}"
+			path_create_final="${path_create//\/home/$HOME}"
 			;;
 			global )
-			OUT=
-			path_create_final="${path_create//$1\/global/}"
+			path_create_final="${path_create//\/global/\/}"
 			;;
 			* )
-			error "Invalid unpack location"
+			error "invalid unpack location"
 			;;
 		esac
-		path_split=(${path_create//\// })
 
-		[ -z "$OUT$path_create_final" ] && continue
+		[ -z "$path_create_final" ] && continue
 
-		cmd "$2" "mkdir -p $OUT$path_create_final"
+		cmd "$2" "mkdir -p $path_create_final"
 	done
 
 	for f in $(find "$1/$2" -type f);
 	do
 		full_path="$(readlink -f "$f")"
-		path_create="${full_path//$DIR\/$1/}"
+		path_create="${full_path//$working_dir_path/}"
 
 		case "$2" in
 			home )
-			OUT=$HOME
-			path_create_final="${path_create//$1\/home/}"
+			path_create_final="${path_create//\/home/$HOME}"
 			;;
 			global )
-			OUT=
-			path_create_final="${path_create//$1\/global/}"
+			path_create_final="${path_create//\/global/\/}"
 			;;
 			* )
-			error "Invalid unpack location"
+			error "invalid unpack location"
 			;;
 		esac
-		path_split=(${path_create//\// })
 
-		if [ -e "$OUT$path_create_final" ];
+		if [ -e "$path_create_final" ];
 		then
-			warn "$OUT$path_create_final already exists"
+			warn "$path_create_final already exists"
 			continue
 		fi
 
-		cmd "$2" "ln -s $full_path $OUT$path_create_final"
+		cmd "$2" "ln -s $full_path $path_create_final"
 	done
-
-	if [ -x "$1/install.post.sh" ];
-	then
-		debug "Running install.post.sh"
-		"$1/install.post.sh"
-	fi
 }
 
 if [ -z "$1" ];
