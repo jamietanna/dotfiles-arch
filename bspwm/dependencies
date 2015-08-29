@@ -1,0 +1,2 @@
+REPOS=(xorg-xrdb xorg-xmodmap feh xorg-xbacklight xorg-setxkbmap xorg-xinit ttf-liberation acpi mpd mpc alsa-utils lm_sensors bc)
+AUR=(rofi bspwm-git sutils-git xtitle-git lemonbar-xft-git)
