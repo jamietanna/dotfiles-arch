@@ -1,3 +1,8 @@
+runtime bundle/vim-pathogen/autoload/pathogen.vim
+execute pathogen#infect()
+
+""" General settings
+
 set tabstop=4
 set shiftwidth=4
 " tab master race
