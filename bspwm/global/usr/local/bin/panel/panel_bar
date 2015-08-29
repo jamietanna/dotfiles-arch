@@ -13,13 +13,13 @@ while read -r line ; do
 			line_out=$(echo $line | cut -c 4-)
 			case $line in
 				Mpl*)
-					music="%{F$COLOR_MUSIC_PLAYING_FG}%{B$COLOR_MUSIC_PLAYING_BG} ${line_out} %{B-}%{F-}"
+					music=$(bar_color COLOR_MUSIC_PLAYING " ${line_out} ")
 				;;
 				Mpa*)
-					music="%{F$COLOR_MUSIC_PAUSED_FG}%{B$COLOR_MUSIC_PAUSED_BG} ${line_out} %{B-}%{F-}"
+					music=$(bar_color COLOR_MUSIC_PAUSED " ${line_out} ")
 				;;
 				*)
-					music="%{F$COLOR_MUSIC_STOPPED_FG}%{B$COLOR_MUSIC_STOPPED_BG}%{B-}%{F-}"
+					music=$(bar_color COLOR_MUSIC_STOPPED " ${line_out} ")
 				;;
 			esac
 			;;
@@ -27,10 +27,10 @@ while read -r line ; do
 			package_count=$(echo "$line" | cut -c 3-)
 			case $line in
 				Pk*)
-					packages="%{F$COLOR_PACKAGE_IMPORTANT_FG}%{B$COLOR_PACKAGE_IMPORTANT_BG} ${package_count} %{F-}%{B-}"
+					packages=$(bar_color COLOR_PACKAGE_IMPORTANT " ${package_count} ")
 					;;
 				Pp*)
-					packages="%{F$COLOR_PACKAGE_FG}%{B$COLOR_PACKAGE_BG} ${package_count} %{F-}%{B-}"
+					packages=$(bar_color COLOR_PACKAGE " ${package_count} ")
 					;;
 				*)
 					packages=""
@@ -43,49 +43,49 @@ while read -r line ; do
 				XC*)
 					if echo $line_out | grep -e "tun[0-9]" 2>/dev/null;
 					then
-						network="%{F$COLOR_NETWORK_TUN_FG}%{B$COLOR_NETWORK_TUN_BG} ${line_out} %{B-}%{F-}"
+						network=$(bar_color COLOR_NETWORK_TUN " ${line_out} ")
 					else
-						network="%{F$COLOR_NETWORK_NORMAL_FG}%{B$COLOR_NETWORK_NORMAL_BG} ${line_out} %{B-}%{F-}"
+						network=$(bar_color COLOR_NETWORK_NORMAL " ${line_out} ")
 					fi
 				;;
 				XD*)
-					network="%{F$COLOR_NETWORK_DIS_FG}%{B$COLOR_NETWORK_DIS_BG} ${line_out} %{B-}%{F-}"
+					network=$(bar_color COLOR_NETWORK_DIS " ${line_out} ")
 				;;
 			esac
 			;;
 		V*)
 			if [[ ${line#?} -eq 0 ]];
 			then
-				volume="%{F$COLOR_VOLUME_OFF_FG}%{B$COLOR_VOLUME_OFF_BG} ${line#?}%% %{B-}%{F-}"
+				volume=$(bar_color COLOR_VOLUME_OFF " ${line#?}%% ")
 			else
-				volume="%{F$COLOR_VOLUME_ON_FG}%{B$COLOR_VOLUME_ON_BG} ${line#?}%% %{B-}%{F-}"
+				volume=$(bar_color COLOR_VOLUME_ON " ${line#?}%% ")
 			fi
 			;;
 		B*)
 			percentage=$(echo $line | grep -oP '\d+(?=%)')
 			if [[ $percentage -le 20 ]];
 			then
-				battery="%{F$COLOR_BATTERY_LOW_FG}%{B$COLOR_BATTERY_LOW_BG} ${line#?} %{B-}%{F-}"
+				battery=$(bar_color COLOR_BATTERY_LOW " ${line#?} ")
 			else
-				battery="%{F$COLOR_BATTERY_NORMAL_FG}%{B$COLOR_BATTERY_NORMAL_BG} ${line#?} %{B-}%{F-}"
+				battery=$(bar_color COLOR_BATTERY_NORMAL " ${line#?} ")
 			fi
 			;;
 		H*)
 			# hostname
-			hostname="%{F$COLOR_HOSTNAME_FG}%{B$COLOR_HOSTNAME_BG} ${line#?} %{B-}%{F-}"
+			hostname=$(bar_color COLOR_HOSTNAME " ${line#?} ")
 			;;
 		S*)
 			hour=$(echo "$line" | sed 's/.* \([0-9]*\).*/\1/')
 			if [[ $hour -ge 22 ]] || [[ $hour -lt 9 ]];
 			then
-				sys_infos="%{f$COLOR_CLOCK_LATE_FG}%{b$COLOR_CLOCK_LATE_BG} ${line#?} %{b-}%{f-}"
+				sys_infos=$(bar_color COLOR_CLOCK_LATE " ${line#?} ")
 			else
-				sys_infos="%{f$COLOR_CLOCK_NORMAL_FG}%{b$COLOR_CLOCK_NORMAL_BG} ${line#?} %{b-}%{f-}"
+				sys_infos=$(bar_color COLOR_CLOCK_NORMAL " ${line#?} ")
 			fi
 			;;
 		T*)
 			# xtitle output
-			title="%{F$COLOR_TITLE_FG}%{B$COLOR_TITLE_BG} ${line#?} %{B-}%{F-}"
+			title=$(bar_color COLOR_TITLE " ${line#?} ")
 			;;
 		LOAD*)
 			# load temp and load
@@ -95,16 +95,15 @@ while read -r line ; do
 			IFS='@' read -a arr_cpu_data <<< "$arr_load_data"
 
 			COLOR_LOAD_HIGH_TEMP_BG=$_RED
-			load_colour_bg="$COLOR_LOAD_NORMAL_TEMP_BG"
+			load_colour_bg="COLOR_LOAD_NORMAL_TEMP"
 
 			load_temperature=$(egrep -o "[0-9]+" <<< "${arr_cpu_data[1]}")
 			if [[ "$load_temperature" -ge "$TEMPERATURE_THRESHOLD" ]];
 			then
-				load_colour_bg="$COLOR_LOAD_HIGH_TEMP_BG"
+				load_colour="COLOR_LOAD_HIGH_TEMP"
 			fi
 
-
-			system_load_info="%{F$COLOR_TITLE_FG}%{B$load_colour_bg} $load_data %{B-}%{F-}"
+			system_load_info=$(bar_color $load_colour " ${load_data} ")
 			;;
 		W*)
 			# bspwm internal state
@@ -118,42 +117,42 @@ while read -r line ; do
 					M*)
 						# active monitor
 						if [ $num_mon -gt 1 ] ; then
-							wm_infos="$wm_infos %{F$COLOR_ACTIVE_MONITOR_FG}%{B$COLOR_ACTIVE_MONITOR_BG} ${name} %{B-}%{F-}  "
+							wm_infos="${wm_infos}$(bar_color COLOR_ACTIVE_MONITOR " ${name} ")"
 						fi
 						;;
 					m*)
 						# inactive monitor
 						if [ $num_mon -gt 1 ] ; then
-							wm_infos="$wm_infos %{F$COLOR_INACTIVE_MONITOR_FG}%{B$COLOR_INACTIVE_MONITOR_BG} ${name} %{B-}%{F-}  "
+							wm_infos="${wm_infos}$(bar_color COLOR_INACTIVE_MONITOR " ${name} ")"
 						fi
 						;;
 					O*)
 						# focused occupied desktop
-						wm_infos="${wm_infos}%{F$COLOR_FOCUSED_OCCUPIED_FG}%{B$COLOR_FOCUSED_OCCUPIED_BG}%{U$COLOR_FOREGROUND}%{+u} ${name} %{-u}%{B-}%{F-}"
+						wm_infos="${wm_infos}$(bar_color COLOR_FOCUSED_OCCUPIED "$(bar_underline $_FG_COL " ${name} ")")"
 						;;
 					F*)
 						# focused free desktop
-						wm_infos="${wm_infos}%{F$COLOR_FOCUSED_FREE_FG}%{B$COLOR_FOCUSED_FREE_BG}%{U$COLOR_FOREGROUND}%{+u} ${name} %{-u}%{B-}%{F-}"
+						wm_infos="${wm_infos}$(bar_color COLOR_FOCUSED_FREE "$(bar_underline $_FG_COL " ${name} ")")"
 						;;
 					U*)
 						# focused urgent desktop
-						wm_infos="${wm_infos}%{F$COLOR_FOCUSED_URGENT_FG}%{B$COLOR_FOCUSED_URGENT_BG}%{U$COLOR_FOREGROUND}%{+u} ${name} %{-u}%{B-}%{F-}"
+						wm_infos="${wm_infos}$(bar_color COLOR_FOCUSED_URGENT "$(bar_underline $_FG_COL " ${name} ")")"
 						;;
 					o*)
 						# occupied desktop
-						wm_infos="${wm_infos}%{F$COLOR_OCCUPIED_FG}%{B$COLOR_OCCUPIED_BG} ${name} %{B-}%{F-}"
+						wm_infos="${wm_infos}$(bar_color COLOR_OCCUPIED " ${name} ")"
 						;;
 					f*)
 						# free desktop
-						wm_infos="${wm_infos}%{F$COLOR_FREE_FG}%{B$COLOR_FREE_BG} ${name} %{B-}%{F-}"
+						wm_infos="${wm_infos}$(bar_color COLOR_FREE " ${name} ")"
 						;;
 					u*)
 						# urgent desktop
-						wm_infos="${wm_infos}%{F$COLOR_URGENT_FG}%{B$COLOR_URGENT_BG} ${name} %{B-}%{F-}"
+						wm_infos="${wm_infos}$(bar_color COLOR_URGENT " ${name} ")"
 						;;
 					L*)
 						# layout
-						wm_infos="$wm_infos  %{F$COLOR_LAYOUT_FG}%{B$COLOR_LAYOUT_BG} ${name} %{B-}%{F-}"
+						wm_infos="${wm_infos}$(bar_color COLOR_LAYOUT " ${name} ")"
 						;;
 				esac
 				shift
