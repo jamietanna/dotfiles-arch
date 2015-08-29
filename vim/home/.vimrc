@@ -40,7 +40,7 @@ set shiftwidth=4
 set noexpandtab
 
 " searching is now much easier
-set ignorecase smartcase
+set ignorecase smartcase incsearch
 
 " need syntax highlighting
 syntax on
