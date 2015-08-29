@@ -104,6 +104,6 @@ load_info > "$PANEL_FIFO" &
 main_loop > "$PANEL_FIFO" &
 . panel_colors
 
-cat "$PANEL_FIFO" | panel_bar | lemonbar -g x$PANEL_HEIGHT -f "$PANEL_FONT_FAMILY" -F "$COLOR_FOREGROUND" -B "$COLOR_BACKGROUND" &
+cat "$PANEL_FIFO" | panel_bar | lemonbar -g x$PANEL_HEIGHT -f "$PANEL_FONT_FAMILY" -F "$(bar_color_fg COLOR_BAR)" -B "$(bar_color_bg COLOR_BAR)" &
 
 wait
