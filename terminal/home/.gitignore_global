@@ -1,0 +1,7 @@
+# https://github.com/github/gitignore/blob/9f1b7d77e24ec9c3e2681da93b68767fd96dd52b/Global/Vim.gitignore
+[._]*.s[a-w][a-z]
+[._]s[a-w][a-z]
+*.un~
+Session.vim
+.netrwhist
+*~
