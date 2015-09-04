@@ -1,4 +1,4 @@
-XTerm*faceName:Terminus:style=Regular:size=10
+XTerm*faceName:Liberation Mono:style=Regular:size=10
 Xft.dpi: 96
 
 #define col_bg 					#262626
