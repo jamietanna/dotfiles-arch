@@ -41,9 +41,10 @@ _BLUE="$(rgb_to_rgba $(colour_from_xresources "col_blue"))"
 _BLUE_DARK="$(rgb_to_rgba $(colour_from_xresources "col_blue_dark"))"
 _VIOLET="$(rgb_to_rgba $(colour_from_xresources "col_magenta"))"
 _MAGENTA="$(rgb_to_rgba $(colour_from_xresources "col_red_dark"))"
+_BLACK_DARK="$(rgb_to_rgba $(colour_from_xresources "col_black_dark"))"
 _WHITE='#ffffffff'
 _FG_COL="$_WHITE"
-_BG_COL=$_BLUE
+_BG_COL=$_BLACK_DARK
 
 COLOR_BAR=($_FG_COL $_BG_COL)
 
