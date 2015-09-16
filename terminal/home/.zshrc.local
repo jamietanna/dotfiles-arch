@@ -88,3 +88,26 @@ eval $(dircolors $HOME/.dir_colors)
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 
 . $HOME/.Xresourceshelper
+
+WORKSPACE_ROOT="$HOME/workspaces"
+
+wksp () {
+	workspace_location="$WORKSPACE_ROOT/$1"
+
+	if [[ -z "$1" ]];
+	then
+		echo -e "\033[91mERROR: No workspace name given\033[0m"
+		return 1
+	fi
+
+	if [[ ! -e "$workspace_location" ]];
+	then
+		echo -e "\033[93mWorkspace \`$1\` does not exist. Creating now...\033[0m"
+		mkdir -p "$workspace_location"
+	fi
+
+	cd "$workspace_location"
+}
+
+# http://unix.stackexchange.com/a/65071
+compdef '_files -W $WORKSPACE_ROOT' wksp
