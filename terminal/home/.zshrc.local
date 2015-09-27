@@ -19,6 +19,8 @@ zle -N zle-keymap-select
 
 # And allow us to reverse search history
 bindkey '^r' history-incremental-search-backward
+bindkey '^a' beginning-of-line
+bindkey '^e' end-of-line
 ## End
 
 zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=* l:|=*'
