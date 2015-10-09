@@ -110,4 +110,4 @@ wksp () {
 }
 
 # http://unix.stackexchange.com/a/65071
-compdef '_files -W $WORKSPACE_ROOT' wksp
+compdef '_path_files -/ -W $WORKSPACE_ROOT' wksp
