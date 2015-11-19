@@ -113,3 +113,6 @@ wksp () {
 
 # http://unix.stackexchange.com/a/65071
 compdef '_path_files -/ -W $WORKSPACE_ROOT' wksp
+
+# force 256 colour mode, so we get the correct output in i.e. Vim
+alias tmux="tmux -2"
