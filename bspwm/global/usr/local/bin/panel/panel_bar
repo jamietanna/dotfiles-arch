@@ -11,15 +11,22 @@ while read -r line ; do
 	case $line in
 		M*)
 			line_out=$(echo $line | cut -c 4-)
+			if [[ -z "$line_out" ]];
+			then
+				line_out=""
+			else
+				line_out=" ${line_out} "
+			fi
+
 			case $line in
 				Mpl*)
-					music=$(bar_color COLOR_MUSIC_PLAYING " ${line_out} ")
+					music=$(bar_color COLOR_MUSIC_PLAYING "${line_out}")
 				;;
 				Mpa*)
-					music=$(bar_color COLOR_MUSIC_PAUSED " ${line_out} ")
+					music=$(bar_color COLOR_MUSIC_PAUSED "${line_out}")
 				;;
 				*)
-					music=$(bar_color COLOR_MUSIC_STOPPED " ${line_out} ")
+					music=$(bar_color COLOR_MUSIC_STOPPED "${line_out}")
 				;;
 			esac
 			;;
