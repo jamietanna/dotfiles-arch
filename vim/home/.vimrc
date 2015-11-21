@@ -49,8 +49,9 @@ au BufRead,BufNewFile *.md set filetype=markdown
 
 " highlight matches
 set hlsearch
-" and make sure we can toggle it with a CR
-:nnoremap <CR> :nohlsearch<cr>
+" and make sure we can toggle it with a <leader>CR
+" why <leader>? because some plugins / etc expect us to be able to <CR>
+:nnoremap <leader><CR> :nohlsearch<cr>
 
 " use comma as a leader - more convenient than \
 let mapleader = ","
