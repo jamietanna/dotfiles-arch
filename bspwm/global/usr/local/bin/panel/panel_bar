@@ -93,6 +93,8 @@ while read -r line ; do
 			else
 				sys_infos=$(bar_color COLOR_CLOCK_NORMAL " ${line#?} ")
 			fi
+
+			sys_infos="%{A:~/bin/date.sh:}$sys_infos%{A}"
 			;;
 		T*)
 			# xtitle output
