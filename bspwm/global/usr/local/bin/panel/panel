@@ -48,20 +48,7 @@ packages_to_update () {
 	# http://www.reddit.com/r/archlinux/comments/2xbf71/script_to_update_arch/coyolos
 	while true;
 	do
-		updates="$(checkupdates)"
-		update_count=$(echo "$updates" | wc -l)
-		out_str="P"
-		if [ "$update_count" -eq "0" ];
-		then
-			out_str+=""
-		# only match the full `linux` package, not things like `linux-firmware`
-		elif [[ "${updates//$'\n'/|}" == *"|linux|"* ]];
-		then
-			out_str+="k$update_count"
-		else
-			out_str+="p$update_count"
-		fi
-		echo "$out_str"
+		~/bin/checkupdates.sh
 		sleep $((60*60*3))
 	done
 }
@@ -104,6 +91,8 @@ load_info > "$PANEL_FIFO" &
 main_loop > "$PANEL_FIFO" &
 . panel_colors
 
-cat "$PANEL_FIFO" | panel_bar | lemonbar -g x$PANEL_HEIGHT -f "$PANEL_FONT_FAMILY" -F "$(bar_color_fg COLOR_BAR)" -B "$(bar_color_bg COLOR_BAR)" &
+cat "$PANEL_FIFO" | panel_bar | lemonbar -g x$PANEL_HEIGHT -f "$PANEL_FONT_FAMILY" -F "$(bar_color_fg COLOR_BAR)" -B "$(bar_color_bg COLOR_BAR)" | while read line; do
+	eval "$line"
+done
 
 wait
