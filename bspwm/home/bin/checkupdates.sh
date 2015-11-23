@@ -6,6 +6,7 @@ out_str="P"
 if [[ "$update_count" -eq "0" || -z "$updates" ]];
 then
 	out_str+=""
+	update_count=0
 # only match the full `linux` package, not things like `linux-firmware`
 elif [[ "${updates//$'\n'/|}" == *"|linux|"* ]];
 then
