@@ -106,16 +106,15 @@ while read -r line ; do
 			IFS=' ' read -a arr_load_data <<< "$load_data"
 			IFS='@' read -a arr_cpu_data <<< "$arr_load_data"
 
-			COLOR_LOAD_HIGH_TEMP_BG=$_RED
 			load_colour_bg="COLOR_LOAD_NORMAL_TEMP"
 
 			load_temperature=$(egrep -o "[0-9]+" <<< "${arr_cpu_data[1]}")
 			if [[ "$load_temperature" -ge "$TEMPERATURE_THRESHOLD" ]];
 			then
-				load_colour="COLOR_LOAD_HIGH_TEMP"
+				load_colour_bg="COLOR_LOAD_HIGH_TEMP"
 			fi
 
-			system_load_info=$(bar_color $load_colour " ${load_data} ")
+			system_load_info=$(bar_color $load_colour_bg " ${load_data} ")
 			;;
 		W*)
 			# bspwm internal state
