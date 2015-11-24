@@ -21,6 +21,6 @@ echo "$out_str" > $PANEL_FIFO
 # but only popup if the user wants it
 if [[ "$1" == "notify" ]];
 then
-	notify-send "<b>$update_count Updates</b>\n$updates"
+	notify-send "$update_count Updates" "$updates"
 fi
 
