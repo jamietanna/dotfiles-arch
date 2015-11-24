@@ -15,10 +15,11 @@ else
 	out_str+="p$update_count"
 fi
 
-if [[ -z "$1" ]];
-then
-	echo "$out_str" > $PANEL_FIFO
-elif [[ "$1" == "notify" ]];
+# always update our current count
+echo "$out_str" > $PANEL_FIFO
+
+# but only popup if the user wants it
+if [[ "$1" == "notify" ]];
 then
 	notify-send "<b>$update_count Updates</b>\n$updates"
 fi
