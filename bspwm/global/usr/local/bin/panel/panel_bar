@@ -45,7 +45,7 @@ while read -r line ; do
 				packages=$(bar_color COLOR_PACKAGE_NONE " 0 ")
 			fi
 
-			packages="%{A1:~/bin/checkupdates.sh:}%{A3:~/bin/checkupdates.sh 'notify':}$packages%{A}%{A}"
+			packages="%{A1:~/bin/checkupdates.sh 'notify':}%{A3:~/bin/checkupdates.sh:}$packages%{A}%{A}"
 			;;
 		X*)
 			line_out=$(echo $line | cut -c 3-)
