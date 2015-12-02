@@ -2,3 +2,18 @@
 	font = LiberationMono 15
 	format = "<b><u>%s</u></b>\n\n%b"
 	allow_markup = yes
+
+[urgency_low]
+    background = "#262626"
+    foreground = "#888888"
+    timeout = 10
+
+[urgency_normal]
+    background = "#262626"
+    foreground = "#ff5faf"
+    timeout = 10
+
+[urgency_critical]
+    background = "#e82a41"
+    foreground = "#ffffff"
+    timeout = 0
