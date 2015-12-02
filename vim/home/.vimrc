@@ -45,7 +45,7 @@ set ignorecase smartcase incsearch
 syntax on
 
 " force markdown syntax
-au BufRead,BufNewFile *.md set filetype=markdown
+au BufRead,BufNewFile *.md set filetype=markdown tabstop=2 spell spelllang=en
 
 " highlight matches
 set hlsearch
