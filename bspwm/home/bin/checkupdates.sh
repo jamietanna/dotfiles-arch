@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 
+if ! curl -s "http://google.com/" 2>&1 > /dev/null;
+then
+	notify-send "No network" "Cannot check for updates as there is no network"
+	exit 1
+fi
+
 updates="$(checkupdates)"
 update_count=$(echo "$updates" | wc -l)
 out_str="P"
