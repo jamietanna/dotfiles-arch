@@ -14,7 +14,7 @@ then
 	out_str+=""
 	update_count=0
 # only match the full `linux` package, not things like `linux-firmware`
-elif [[ "${updates//$'\n'/|}" == *"|linux|"* ]];
+elif echo "$updates" | grep "^linux " >/dev/null;
 then
 	urgency="critical"
 	out_str+="k$update_count"
