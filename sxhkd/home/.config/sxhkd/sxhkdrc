@@ -128,11 +128,14 @@ super + alt + Escape
 super + shift + z
 	systemctl suspend
 
-shift + Print
-	scrot --focused --exec 'mv $f ~/'
+@shift + Print
+	scrot --select --exec 'mv $f ~/Screenshots'
 
-super + Print
-	scrot --exec 'mv $f ~/'
+@alt + Print
+	scrot --focused --exec 'mv $f ~/Screenshots'
+
+@Print
+	scrot --exec 'mv $f ~/Screenshots'
 
 XF86HomePage
 	chromium
