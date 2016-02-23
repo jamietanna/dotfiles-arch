@@ -16,17 +16,17 @@ then
 # only match the full `linux` package, not things like `linux-firmware`
 elif [[ "${updates//$'\n'/|}" == *"|linux|"* ]];
 then
+	urgency="critical"
 	out_str+="k$update_count"
 else
+	urgency="normal"
 	out_str+="p$update_count"
 fi
 
-# always update our current count
 echo "$out_str" > $PANEL_FIFO
 
-# but only popup if the user wants it
 if [[ "$1" == "notify" ]];
 then
-	notify-send "$update_count Updates" "$updates"
+	notify-send -u "$urgency" "$update_count Updates" "$updates"
 fi
 
