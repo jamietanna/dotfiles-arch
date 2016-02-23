@@ -83,11 +83,11 @@ au!
     au BufWritePost .vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc so $MYVIMRC | if has('gui_running') | so $MYGVIMRC | endif
 augroup END
 
-set background=dark
-colorscheme PaperColor
-
 " fix our SignColumn - make sure we have proper colour highlighting!
 hi clear SignColumn
+
+set background=dark
+colorscheme gruvbox
 
 " allow us to save a file if we forgot to open with sudo
 cmap w!! w !sudo tee > /dev/null %
