@@ -2,7 +2,7 @@
 # bspwm hotkeys
 #
 
-super + alt + Escape
+super + alt + Delete
 	pkill -x panel; bspc quit
 
 super + q
@@ -122,7 +122,7 @@ super + Return
 super + Escape
 	pkill -USR1 -x sxhkd; xrdb ~/.Xresources
 
-super + alt + Delete
+super + alt + Escape
 	i3lock -i $HOME/.currbg
 
 super + shift + z
