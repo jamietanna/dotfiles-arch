@@ -25,6 +25,7 @@ call plug#begin('~/.vim/plugged')
 	Plug 'Airblade/vim-gitgutter'
 	Plug 'Tpope/vim-fugitive'
 	Plug 'NLKNguyen/papercolor-theme'
+	Plug 'scrooloose/syntastic'
 	" Eclim can be installed automagically via the AUR
 call plug#end()
 
@@ -75,6 +76,14 @@ let g:ycm_semantic_triggers =  {
 \   'erlang' : [':'],
 \ }
 
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 1
 
 let g:EclimCompletionMethod = 'omnifunc'
 
