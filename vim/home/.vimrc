@@ -48,6 +48,7 @@ syntax on
 " force markdown syntax
 au BufRead,BufNewFile TODO,*.md set filetype=markdown tabstop=2 spell spelllang=en autoindent
 
+au FileType tex set spell spelllang=en
 au FileType gitcommit set spell spelllang=en
 
 " highlight matches
