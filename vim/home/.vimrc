@@ -26,6 +26,7 @@ call plug#begin('~/.vim/plugged')
 	Plug 'Tpope/vim-fugitive'
 	Plug 'morhetz/gruvbox'
 	Plug 'scrooloose/syntastic'
+	Plug 'vim-scripts/gitignore'
 	" Eclim can be installed automagically via the AUR
 call plug#end()
 
