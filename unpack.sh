@@ -35,7 +35,7 @@ unpack () {
 	# TODO remove hack workaround to make `./` from `./folder` disappear
 	working_dir_path="${1//\/.\//\/}"
 
-	for f in $(find "$1/$2" -type d);
+	for f in $(find "$1/$2");
 	do
 		full_path="$(readlink -f "$f")"
 		path_create="${full_path//$working_dir_path/}"
@@ -52,35 +52,23 @@ unpack () {
 			;;
 		esac
 
-		[ -z "$path_create_final" ] && continue
+		cmdstring=""
+		if [[ -f "$f" ]]; then
+			if [ -e "$path_create_final" ];
+			then
+				warn "$path_create_final already exists"
+				continue
+			fi
 
-		cmd "$2" "mkdir -p $path_create_final"
-	done
+			cmdstring="ln -s $full_path $path_create_final"
+		elif [[ -d "$f" ]]; then
+			[ -z "$path_create_final" ] && continue
 
-	for f in $(find "$1/$2" -type f);
-	do
-		full_path="$(readlink -f "$f")"
-		path_create="${full_path//$working_dir_path/}"
-
-		case "$2" in
-			home )
-			path_create_final="${path_create//\/home/$HOME}"
-			;;
-			global )
-			path_create_final="${path_create//\/global/\/}"
-			;;
-			* )
-			error "invalid unpack location"
-			;;
-		esac
-
-		if [ -e "$path_create_final" ];
-		then
-			warn "$path_create_final already exists"
-			continue
+			cmdstring="mkdir -p $path_create_final"
 		fi
 
-		cmd "$2" "ln -s $full_path $path_create_final"
+		cmd "$2" "$cmdstring"
+
 	done
 }
 
