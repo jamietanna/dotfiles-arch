@@ -104,5 +104,12 @@ colorscheme gruvbox
 " allow us to save a file if we forgot to open with sudo
 cmap w!! w !sudo tee > /dev/null %
 
+" ignore our git directory, which forever gets in my way
+set wildignore+=**/.git/*
+" ignore any generated Java class files
+set wildignore+=*.class
+" ignore any generated object files
+set wildignore+=*.o
+
 " zsh-style tabcomplete for files. Way better than bash-style tabbing
 set wildmenu
