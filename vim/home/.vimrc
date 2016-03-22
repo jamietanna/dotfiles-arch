@@ -113,5 +113,7 @@ set wildignore+=*.class
 " ignore any generated object files
 set wildignore+=*.o
 
+let NERDTreeRespectWildIgnore=1
+
 " zsh-style tabcomplete for files. Way better than bash-style tabbing
 set wildmenu
