@@ -24,7 +24,7 @@ call plug#begin('~/.vim/plugged')
 	Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
 	Plug 'Airblade/vim-gitgutter'
 	Plug 'Tpope/vim-fugitive'
-	Plug 'NLKNguyen/papercolor-theme'
+	Plug 'morhetz/gruvbox'
 	Plug 'scrooloose/syntastic'
 	" Eclim can be installed automagically via the AUR
 call plug#end()
