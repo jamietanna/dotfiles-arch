@@ -20,6 +20,10 @@ warn () {
 }
 
 cmd () {
+	if [[ -z "$2" ]]; then
+		warn "Empty command given. Not executing"
+		return
+	fi
 	debug "CMD: $2"
 	if [ "$1" == "home" ];
 	then
