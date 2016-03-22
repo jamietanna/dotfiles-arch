@@ -103,3 +103,6 @@ colorscheme gruvbox
 
 " allow us to save a file if we forgot to open with sudo
 cmap w!! w !sudo tee > /dev/null %
+
+" zsh-style tabcomplete for files. Way better than bash-style tabbing
+set wildmenu
