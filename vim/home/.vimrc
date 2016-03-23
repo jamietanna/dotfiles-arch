@@ -65,6 +65,7 @@ let mapleader = ","
 " resume at our last position (:help last-position-jump)
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 
+let g:ycm_path_to_python_interpreter = '/usr/bin/python'
 autocmd FileType cpp    let g:ycm_global_ycm_extra_conf = '~/.vim/ycm_files/cpp/.ycm_extra_conf.py'
 
 let g:ycm_semantic_triggers =  {
