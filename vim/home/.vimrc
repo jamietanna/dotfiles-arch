@@ -26,6 +26,7 @@ call plug#begin('~/.vim/plugged')
 	Plug 'Tpope/vim-fugitive'
 	Plug 'morhetz/gruvbox'
 	Plug 'scrooloose/syntastic'
+	Plug 'lervag/vimtex'
 	Plug 'scrooloose/nerdtree'
 	Plug 'vim-scripts/gitignore'
 	" Eclim can be installed automagically via the AUR
@@ -90,6 +91,8 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 1
+
+let g:vimtex_view_method = 'mupdf'
 
 let g:EclimCompletionMethod = 'omnifunc'
 

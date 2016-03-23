@@ -1,2 +1,2 @@
-REPOS=(vim clang cmake)
+REPOS=(vim clang cmake mupdf)
 AUR=()
