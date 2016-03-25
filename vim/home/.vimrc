@@ -45,25 +45,43 @@ set noexpandtab
 " searching is now much easier
 set ignorecase smartcase incsearch
 
-" need syntax highlighting
+" There's no way in hell we're using any text-editor without syntax
+" highlighting. Looking at you, nano.
 syntax on
 
 " force markdown syntax
-au BufRead,BufNewFile TODO,*.md set filetype=markdown tabstop=2 spell spelllang=en autoindent
+au BufRead,BufNewFile TODO set filetype=markdown
+" by default, vim detects .tex files as `plaintex` which doesn't automatically
+" start Vimtex; this means that when we use multiple TeX files in a project,
+" we now will get Vimtex working in each file out-of-the-box
+au BufRead,BufNewFile *.tex set filetype=tex
 
+au FileType markdown set tabstop=2 spell spelllang=en autoindent
 au FileType tex set spell spelllang=en
 au FileType gitcommit set spell spelllang=en
 
-" highlight matches
+" highlight all instances of search results. Can be toggled off with
+" `:nohlsearch` when not required any more
 set hlsearch
 " and make sure we can toggle it with a <leader>CR
 " why <leader>? because some plugins / etc expect us to be able to <CR>
 :nnoremap <leader><CR> :nohlsearch<cr>
+" we want to be able to open up NERDTree in order to browse our location more
+" easily. We use `T` over `t` because we're using the command-t plugin which
+" hijacks <leader>t
+nnoremap <leader>T :NERDTreeToggle<cr>
+" it is often useful to be able to quickly switch between having spellcheck
+" enabled/disabled
+nnoremap <leader>s :set spell!<cr>
+" when pasting from external sources, it's great to be able to (un)set `paste`
+" to not mess around with line endings and wrapping
+nnoremap <leader>p :set paste!<cr>
 
 " use comma as a leader - more convenient than \
 let mapleader = ","
 
-" resume at our last position (:help last-position-jump)
+" resume at the last position we were on when we last had this file open
+" (`:help last-position-jump`)
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 
 let g:ycm_path_to_python_interpreter = '/usr/bin/python'
