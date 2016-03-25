@@ -77,9 +77,6 @@ nnoremap <leader>s :set spell!<cr>
 " to not mess around with line endings and wrapping
 nnoremap <leader>p :set paste!<cr>
 
-" use comma as a leader - more convenient than \
-let mapleader = ","
-
 " resume at the last position we were on when we last had this file open
 " (`:help last-position-jump`)
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
