@@ -111,6 +111,18 @@ wksp () {
 	cd "$workspace_location"
 }
 
+function str_contains() {
+	# http://stackoverflow.com/questions/2829613/how-do-you-tell-if-a-string-contains-another-string-in-unix-shell-scripting
+	string="$1"
+	substring="$2"
+	if test "${string#*$substring}" != "$string"
+	then
+		return 0    # $substring is in $string
+	else
+		return 1    # $substring is not in $string
+	fi
+}
+
 ###
 # display a different prompt when we're inside our workspaces - namely one that
 # doesn't include the full workspace path
