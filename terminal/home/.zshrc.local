@@ -75,7 +75,7 @@ function mkd () {
 function rmws () {
 	# make sure our symlinks - i.e. config files - are followed
 	# TODO maybe warn?
-	sed --follow-symlinks -i 's/[ \t]$//' $*
+	sed --follow-symlinks -i 's/[ \t]*$//' $*
 }
 
 # get to the top of our git repo
