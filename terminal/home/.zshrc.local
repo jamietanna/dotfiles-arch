@@ -130,7 +130,14 @@ function str_contains() {
 function workspace_prompt () {
 	if str_contains "$(pwd)" "${WORKSPACE_ROOT}";
 	then
-		REPLY="W:"
+		local curr_path
+		local workspace_path
+		local workspace_name
+		curr_path="$(pwd)"
+		workspace_path="${curr_path//${WORKSPACE_ROOT}\//}"
+		workspace_name=$(echo ${workspace_path} | sed 's/\([^/]*\).*/\1/g')
+
+		REPLY="W:$workspace_name "
 	else
 		REPLY=""
 	fi
@@ -138,10 +145,26 @@ function workspace_prompt () {
 
 function path_wksp_prompt () {
 	local curr_path
+	local workspace_name
+	local workspace_path
+
 	if str_contains "$(pwd)" "${WORKSPACE_ROOT}";
 	then
 		curr_path="$(pwd)"
-		REPLY="${curr_path//${WORKSPACE_ROOT}\//} "
+		workspace_path="${curr_path//${WORKSPACE_ROOT}\//}"
+		workspace_name=$(echo ${workspace_path} | sed 's/\([^/]*\).*/\1/g')
+		if [[ "$workspace_path" == "$workspace_name" ]];
+		then
+			# if we're at the top of the workspace, then don't output where we are
+			# as we'll already have `W:<wksp>` displayed
+			REPLY=""
+		else
+			# otherwise, display the path, ignoring the workspace name, for 40 characters,
+			# taking care to truncate with a '..' if over that length
+			REPLY="%40<..<${workspace_path/$workspace_name\//}%<< "
+		fi
+		# REPLY="${workspace_path} "
+
 		# REPLY="%40<..<%~%<< "
 	else
 		REPLY="%40<..<%~%<< "
