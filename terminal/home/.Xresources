@@ -1,6 +1,8 @@
-XTerm*faceName:Liberation Mono:style=Regular:size=10
-Xft.dpi: 144
-!Xft.dpi: 92
+XTerm*termName:xterm-256color
+XTerm*faceName:Liberation Mono:style=Regular:size=12
+! 115 = 92 * 1.25
+! Xft.dpi: 115
+Xft.dpi: 92
 
 ! Based off morhetz/gruvbox-contrib
 
