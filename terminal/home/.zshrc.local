@@ -94,12 +94,19 @@ zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 WORKSPACE_ROOT="$HOME/workspaces"
 
 wksp () {
+	# given an argument, cd into that workspace
+	# if the argument is '.', go to the root of our workspace
 	workspace_location="$WORKSPACE_ROOT/$1"
 
 	if [[ -z "$1" ]];
 	then
 		echo -e "\033[91mERROR: No workspace name given\033[0m"
 		return 1
+	fi
+
+	if [[ "$1" == "." ]];
+	then
+		workspace_location="$WORKSPACE_ROOT/$(get_workspace_name)"
 	fi
 
 	if [[ ! -e "$workspace_location" ]];
