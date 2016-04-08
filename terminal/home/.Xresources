@@ -84,9 +84,9 @@ Xft.dpi: 92
 
 rofi.font:       				LiberationMono 10
 rofi.terminal:   				xterm
-rofi.key-run:    				mod4-d
-rofi.key-ssh:    				mod4-shift-Return
-rofi.key-window: 				mod4-w
+rofi.key-run:    				SuperL-d
+rofi.key-ssh:    				SuperL-shift-Return
+rofi.key-window: 				SuperL-w
 rofi.background: 				col_bg
 rofi.foreground: 				col_fg
 rofi.highlightbg: 				col_cyan
