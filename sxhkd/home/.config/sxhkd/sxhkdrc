@@ -165,6 +165,22 @@ super + shift + z
 # }}}
 #
 # -----------------------------------------------------------------------------
+# => Rofi keybindings
+# 	As of Rofi v1, daemon mode is removed, requiring us to show the given window
+# 	manually
+# -----------------------------------------------------------------------------
+# {{{
+super + d
+	rofi -show run
+
+super + shift + Return
+	rofi -show ssh
+
+super + w
+	rofi -show window
+# }}}
+
+# -----------------------------------------------------------------------------
 # => Media keys
 # -----------------------------------------------------------------------------
 # {{{
