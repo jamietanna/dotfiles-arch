@@ -1,2 +1,2 @@
-REPOS=(vim clang cmake mupdf xdotool)
+REPOS=(gvim clang cmake mupdf xdotool)
 AUR=()
