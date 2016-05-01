@@ -27,45 +27,7 @@ zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' 'm:{a-zA-Z}={A-Za-z}' 'r:
 
 export PATH="$PATH:$HOME/bin"
 
-alias gc="git commit"
-alias gst="git status"
-alias gp="git push"
-alias gco="git checkout"
-alias gd="git diff"
-alias gdc="git diff --cached"
-alias ga="git add"
-alias gr="git remote"
-alias glog="git log --stat"
-
-# Stolen from https://github.com/garybernhardt/dotfiles/blob/2c2a757f4abd406f6b4e1b328b6382d37f7f9036/.githelpers
-function pretty_git_log () {
-	HASH="%C(yellow)%h%Creset"
-	RELATIVE_TIME="%Cgreen(%ar)%Creset"
-	AUTHOR="%C(bold blue)<%an>%Creset"
-	REFS="%C(bold red)%d%Creset"
-	SUBJECT="%s"
-
-	FORMAT="$HASH}$RELATIVE_TIME}$AUTHOR}$REFS $SUBJECT"
-
-	git log --graph --pretty="tformat:${FORMAT}" $* |
-		# Replace (2 years ago) with (2 years)
-		sed -Ee 's/(^[^<]*) ago\)/\1)/' |
-		# Replace (2 years, 5 months) with (2 years)
-		sed -Ee 's/(^[^<]*), [[:digit:]]+ .*months?\)/\1)/' |
-		# Line columns up based on } delimiter
-		column -s '}' -t |
-		# Color merge commits specially
-		sed -Ee "s/(Merge (branch|remote-tracking branch|pull request) .*$)/$(printf "\033[91m")\1$(printf "\033[0m")/" |
-		# Page only if we're asked to.
-		if [ -n "$GIT_NO_PAGER" ]; then
-			cat
-		else
-			# Page only if needed.
-			less --quit-if-one-screen --no-init --RAW-CONTROL-CHARS --chop-long-lines
-		fi
-}
-
-alias glg="pretty_git_log"
+. ~/.githelpers
 
 function mkd () {
 	mkdir -p $1 && cd $1
@@ -77,10 +39,6 @@ function rmws () {
 	# TODO maybe warn?
 	sed --follow-symlinks -i 's/[ \t]*$//' "$@"
 }
-
-# get to the top of our git repo
-alias gitroot='git rev-parse --show-toplevel'
-alias groot='cd $(gitroot)'
 
 # don't like `eval` but have to use it here
 # by default, the colours for 777 dirs is unreadable (i.e. on an NTFS volume) -
