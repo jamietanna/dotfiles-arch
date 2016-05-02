@@ -58,7 +58,7 @@ main_loop () {
 	do
 		battery	
 		mpc.sh current
-		notify_network
+		notify_network.sh
 		sleep 30
 	done
 }
