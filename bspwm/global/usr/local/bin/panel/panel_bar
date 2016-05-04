@@ -66,9 +66,9 @@ while read -r line ; do
 		V*)
 			if [[ ${line#?} -eq 0 ]];
 			then
-				volume=$(bar_color COLOR_VOLUME_OFF " ${line#?}%% ")
+				volume=$(bar_color COLOR_VOLUME_OFF " ${line#?}% ")
 			else
-				volume=$(bar_color COLOR_VOLUME_ON " ${line#?}%% ")
+				volume=$(bar_color COLOR_VOLUME_ON " ${line#?}% ")
 			fi
 			;;
 		B*)

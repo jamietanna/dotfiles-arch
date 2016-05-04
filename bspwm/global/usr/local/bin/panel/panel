@@ -21,7 +21,7 @@ battery () {
 
 		remainder=$(echo $DATA | cut -d" " -f5)
 		percent=$(echo $DATA | cut -d" " -f4 | sed 's/[,%]//g')
-		percent_str="$percent%%"
+		percent_str="$percent%"
 
 		echo -n "B"
 		echo $DATA | grep "Discharging" > /dev/null
@@ -95,7 +95,7 @@ load_info () {
 		# http://stackoverflow.com/a/10586020
 		mem_used=$(free | grep Mem | awk '{ print $3/$2 * 100.0 }')
 
-		echo "LOAD$(round $cpu_load)%%@$(round $cpu_temp)c $(round $mem_used)%%"
+		echo "LOAD$(round $cpu_load)%@$(round $cpu_temp)c $(round $mem_used)%"
 		sleep 5
 	done
 }
