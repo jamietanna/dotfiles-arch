@@ -1,43 +1,33 @@
 #!/bin/bash
 
-AMIXER_CMD="amixer -c 0"
-DEVICE=Master
-
 get_volume () {
-	# http://unix.stackexchange.com/a/89583
-	VOL=$(awk -F"[][]" '/dB/ { print $2 }' <($AMIXER_CMD sget $AMIXER_DEVICE))
-	SOUND_ON=$(awk -F"[][]" '/dB/ { print $6 }' <($AMIXER_CMD sget $AMIXER_DEVICE))
-	if [ "$SOUND_ON" == "off" ];
+	status=$(pulseaudio-ctl full-status)
+	if [[ "$(echo "$status" | cut -d' ' -f2)" == "yes" ]];
 	then
-		VOL=0
+		echo "0"
+	else
+		echo "$(echo "$status" | cut -d' ' -f1)"
 	fi
-	echo "${VOL//%/}"
-}
-
-mute () {
-	do_mute "true"
-}
-
-unmute () {
-	do_mute "false"
 }
 
 toggle () {
-	do_mute "toggle"
+	pulseaudio-ctl mute
 }
 
-do_mute () {
-	pactl set-sink-mute $SINK_NUMBER "$1"
+inc () {
+	pulseaudio-ctl up
+}
+
+dec () {
+	pulseaudio-ctl down
 }
 
 case "$1" in
 	up )
-		$AMIXER_CMD -q sset $AMIXER_DEVICE 5%+
-		unmute
+		inc
 		;;
 	down )
-		$AMIXER_CMD -q sset $AMIXER_DEVICE 5%-
-		unmute
+		dec
 		;;
 	toggle )
 		toggle
