@@ -60,6 +60,11 @@ au FileType markdown set tabstop=2 spell spelllang=en autoindent
 au FileType tex set spell spelllang=en
 au FileType gitcommit set spell spelllang=en
 
+" use <space> as leader due to its ergonomic location - meaning that we can
+" hit it with either hand - as well as making it much larger, and easier to
+" hit, too
+let mapleader = "\<Space>"
+
 " highlight all instances of search results. Can be toggled off with
 " `:nohlsearch` when not required any more
 set hlsearch
