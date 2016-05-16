@@ -147,3 +147,6 @@ set wildmenu
 " current one
 nnoremap <leader>o o<esc>
 nnoremap <leader>O O<esc>
+
+" remove trailing whitespace on write
+autocmd BufWritePre * :%s/\s\+$//e
