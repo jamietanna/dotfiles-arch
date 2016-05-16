@@ -49,6 +49,9 @@ set ignorecase smartcase incsearch
 " highlighting. Looking at you, nano.
 syntax on
 
+" let us use custom filetypes
+filetype plugin on
+
 " force markdown syntax
 au BufRead,BufNewFile TODO set filetype=markdown
 " by default, vim detects .tex files as `plaintex` which doesn't automatically
