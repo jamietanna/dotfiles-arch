@@ -148,5 +148,7 @@ set wildmenu
 nnoremap <leader>o o<esc>
 nnoremap <leader>O O<esc>
 
+set wildignore+=.svn,CVS,.git
+
 " remove trailing whitespace on write
 autocmd BufWritePre * :%s/\s\+$//e
