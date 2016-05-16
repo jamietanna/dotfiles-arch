@@ -59,8 +59,6 @@ au BufRead,BufNewFile TODO set filetype=markdown
 " we now will get Vimtex working in each file out-of-the-box
 au BufRead,BufNewFile *.tex set filetype=tex
 
-au FileType gitcommit set spell spelllang=en
-
 " use <space> as leader due to its ergonomic location - meaning that we can
 " hit it with either hand - as well as making it much larger, and easier to
 " hit, too
