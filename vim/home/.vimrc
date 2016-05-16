@@ -142,3 +142,8 @@ let NERDTreeRespectWildIgnore=1
 
 " zsh-style tabcomplete for files. Way better than bash-style tabbing
 set wildmenu
+
+" Allow us to use n<leader>[oO] to create a number of lines above, below the
+" current one
+nnoremap <leader>o o<esc>
+nnoremap <leader>O O<esc>
