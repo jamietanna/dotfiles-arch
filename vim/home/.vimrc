@@ -59,7 +59,6 @@ au BufRead,BufNewFile TODO set filetype=markdown
 " we now will get Vimtex working in each file out-of-the-box
 au BufRead,BufNewFile *.tex set filetype=tex
 
-au FileType markdown set tabstop=2 spell spelllang=en autoindent
 au FileType tex set spell spelllang=en
 au FileType gitcommit set spell spelllang=en
 
