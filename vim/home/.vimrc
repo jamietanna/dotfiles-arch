@@ -150,5 +150,8 @@ nnoremap <leader>O O<esc>
 
 set wildignore+=.svn,CVS,.git
 
+" show what command we're currently setting
+set showcmd
+
 " remove trailing whitespace on write
 autocmd BufWritePre * :%s/\s\+$//e
