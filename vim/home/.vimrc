@@ -103,6 +103,7 @@ let g:ycm_semantic_triggers =  {
 \   'erlang' : [':'],
 \ }
 
+set statusline=%f
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
