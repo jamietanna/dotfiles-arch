@@ -9,6 +9,7 @@ fi
 updates="$(checkupdates)"
 update_count=$(echo "$updates" | wc -l)
 out_str="P"
+urgency="normal"
 if [[ "$update_count" -eq "0" || -z "$updates" ]];
 then
 	out_str+=""
@@ -19,7 +20,6 @@ then
 	urgency="critical"
 	out_str+="k$update_count"
 else
-	urgency="normal"
 	out_str+="p$update_count"
 fi
 
