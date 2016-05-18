@@ -7,7 +7,10 @@ mpc pause
 
 sxhkd &
 
-setxkbmap gb &
+# Escape is a much better use than CapsLock, especially as I very rarely use
+# all caps anyway. It makes it significantly easier to hit, and means not
+# leaving the home row.
+setxkbmap -option caps:escape gb &
 
 panel &
 exec bspwm
