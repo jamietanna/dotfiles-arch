@@ -118,6 +118,6 @@ mpc_loop > "$PANEL_FIFO" &
 
 panel_bar < "$PANEL_FIFO" | lemonbar -g x$PANEL_HEIGHT -f "$PANEL_FONT_FAMILY" -F "$(bar_color_fg COLOR_BAR)" -B "$(bar_color_bg COLOR_BAR)" | while read line; do
 	eval "$line"
-done
+done &
 
 wait
