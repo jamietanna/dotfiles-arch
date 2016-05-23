@@ -39,13 +39,16 @@ function rmws () {
 	# TODO maybe warn?
 	sed --follow-symlinks -i 's/[ \t]*$//' "$@"
 }
-
-# don't like `eval` but have to use it here
-# by default, the colours for 777 dirs is unreadable (i.e. on an NTFS volume) -
-# amend it here to ensure that we can actually read the output
+# -----------------------------------------------------------------------------
+# => Use customised dircolors
+# 	Use our own, preferred dircolors, and make sure that zsh uses them, too
+# -----------------------------------------------------------------------------
+# {{{
+# don't like `eval` but unfortunately we have to use it here
 eval $(dircolors --sh $HOME/.dir_colors)
 # ensure zsh's autocomplete uses the same colours as our `LS_COLORS`
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+# }}}
 
 . $HOME/.Xresourceshelper
 

@@ -76,7 +76,13 @@ RESET 0 # reset to "normal" color
 DIR 01;34 # directory
 LINK 01;36 # symbolic link. (If you set this to 'target' instead of a
  # numerical value, the color is as for the file pointed to.)
+
+# make hardlinks much more obvious
 MULTIHARDLINK 04 # regular file with more than one link
+# by default, the colours for 777 dirs are unreadable (i.e. on an NTFS volume) -
+# amend it here to ensure that we can actually read the output
+OTHER_WRITABLE 0;42 # dir that is other-writable (o+w) and not sticky
+
 FIFO 40;33 # pipe
 SOCK 01;35 # socket
 DOOR 01;35 # door
@@ -88,7 +94,6 @@ SETUID 37;41 # file that is setuid (u+s)
 SETGID 30;43 # file that is setgid (g+s)
 CAPABILITY 30;41 # file with capability
 STICKY_OTHER_WRITABLE 30;42 # dir that is sticky and other-writable (+t,o+w)
-OTHER_WRITABLE 0;42 # dir that is other-writable (o+w) and not sticky
 STICKY 37;44 # dir with the sticky bit set (+t) and not other-writable
 # This is for files with execute permission:
 EXEC 01;32
