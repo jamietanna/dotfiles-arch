@@ -11,3 +11,9 @@ bspc config focus_follows_pointer true
 
 bspc config presel_feedback_color '#FFFFFF'
 bspc monitor -d I II III IV V VI VII VIII IX X
+
+# make sure we source our local configuration if one exists
+if [[ -e "$HOME/.config/bspwm/bspwmrc.local" ]];
+then
+	. $HOME/.config/bspwm/bspwmrc.local
+fi
