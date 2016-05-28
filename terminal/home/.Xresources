@@ -94,6 +94,4 @@ rofi.color-enabled:				true
 rofi.color-normal: 				col_cyan,col_bg,col_cyan_dark,col_blue_dark,col_bg
 rofi.color-urgent: 				col_yellow_dark,col_white_true,col_yellow_dark,col_green_dark,col_white_true
 rofi.color-active: 				col_red_dark,col_fg,col_red_dark,col_red,col_fg
-! color-window - window-background, border
-! (NOTE: second one won't be parsed if it's a variable)
-rofi.color-window: 				col_cyan,#FFFFFF
+rofi.color-window: 				col_cyan,col_white
