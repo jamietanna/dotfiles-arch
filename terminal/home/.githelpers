@@ -48,3 +48,10 @@ alias glg="pretty_git_log"
 alias gitroot='git rev-parse --show-toplevel'
 alias groot='cd $(gitroot)'
 
+# get the remote of a git repo
+# NOTE: assumes that the push is the correct repo address
+function grv () {
+	local remote
+	remote="${1:-origin}"
+	git remote -v | grep "$remote" | cut -f2 | cut -f1 -d' ' | tail -n1
+}
