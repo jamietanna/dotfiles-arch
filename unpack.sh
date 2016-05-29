@@ -56,6 +56,21 @@ unpack () {
 			;;
 		esac
 
+		# if a config appears for the given machine, unpack it
+		# note that the files must named in the format
+		# `bin.sh.$(hostname).local`
+		if echo $f | grep -q '.*\..*\.local$';
+		then
+			if echo $f | grep -q ".*\.$(hostname)\.local\$";
+			then
+				path_create_final="${path_create_final//$(hostname)\./}"
+				echo "$path_create_final"
+			else
+				echo "Not matched $f"
+				continue
+			fi
+		fi
+
 		cmdstring=""
 		if [[ -f "$f" ]]; then
 			if [ -e "$path_create_final" ];
