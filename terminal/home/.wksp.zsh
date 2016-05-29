@@ -38,34 +38,34 @@ function wksp () {
 # doesn't include the full workspace path
 
 function get_workspace_path () {
-		local curr_path
-		local workspace_path
-		curr_path="$(pwd)"
-		if [[ "$curr_path" == "$WORKSPACE_ROOT" ]];
-		then
-			echo "(root)"
-			return
-		fi
-		workspace_path="${curr_path//${WORKSPACE_ROOT}\//}"
-		echo "${workspace_path}"
+	local curr_path
+	local workspace_path
+	curr_path="$(pwd)"
+	if [[ "$curr_path" == "$WORKSPACE_ROOT" ]];
+	then
+		echo "(root)"
+		return
+	fi
+	workspace_path="${curr_path//${WORKSPACE_ROOT}\//}"
+	echo "${workspace_path}"
 }
 
 function get_workspace_path_short () {
-		local workspace_path
-		local workspace_name
-		local workspace_path_short
-		workspace_path="$(get_workspace_path)"
-		workspace_name="$(echo ${workspace_path} | sed 's/\([^/]*\).*/\1/g')"
-		workspace_path_short="${workspace_path/${workspace_name}\//}"
-		echo "${workspace_path_short}"
+	local workspace_path
+	local workspace_name
+	local workspace_path_short
+	workspace_path="$(get_workspace_path)"
+	workspace_name="$(echo ${workspace_path} | sed 's/\([^/]*\).*/\1/g')"
+	workspace_path_short="${workspace_path/${workspace_name}\//}"
+	echo "${workspace_path_short}"
 }
 
 function get_workspace_name () {
-		local workspace_path
-		local workspace_name
-		workspace_path="$(get_workspace_path)"
-		workspace_name="$(echo ${workspace_path} | sed 's/\([^/]*\).*/\1/g')"
-		echo "${workspace_name}"
+	local workspace_path
+	local workspace_name
+	workspace_path="$(get_workspace_path)"
+	workspace_name="$(echo ${workspace_path} | sed 's/\([^/]*\).*/\1/g')"
+	echo "${workspace_name}"
 }
 
 function workspace_prompt () {
