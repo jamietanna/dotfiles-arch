@@ -1,0 +1,19 @@
+! vim: foldmethod=marker:foldlevel=0 textwidth=80 wrap syn=xdefaults
+! -----------------------------------------------------------------------------
+! => DPI settings
+!	Base DPI for a 3K screen is 92.
+! -----------------------------------------------------------------------------
+! {{{
+! 115 = 92 * 1.25
+Xft.dpi:		115
+! }}}
+
+! -----------------------------------------------------------------------------
+! => Font size override
+!	Override the font sizes for various applications, given the DPI scale as
+!	above
+! -----------------------------------------------------------------------------
+! {{{
+XTerm*faceName:	Liberation Mono:style=Regular:size=10
+rofi.font:		LiberationMono 14
+! }}}
