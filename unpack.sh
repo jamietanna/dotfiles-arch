@@ -59,7 +59,11 @@ unpack () {
 		# if a config appears for the given machine, unpack it
 		# note that the files must named in the format
 		# `bin.sh.$(hostname).local`
-		if echo $f | grep -q '.*\..*\.local$';
+		# note that we add a special case to not match our zshrc, which is in
+		# the format of local resource files. If this check is not here, we
+		# will never unpack it!
+		if echo $f | grep -q '.*\..*\.local$' && \
+			! echo $f | grep -q '/.zshrc.local$';
 		then
 			if echo $f | grep -q ".*\.$(hostname)\.local\$";
 			then
