@@ -56,7 +56,10 @@ fi
 if [[ "$1" == "notify" ]];
 then
 	notify-send -u "$urgency" "$update_count Updates" "$updates_out"
+	# update our cached updates list
+	# note that we only need to do this when we're displaying it to the user; we
+	# want to show the most changes between updates, which can be best achieved
+	# by only updating our cached list if we're displaying it to the user
+	echo "$updates" > $CACHED_UPDATE_LIST
 fi
 
-# update our cached updates list
-echo "$updates" > $CACHED_UPDATE_LIST
