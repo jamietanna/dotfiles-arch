@@ -7,7 +7,4 @@ if [[ -e ~/.Xresources.local ]];
 then
 	exists_flag="-DLOCAL_EXISTS='exists'"
 fi
-echo "\$exists_flag=$exists_flag"
-
-# exists_flag "-DLOCAL_EXISTS='$(test -e '~/.Xresources.local'; echo $?)'"
 xrdb "$exists_flag" ~/.Xresources
