@@ -1,0 +1,2 @@
+#!/bin/sh
+export PANEL_FONT_FAMILY="LiberationMono:size=09"
