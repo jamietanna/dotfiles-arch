@@ -46,7 +46,7 @@ super + alt + Delete
 # make sxhkd reload its configuration files:
 # TODO move this into ~/bin/wm_reload_configs.sh
 super + Escape
-	pkill -USR1 -x sxhkd; xrdb ~/.Xresources
+	pkill -USR1 -x sxhkd; ~/bin/reload_Xresources.sh
 # }}}
 
 # -----------------------------------------------------------------------------
