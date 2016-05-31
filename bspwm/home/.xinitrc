@@ -14,4 +14,7 @@ compton &
 setxkbmap -option caps:escape gb &
 
 panel &
+
+[[ -e $HOME/.xinitrc.local ]] && . $HOME/.xinitrc.local
+
 exec bspwm
