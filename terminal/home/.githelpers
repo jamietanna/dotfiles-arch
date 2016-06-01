@@ -1,8 +1,16 @@
 #!/usr/bin/env bash
 # vim: foldmethod=marker:foldlevel=0 textwidth=80 wrap
 # -----------------------------------------------------------------------------
-# => Git helpers
+# .githelpers
+# 	Various helper aliases and functions that make using Git that much better
 # -----------------------------------------------------------------------------
+# Location: $HOME/.githelpers
+# -----------------------------------------------------------------------------
+
+# -----------------------------------------------------------------------------
+# => Timesaving aliases
+# -----------------------------------------------------------------------------
+# {{{
 alias gc="git commit"
 alias gst="git status"
 alias gco="git checkout"
@@ -13,6 +21,7 @@ alias gr="git remote"
 alias glog="git log --stat"
 alias gpull="git pull --rebase"
 alias gp="git push"
+# }}}
 
 # Stolen from https://github.com/garybernhardt/dotfiles/blob/2c2a757f4abd406f6b4e1b328b6382d37f7f9036/.githelpers
 function pretty_git_log () {

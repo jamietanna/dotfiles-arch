@@ -27,18 +27,50 @@ zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' 'm:{a-zA-Z}={A-Za-z}' 'r:
 
 export PATH="$PATH:$HOME/bin"
 
-. ~/.githelpers
+# -----------------------------------------------------------------------------
+# => Source external files containing aliases and functions
+# -----------------------------------------------------------------------------
+# {{{
 
-function mkd () {
-	mkdir -p "$1" && cd "$1"
-}
+# -----------------------------------------------------------------------------
+# => Shell-agnostic
+# -----------------------------------------------------------------------------
+# {{{
 
-# Remove trailing whitespace from file(s)
-function rmws () {
-	# make sure our symlinks - i.e. config files - are followed
-	# TODO maybe warn?
-	sed --follow-symlinks -i 's/[ \t]*$//' "$@"
-}
+local shell_helpers
+set -A shell_helpers
+
+shell_helpers+=($HOME/.githelpers)
+
+# a collection of general-purpose shell functions
+shell_helpers+=($HOME/.sh_functions)
+
+# a collection of general-purpose aliases
+shell_helpers+=($HOME/.sh_aliases)
+
+# helper functions used to extract colours from my .Xresources, for use
+# elsewhere
+shell_helpers+=($HOME/.Xresourceshelper)
+
+# }}}
+
+# -----------------------------------------------------------------------------
+# => Zsh-specific
+# -----------------------------------------------------------------------------
+# {{{
+# Code for `wksp`, including
+shell_helpers+=($HOME/.wksp.zsh)
+# }}}
+
+# and finally, source them
+
+for shell_file in $shell_helpers;
+do
+	. "$shell_file"
+done
+
+# }}}
+
 # -----------------------------------------------------------------------------
 # => Use customised dircolors
 # 	Use our own, preferred dircolors, and make sure that zsh uses them, too
@@ -50,24 +82,8 @@ eval $(dircolors $HOME/.dir_colors)
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 # }}}
 
-. $HOME/.Xresourceshelper
-
-function str_contains() {
-	# http://stackoverflow.com/questions/2829613/how-do-you-tell-if-a-string-contains-another-string-in-unix-shell-scripting
-	string="$1"
-	substring="$2"
-	if test "${string#*$substring}" != "$string"
-	then
-		return 0    # $substring is in $string
-	else
-		return 1    # $substring is not in $string
-	fi
-}
-
-
-[[ -e $HOME/.wksp.zsh ]] && . $HOME/.wksp.zsh
 
 
 
-# force 256 colour mode, so we get the correct output in i.e. Vim
-alias tmux="tmux -2"
+
+

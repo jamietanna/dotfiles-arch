@@ -1,0 +1,8 @@
+# vim: foldmethod=marker:foldlevel=0 textwidth=80 wrap syn=sh
+alias media="cd /run/media/MrDeath/media"
+
+# force 256 colour mode, so we get the correct output in i.e. Vim
+alias tmux="tmux -2"
+
+alias igrep="grep -i"
+
