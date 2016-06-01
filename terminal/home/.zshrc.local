@@ -83,6 +83,15 @@ zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 # }}}
 
 
+# -----------------------------------------------------------------------------
+# => GRML-specific settings
+# -----------------------------------------------------------------------------
+# {{{
+grml_theme_add_token path_wksp -f path_wksp_prompt '%B' '%b'
+grml_theme_add_token wksp_indicator -f workspace_prompt '%B%F{red}' '%f%b'
+zstyle ':prompt:grml:left:setup' items rc change-root \
+	user at host wksp_indicator path_wksp vcs percent
+# }}}
 
 
 

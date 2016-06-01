@@ -105,10 +105,5 @@ function path_wksp_prompt () {
 	fi
 }
 
-grml_theme_add_token path_wksp -f path_wksp_prompt '%B' '%b'
-grml_theme_add_token wksp_indicator -f workspace_prompt '%B%F{red}' '%f%b'
-zstyle ':prompt:grml:left:setup' items rc change-root \
-	user at host wksp_indicator path_wksp vcs percent
-
 # http://unix.stackexchange.com/a/65071
 compdef '_path_files -/ -W $WORKSPACE_ROOT' wksp
