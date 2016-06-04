@@ -145,27 +145,27 @@ while read -r line ; do
 						;;
 					O*)
 						# focused occupied desktop
-						color_var="COLOR_FOCUSED_OCCUPIED"
+						color_var="COLOR_ACTIVE_OCCUPIED"
 						;;
 					F*)
 						# focused free desktop
-						color_var="COLOR_FOCUSED_FREE"
+						color_var="COLOR_ACTIVE_FREE"
 						;;
 					U*)
 						# focused urgent desktop
-						color_var="COLOR_FOCUSED_URGENT"
+						color_var="COLOR_ACTIVE_URGENT"
 						;;
 					o*)
 						# occupied desktop
-						color_var="COLOR_OCCUPIED"
+						color_var="COLOR_INACTIVE_OCCUPIED"
 						;;
 					f*)
 						# free desktop
-						color_var="COLOR_FREE"
+						color_var="COLOR_INACTIVE_FREE"
 						;;
 					u*)
 						# urgent desktop
-						color_var="COLOR_URGENT"
+						color_var="COLOR_INACTIVE_URGENT"
 						;;
 					L*)
 						# layout
