@@ -124,48 +124,54 @@ while read -r line ; do
 			while [ $# -gt 0 ] ; do
 				item=$1
 				name=${item#?}
+				color_var=""
 				case $item in
 					M*)
 						# active monitor
 						if [ $num_mon -gt 1 ] ; then
-							wm_infos="${wm_infos}$(bar_color COLOR_ACTIVE_MONITOR " ${name} ")"
+							color_var="COLOR_ACTIVE_MONITOR"
 						fi
 						;;
 					m*)
 						# inactive monitor
 						if [ $num_mon -gt 1 ] ; then
-							wm_infos="${wm_infos}$(bar_color COLOR_INACTIVE_MONITOR " ${name} ")"
+							color_var="COLOR_INACTIVE_MONITOR"
 						fi
 						;;
 					O*)
 						# focused occupied desktop
-						wm_infos="${wm_infos}$(bar_color COLOR_FOCUSED_OCCUPIED "$(bar_underline $_FG_COL " ${name} ")")"
+						color_var="COLOR_FOCUSED_OCCUPIED"
 						;;
 					F*)
 						# focused free desktop
-						wm_infos="${wm_infos}$(bar_color COLOR_FOCUSED_FREE "$(bar_underline $_FG_COL " ${name} ")")"
+						color_var="COLOR_FOCUSED_FREE"
 						;;
 					U*)
 						# focused urgent desktop
-						wm_infos="${wm_infos}$(bar_color COLOR_FOCUSED_URGENT "$(bar_underline $_FG_COL " ${name} ")")"
+						color_var="COLOR_FOCUSED_URGENT"
 						;;
 					o*)
 						# occupied desktop
-						wm_infos="${wm_infos}$(bar_color COLOR_OCCUPIED " ${name} ")"
+						color_var="COLOR_OCCUPIED"
 						;;
 					f*)
 						# free desktop
-						wm_infos="${wm_infos}$(bar_color COLOR_FREE " ${name} ")"
+						color_var="COLOR_FREE"
 						;;
 					u*)
 						# urgent desktop
-						wm_infos="${wm_infos}$(bar_color COLOR_URGENT " ${name} ")"
+						color_var="COLOR_URGENT"
 						;;
 					L*)
 						# layout
-						wm_infos="${wm_infos}$(bar_color COLOR_LAYOUT " ${name} ")"
+						color_var="COLOR_LAYOUT"
 						;;
 				esac
+
+				if [[ -n "$color_var" ]];
+				then
+					wm_infos="${wm_infos}$(bar_color "$color_var" " ${name} ")"
+				fi
 				shift
 			done
 			;;
