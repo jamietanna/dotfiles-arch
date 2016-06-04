@@ -129,9 +129,12 @@ COLOR_CLOCK_NORMAL=($_FG $_BG)
 COLOR_CLOCK_LATE=($_FG $_BG $_RED_DARK)
 # }}}
 
-COLOR_MUSIC_PLAYING=($_FG_COL $_GREEN)
-COLOR_MUSIC_PAUSED=($_FG_COL $_ORANGE)
-COLOR_MUSIC_STOPPED=($_FG_COL $_BLUE)
+# Music colours {{{
+COLOR_MUSIC_PLAYING=($_FG $_BG $_GREEN)
+COLOR_MUSIC_PAUSED=($_FG $_BG $_YELLOW)
+# TODO this will never be used; when stopped there is no status output
+COLOR_MUSIC_STOPPED=($_FG $_BG $_BLUE)
+# }}}
 
 # Temperature indicators {{{
 COLOR_LOAD_HIGH_TEMP=($_FG $_RED $_RED_DARK)
