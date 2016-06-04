@@ -93,6 +93,17 @@ zstyle ':prompt:grml:left:setup' items rc change-root \
 	user at host wksp_indicator path_wksp vcs percent
 # }}}
 
+# -----------------------------------------------------------------------------
+# => zsh-specific settings
+# -----------------------------------------------------------------------------
+# {{{
+# Fuzzy completion matching via http://superuser.com/a/815317
+zstyle ':completion:*' matcher-list '' \
+  'm:{a-z\-}={A-Z\_}' \
+  'r:[^[:alpha:]]||[[:alpha:]]=** r:|=* m:{a-z\-}={A-Z\_}' \
+  'r:[[:ascii:]]||[[:ascii:]]=** r:|=* m:{a-z\-}={A-Z\_}'
+# }}}
+
 
 
 
