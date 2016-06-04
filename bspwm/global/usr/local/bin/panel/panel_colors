@@ -46,26 +46,26 @@ bar_color () {
 }
 
 # Colour settings from our Xresources {{{
-_BG="$(rgb_to_rgba $(colour_from_xresources "col_bg"))"
-_FG="$(rgb_to_rgba $(colour_from_xresources "col_fg"))"
+_BG="$(rgb_to_rgba "$(colour_from_xresources "col_bg")")"
+_FG="$(rgb_to_rgba "$(colour_from_xresources "col_fg")")"
 
-_BLACK="$(rgb_to_rgba $(colour_from_xresources "col_black"))"
-_RED="$(rgb_to_rgba $(colour_from_xresources "col_red"))"
-_GREEN="$(rgb_to_rgba $(colour_from_xresources "col_green"))"
-_YELLOW="$(rgb_to_rgba $(colour_from_xresources "col_yellow"))"
-_BLUE="$(rgb_to_rgba $(colour_from_xresources "col_blue"))"
-_MAGENTA="$(rgb_to_rgba $(colour_from_xresources "col_magenta"))"
-_CYAN="$(rgb_to_rgba $(colour_from_xresources "col_cyan"))"
-_WHITE="$(rgb_to_rgba $(colour_from_xresources "col_white"))"
+_BLACK="$(rgb_to_rgba "$(colour_from_xresources "col_black")")"
+_RED="$(rgb_to_rgba "$(colour_from_xresources "col_red")")"
+_GREEN="$(rgb_to_rgba "$(colour_from_xresources "col_green")")"
+_YELLOW="$(rgb_to_rgba "$(colour_from_xresources "col_yellow")")"
+_BLUE="$(rgb_to_rgba "$(colour_from_xresources "col_blue")")"
+_MAGENTA="$(rgb_to_rgba "$(colour_from_xresources "col_magenta")")"
+_CYAN="$(rgb_to_rgba "$(colour_from_xresources "col_cyan")")"
+_WHITE="$(rgb_to_rgba "$(colour_from_xresources "col_white")")"
 
-_BLACK_DARK="$(rgb_to_rgba $(colour_from_xresources "col_black_dark"))"
-_RED_DARK="$(rgb_to_rgba $(colour_from_xresources "col_red_dark"))"
-_GREEN_DARK="$(rgb_to_rgba $(colour_from_xresources "col_green_dark"))"
-_YELLOW_DARK="$(rgb_to_rgba $(colour_from_xresources "col_yellow_dark"))"
-_BLUE_DARK="$(rgb_to_rgba $(colour_from_xresources "col_blue_dark"))"
-_MAGENTA_DARK="$(rgb_to_rgba $(colour_from_xresources "col_magenta_dark"))"
-_CYAN_DARK="$(rgb_to_rgba $(colour_from_xresources "col_cyan_dark"))"
-_WHITE_DARK="$(rgb_to_rgba $(colour_from_xresources "col_white_dark"))"
+_BLACK_DARK="$(rgb_to_rgba "$(colour_from_xresources "col_black_dark")")"
+_RED_DARK="$(rgb_to_rgba "$(colour_from_xresources "col_red_dark")")"
+_GREEN_DARK="$(rgb_to_rgba "$(colour_from_xresources "col_green_dark")")"
+_YELLOW_DARK="$(rgb_to_rgba "$(colour_from_xresources "col_yellow_dark")")"
+_BLUE_DARK="$(rgb_to_rgba "$(colour_from_xresources "col_blue_dark")")"
+_MAGENTA_DARK="$(rgb_to_rgba "$(colour_from_xresources "col_magenta_dark")")"
+_CYAN_DARK="$(rgb_to_rgba "$(colour_from_xresources "col_cyan_dark")")"
+_WHITE_DARK="$(rgb_to_rgba "$(colour_from_xresources "col_white_dark")")"
 # }}}
 
 # Colour aliases for ease-of-use {{{
