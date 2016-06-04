@@ -12,19 +12,37 @@ get_bar_color_by_id () {
 	echo -n "${color_array[$2]}"
 }
 
+# {{{
+# the colour tuples are zero-indexed of the form (FG,BG,underline)
 bar_color_fg () {
-	# zero-indexed, (FG,BG)
 	get_bar_color_by_id "$1" "0"
 }
 
 bar_color_bg () {
-	# zero-indexed, (FG,BG)
 	get_bar_color_by_id "$1" "1"
 }
 
+bar_color_underline () {
+	get_bar_color_by_id "$1" "2"
+}
+# }}}
+
 bar_color () {
 	# i.e. bar_color COLOR_BAR "$(date)"
-	echo -n "%{F$(bar_color_fg "$1")}%{B$(bar_color_bg "$1")}${@:2}%{F-}%{B-}"
+	local bg_col
+	local fg_col
+	local underline_col
+	bg_col="$(bar_color_bg "$1")"
+	fg_col="$(bar_color_fg "$1")"
+	underline_col="$(bar_color_underline "$1")"
+
+	# if we haven't got a underline colour set, simply use the background colour
+	if [[ "$underline_col" == "" ]];
+	then
+		underline_col="${bg_col}"
+	fi
+
+	echo -n "%{B${bg_col}}%{F${fg_col}}%{U${underline_col}}%{+u}${@:2}%{-u}%{U-}%{F-}%{B-}"
 }
 
 bar_underline () {
