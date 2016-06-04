@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 extract_xresources_field () {
-	sed -n "s/#define $1[ \t]*\([c\#].*\)/\1/p" $HOME/.Xresources
+	sed -n "s/#define $1[ \t]*\([c\#].*\)/\1/p" $HOME/.theme_colours.h
 }
 
 colour_from_xresources () {
