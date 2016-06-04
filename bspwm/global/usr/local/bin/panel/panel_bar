@@ -2,8 +2,10 @@
 
 DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 . $DIR/panel_colors
+. /etc/profile.d/bspwm_panel.sh
 
-TEMPERATURE_THRESHOLD=60
+TEMPERATURE_THRESHOLD_HIGH=${TEMPERATURE_THRESHOLD_HIGH:-80}
+TEMPERATURE_THRESHOLD_MEDIUM=${TEMPERATURE_THRESHOLD_MEDIUM:-60}
 
 num_mon=$(bspc query -M | wc -l)
 
@@ -106,15 +108,18 @@ while read -r line ; do
 			IFS=' ' read -a arr_load_data <<< "$load_data"
 			IFS='@' read -a arr_cpu_data <<< "$arr_load_data"
 
-			load_colour_bg="COLOR_LOAD_NORMAL_TEMP"
+			load_colour="COLOR_LOAD_NORMAL_TEMP"
 
 			load_temperature=$(egrep -o "[0-9]+" <<< "${arr_cpu_data[1]}")
-			if [[ "$load_temperature" -ge "$TEMPERATURE_THRESHOLD" ]];
+			if [[ "$load_temperature" -ge "$TEMPERATURE_THRESHOLD_HIGH" ]];
 			then
-				load_colour_bg="COLOR_LOAD_HIGH_TEMP"
+				load_colour="COLOR_LOAD_HIGH_TEMP"
+			elif [[ "$load_temperature" -ge "$TEMPERATURE_THRESHOLD_MEDIUM" ]];
+			then
+				load_colour="COLOR_LOAD_MEDIUM_TEMP"
 			fi
 
-			system_load_info=$(bar_color $load_colour_bg " ${load_data} ")
+			system_load_info=$(bar_color $load_colour " ${load_data} ")
 			;;
 		W*)
 			# bspwm internal state
