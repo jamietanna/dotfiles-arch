@@ -130,17 +130,21 @@ while read -r line ; do
 				item=$1
 				name=${item#?}
 				color_var=""
+				spacing_pre=""
+				spacing_post=""
 				case $item in
 					M*)
 						# active monitor
 						if [ $num_mon -gt 1 ] ; then
 							color_var="COLOR_ACTIVE_MONITOR"
+							spacing_post=" "
 						fi
 						;;
 					m*)
 						# inactive monitor
 						if [ $num_mon -gt 1 ] ; then
 							color_var="COLOR_INACTIVE_MONITOR"
+							spacing_post=" "
 						fi
 						;;
 					O*)
@@ -170,12 +174,13 @@ while read -r line ; do
 					L*)
 						# layout
 						color_var="COLOR_LAYOUT"
+						spacing_pre=" "
 						;;
 				esac
 
 				if [[ -n "$color_var" ]];
 				then
-					wm_infos="${wm_infos}$(bar_color "$color_var" " ${name} ")"
+					wm_infos="${wm_infos}${spacing_pre}$(bar_color "$color_var" " ${name} ")${spacing_post}"
 				fi
 				shift
 			done
