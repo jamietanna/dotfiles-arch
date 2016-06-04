@@ -49,37 +49,56 @@ bar_underline () {
 	echo -n "%{U$1}%{+u}${@:2}%{-u}"
 }
 
-## Colours taken from NLKNguyen/papercolor-theme
+# Colour settings from our Xresources {{{
+_BG="$(rgb_to_rgba $(colour_from_xresources "col_bg"))"
+_FG="$(rgb_to_rgba $(colour_from_xresources "col_fg"))"
+
+_BLACK="$(rgb_to_rgba $(colour_from_xresources "col_black"))"
 _RED="$(rgb_to_rgba $(colour_from_xresources "col_red"))"
-_ORANGE="$(rgb_to_rgba $(colour_from_xresources "col_yellow"))"
-_YELLOW="$(rgb_to_rgba $(colour_from_xresources "col_yellow_dark"))"
 _GREEN="$(rgb_to_rgba $(colour_from_xresources "col_green"))"
-_GREY="$(rgb_to_rgba $(colour_from_xresources "col_white"))"
+_YELLOW="$(rgb_to_rgba $(colour_from_xresources "col_yellow"))"
 _BLUE="$(rgb_to_rgba $(colour_from_xresources "col_blue"))"
-_BLUE_DARK="$(rgb_to_rgba $(colour_from_xresources "col_blue_dark"))"
-_VIOLET="$(rgb_to_rgba $(colour_from_xresources "col_magenta"))"
-_MAGENTA="$(rgb_to_rgba $(colour_from_xresources "col_red_dark"))"
+_MAGENTA="$(rgb_to_rgba $(colour_from_xresources "col_magenta"))"
+_CYAN="$(rgb_to_rgba $(colour_from_xresources "col_cyan"))"
+_WHITE="$(rgb_to_rgba $(colour_from_xresources "col_white"))"
+
 _BLACK_DARK="$(rgb_to_rgba $(colour_from_xresources "col_black_dark"))"
-_WHITE='#ffffffff'
+_RED_DARK="$(rgb_to_rgba $(colour_from_xresources "col_red_dark"))"
+_GREEN_DARK="$(rgb_to_rgba $(colour_from_xresources "col_green_dark"))"
+_YELLOW_DARK="$(rgb_to_rgba $(colour_from_xresources "col_yellow_dark"))"
+_BLUE_DARK="$(rgb_to_rgba $(colour_from_xresources "col_blue_dark"))"
+_MAGENTA_DARK="$(rgb_to_rgba $(colour_from_xresources "col_magenta_dark"))"
+_CYAN_DARK="$(rgb_to_rgba $(colour_from_xresources "col_cyan_dark"))"
+_WHITE_DARK="$(rgb_to_rgba $(colour_from_xresources "col_white_dark"))"
+# }}}
+
+# Colour aliases for ease-of-use {{{
 _FG_COL="$_WHITE"
-_BG_COL=$_BLACK_DARK
+_BG_COL="$_BG"
+_FOCUSSED=$_GREEN_DARK
+_GREY="$_WHITE"
+_VIOLET="$_MAGENTA"
+# }}}
 
 COLOR_BAR=($_FG_COL $_BG_COL)
 
-COLOR_ACTIVE_MONITOR=($_FG_COL $_GREEN)
-COLOR_INACTIVE_MONITOR=($_FG_COL $_BG_COL)
-COLOR_FOCUSED_OCCUPIED=($_FG_COL $_RED)
-COLOR_FOCUSED_FREE=($_FG_COL $_GREY)
-#TODO fix wrt colour scheme
-COLOR_FOCUSED_URGENT=('#FF34322E' '#FFF9A299')
-#TODO fix wrt colour scheme
-COLOR_URGENT=('#FFF9A299' '#FF34322E')
-COLOR_OCCUPIED=($_FG_COL $_MAGENTA)
+# WM settings {{{
+COLOR_ACTIVE_MONITOR=($_FG $_BG $_FOCUSSED)
+COLOR_INACTIVE_MONITOR=($_FG $_BG)
 
-COLOR_FREE=($_FG_COL $_BG_COL)
-COLOR_LAYOUT=($_FG_COL $_BLUE)
-COLOR_TITLE=($_FG_COL $_BG_COL)
+COLOR_ACTIVE_OCCUPIED=($_FG $_BG $_FOCUSSED)
+COLOR_INACTIVE_OCCUPIED=($_FG $_BG $_CYAN)
 
+COLOR_ACTIVE_URGENT=($_BG $_RED_DARK $_RED)
+COLOR_INACTIVE_URGENT=($_BG $_RED $_BG)
+
+COLOR_ACTIVE_FREE=($_FG $_BG $_WHITE)
+COLOR_INACTIVE_FREE=($_FG $_BG)
+
+COLOR_LAYOUT=($_FG $_BG $_BLUE)
+# }}}
+
+COLOR_TITLE=($_FG $_BG)
 
 ## Specific panel_bar colours
 # TODO these are all the wrong way around
