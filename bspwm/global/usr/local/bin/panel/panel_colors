@@ -45,10 +45,6 @@ bar_color () {
 	echo -n "%{B${bg_col}}%{F${fg_col}}%{U${underline_col}}%{+u}${@:2}%{-u}%{U-}%{F-}%{B-}"
 }
 
-bar_underline () {
-	echo -n "%{U$1}%{+u}${@:2}%{-u}"
-}
-
 # Colour settings from our Xresources {{{
 _BG="$(rgb_to_rgba $(colour_from_xresources "col_bg"))"
 _FG="$(rgb_to_rgba $(colour_from_xresources "col_fg"))"
