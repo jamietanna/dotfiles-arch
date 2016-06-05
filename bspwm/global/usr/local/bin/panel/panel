@@ -2,6 +2,7 @@
 
 DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 . $DIR/panel_colors
+. /etc/profile.d/bspwm_panel.sh
 
 if [ $(pgrep -cx panel) -gt 1 ] ; then
 	printf "%s\n" "The panel is already running." >&2
@@ -116,8 +117,15 @@ main_loop > "$PANEL_FIFO" &
 mpc_loop > "$PANEL_FIFO" &
 . panel_colors
 
-panel_bar < "$PANEL_FIFO" | lemonbar -g x$PANEL_HEIGHT -f "$PANEL_FONT_FAMILY" -F "$(bar_color_fg COLOR_BAR)" -B "$(bar_color_bg COLOR_BAR)" | while read line; do
-	eval "$line"
-done &
+panel_bar < "$PANEL_FIFO" | lemonbar \
+	-u "$PANEL_UNDERLINE_HEIGHT" \
+	-n "$PANEL_WM_NAME" \
+	-g x$PANEL_HEIGHT \
+	-f "$PANEL_FONT_FAMILY" \
+	-F "$(bar_color_fg COLOR_BAR)" \
+	-B "$(bar_color_bg COLOR_BAR)" | \
+	while read line; do
+		eval "$line"
+	done &
 
 wait
