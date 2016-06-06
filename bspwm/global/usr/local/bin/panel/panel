@@ -18,11 +18,11 @@ battery () {
 	# http://askubuntu.com/a/309146
 	if [ -e "/sys/class/power_supply/BAT0" ];
 	then
-		DATA=$(acpi -b)
+		local DATA=$(acpi -b)
 
-		remainder=$(echo $DATA | cut -d" " -f5)
-		percent=$(echo $DATA | cut -d" " -f4 | sed 's/[,%]//g')
-		percent_str="$percent%"
+		local remainder=$(echo $DATA | cut -d" " -f5)
+		local percent=$(echo $DATA | cut -d" " -f4 | sed 's/[,%]//g')
+		local percent_str="$percent%"
 
 		echo -n "B"
 		echo $DATA | grep "Discharging" > /dev/null
@@ -77,10 +77,10 @@ mpc_loop () {
 load_info () {
 	while true;
 	do
-		cpu_temp=$(sensors|awk 'BEGIN{i=0;t=0;b=0}/id [0-9]/{b=$4};/Core/{++i;t+=$3}END{if(i>0){printf("%0.1f\n",t/i)}else{sub(/[^0-9.]/,"",b);print b}}')
-		cpu_load=$(bc <<< $(ps -eo pcpu |grep -vE '^\s*(0.0|%CPU)' |sed -n '1h;$!H;$g;s/\n/ +/gp'))
+		local cpu_temp=$(sensors|awk 'BEGIN{i=0;t=0;b=0}/id [0-9]/{b=$4};/Core/{++i;t+=$3}END{if(i>0){printf("%0.1f\n",t/i)}else{sub(/[^0-9.]/,"",b);print b}}')
+		local cpu_load=$(bc <<< $(ps -eo pcpu |grep -vE '^\s*(0.0|%CPU)' |sed -n '1h;$!H;$g;s/\n/ +/gp'))
 		# http://stackoverflow.com/a/10586020
-		mem_used=$(free | grep Mem | awk '{ print $3/$2 * 100.0 }')
+		local mem_used=$(free | grep Mem | awk '{ print $3/$2 * 100.0 }')
 
 		echo "LOAD$(round $cpu_load)%@$(round $cpu_temp)c $(round $mem_used)%"
 		sleep 5
