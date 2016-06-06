@@ -76,7 +76,7 @@ _GREY="$_WHITE"
 _VIOLET="$_MAGENTA"
 # }}}
 
-COLOR_BAR=($_FG_COL $_BG_COL)
+COLOR_BAR=($_FG $_BG $_BG)
 
 # WM settings {{{
 COLOR_ACTIVE_MONITOR=($_FG $_BG $_FOCUSSED)
