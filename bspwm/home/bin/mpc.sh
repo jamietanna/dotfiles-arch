@@ -14,6 +14,7 @@ current_status () {
 	else
 		echo -n "st"
 		echo
+		return
 	fi
 
 	mpc current
