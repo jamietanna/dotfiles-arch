@@ -66,25 +66,11 @@ main_loop () {
 mpc_loop () {
 	while true;
 	do
-		out="M"
-
-		mpc_status="$(mpc status)"
-
-		if echo $mpc_status | grep "playing" 2>&1 > /dev/null;
-		then
-			out+="pl"
-		elif echo $mpc_status | grep "paused" 2>&1 > /dev/null;
-		then
-			out+="pa"
-		else
-			out+="st"
-		fi
-
 		# this blocks until there is a change, which means we have much less
 		# continually polling
-		out+="$(mpc current --wait)"
-
-		echo "$out"
+		mpc current --wait > /dev/null
+		# then use the shell script to avoid code duplication
+		mpc.sh current
 	done
 }
 
