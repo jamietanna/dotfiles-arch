@@ -53,20 +53,29 @@ while read -r line ; do
 			packages="%{A1:~/bin/checkupdates.sh 'notify':}%{A3:~/bin/checkupdates.sh:}$packages%{A}%{A}"
 			;;
 		X*)
-			line_out=$(echo $line | cut -c 3-)
-			case $line in
-				XC*)
-					if echo $line_out | grep -e "tun[0-9]" 2>/dev/null;
+			network=""
+			bar_color_var=""
+			line_in=$(echo $line | cut -c 2-)
+			IFS=';' read -ra network_triple <<< "$line_in"
+			for triple in "${network_triple[@]}"; do
+				IFS=',' read -ra triple_split <<< "$triple"
+				output=""
+
+				if [[ "${triple_split[0]}" == "C" ]];
+				then
+					if echo "${triple_split[1]}" | grep -qP "^tun";
 					then
-						network=$(bar_color COLOR_NETWORK_TUN " ${line_out} ")
+						bar_color_var="COLOR_NETWORK_TUN"
 					else
-						network=$(bar_color COLOR_NETWORK_NORMAL " ${line_out} ")
+						bar_color_var="COLOR_NETWORK_NORMAL"
 					fi
-				;;
-				XD*)
-					network=$(bar_color COLOR_NETWORK_DIS " ${line_out} ")
-				;;
-			esac
+					output="${triple_split[1]}: ${triple_split[2]}"
+				else
+					bar_color_var="COLOR_NETWORK_DIS"
+					output="${triple_split[1]}"
+				fi
+				network+="$(bar_color $bar_color_var " $output ")"
+			done
 			;;
 		V*)
 			if [[ ${line#?} -eq 0 ]];
