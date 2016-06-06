@@ -3,12 +3,12 @@
 current_status () {
 	echo -n "M"
 
-	mpc_status=$(mpc status)
+	mpc_status="$(mpc status)"
 
-	if echo $mpc_status | grep "playing" 2>&1 > /dev/null;
+	if echo "$mpc_status" | grep "playing" 2>&1 > /dev/null;
 	then
 		echo -n "pl"
-	elif echo $mpc_status | grep "paused" 2>&1 > /dev/null;
+	elif echo "$mpc_status" | grep "paused" 2>&1 > /dev/null;
 	then
 		echo -n "pa"
 	else
