@@ -119,7 +119,7 @@ COLOR_BATTERY_LOW=($_FG $_BG $_RED)
 COLOR_BATTERY_NORMAL=($_FG $_BG)
 # }}}
 
-COLOR_HOSTNAME=($_FG_COL $_BG_COL)
+COLOR_HOSTNAME=($_FG $_BG)
 
 # Display different colours dependent on the system time {{{
 COLOR_CLOCK_NORMAL=($_FG $_BG)
