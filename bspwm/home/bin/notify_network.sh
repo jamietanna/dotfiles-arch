@@ -4,7 +4,8 @@ output=""
 for iface_path in /sys/class/net/*;
 do
 	iface=$(basename $iface_path)
-    if [[ "$iface" == "lo" ]];
+    # ignore the loopback and virtualbox interfaces
+    if echo "$iface" | grep -qP '^(lo|vboxnet.*)$'
     then
         continue
     fi
