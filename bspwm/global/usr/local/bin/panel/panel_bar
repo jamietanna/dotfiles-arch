@@ -4,9 +4,9 @@ DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 . $DIR/panel_colors
 . /etc/profile.d/bspwm_panel.sh
 
-CPU_USAGE_THRESHOLD_HIGH=${CPU_USAGE_THRESHOLD_HIGH:-80}
-CPU_USAGE_THRESHOLD_MEDIUM=${CPU_USAGE_THRESHOLD_MEDIUM:-50}
-CPU_USAGE_THRESHOLD_LOW=${CPU_USAGE_THRESHOLD_LOW:-20}
+CPU_USAGE_THRESHOLD_HIGH="$(($(nproc) * ${CPU_USAGE_THRESHOLD_HIGH:-80}))"
+CPU_USAGE_THRESHOLD_MEDIUM="$(($(nproc) * ${CPU_USAGE_THRESHOLD_MEDIUM:-50}))"
+CPU_USAGE_THRESHOLD_LOW="$(($(nproc) * ${CPU_USAGE_THRESHOLD_LOW:-20}))"
 
 TEMPERATURE_THRESHOLD_HIGH=${TEMPERATURE_THRESHOLD_HIGH:-80}
 TEMPERATURE_THRESHOLD_MEDIUM=${TEMPERATURE_THRESHOLD_MEDIUM:-60}
@@ -131,7 +131,6 @@ while read -r line ; do
 			# http://stackoverflow.com/questions/10586153/split-string-into-an-array-in-bash
 			IFS=',' read -a arr_load_data <<< "$load_data"
 
-			# TODO needs to take into account the number of processors {{{
 			cpu_threshold_colour_var=""
 			if [[ "${arr_load_data[0]}" -ge "$CPU_USAGE_THRESHOLD_HIGH" ]];
 			then
@@ -145,7 +144,6 @@ while read -r line ; do
 			else
 				cpu_threshold_colour_var="COLOR_LOAD_NORMAL_CPU"
 			fi
-			# }}}
 
 			memory_threshold_colour_var="COLOR_LOAD_NORMAL_MEMORY"
 			if [[ "${arr_load_data[1]}" -ge "$MEMORY_USAGE_THRESHOLD_HIGH" ]];
