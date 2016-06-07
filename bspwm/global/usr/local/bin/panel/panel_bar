@@ -134,27 +134,27 @@ while read -r line ; do
 			cpu_threshold_colour_var=""
 			if [[ "${arr_load_data[0]}" -ge "$CPU_USAGE_THRESHOLD_HIGH" ]];
 			then
-				cpu_threshold_colour_var="COLOR_LOAD_HIGH_CPU"
+				cpu_threshold_colour_var="COLOR_LOAD_HIGH_CPU_USAGE"
 			elif [[ "${arr_load_data[0]}" -ge "$CPU_USAGE_THRESHOLD_MEDIUM" ]];
 			then
-				cpu_threshold_colour_var="COLOR_LOAD_MEDIUM_CPU"
+				cpu_threshold_colour_var="COLOR_LOAD_MEDIUM_CPU_USAGE"
 			elif [[ "${arr_load_data[0]}" -ge "$CPU_USAGE_THRESHOLD_LOW" ]];
 			then
-				cpu_threshold_colour_var="COLOR_LOAD_LOW_CPU"
+				cpu_threshold_colour_var="COLOR_LOAD_LOW_CPU_USAGE"
 			else
-				cpu_threshold_colour_var="COLOR_LOAD_NORMAL_CPU"
+				cpu_threshold_colour_var="COLOR_LOAD_NORMAL_CPU_USAGE"
 			fi
 
-			memory_threshold_colour_var="COLOR_LOAD_NORMAL_MEMORY"
+			memory_threshold_colour_var="COLOR_LOAD_NORMAL_MEMORY_USAGE"
 			if [[ "${arr_load_data[1]}" -ge "$MEMORY_USAGE_THRESHOLD_HIGH" ]];
 			then
-				memory_threshold_colour_var="COLOR_LOAD_HIGH_MEMORY"
+				memory_threshold_colour_var="COLOR_LOAD_HIGH_MEMORY_USAGE"
 			elif [[ "${arr_load_data[1]}" -ge "$MEMORY_USAGE_THRESHOLD_MEDIUM" ]];
 			then
-				memory_threshold_colour_var="COLOR_LOAD_MEDIUM_MEMORY"
+				memory_threshold_colour_var="COLOR_LOAD_MEDIUM_MEMORY_USAGE"
 			elif [[ "${arr_load_data[1]}" -ge "$MEMORY_USAGE_THRESHOLD_LOW" ]];
 			then
-				memory_threshold_colour_var="COLOR_LOAD_LOW_MEMORY"
+				memory_threshold_colour_var="COLOR_LOAD_LOW_MEMORY_USAGE"
 			fi
 
 			temp_threshold_colour_var="COLOR_LOAD_NORMAL_TEMP"
