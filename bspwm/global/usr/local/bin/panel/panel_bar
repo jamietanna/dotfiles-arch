@@ -158,13 +158,13 @@ while read -r line ; do
 			fi
 
 			temp_threshold_colour_var="COLOR_LOAD_NORMAL_TEMP"
-			if [[ "${arr_load_data[2]}" -ge "$TEMP_USAGE_THRESHOLD_HIGH" ]];
+			if [[ "${arr_load_data[2]}" -ge "$TEMPERATURE_THRESHOLD_HIGH" ]];
 			then
 				temp_threshold_colour_var="COLOR_LOAD_HIGH_TEMP"
-			elif [[ "${arr_load_data[2]}" -ge "$TEMP_USAGE_THRESHOLD_MEDIUM" ]];
+			elif [[ "${arr_load_data[2]}" -ge "$TEMPERATURE_THRESHOLD_MEDIUM" ]];
 			then
 				temp_threshold_colour_var="COLOR_LOAD_MEDIUM_TEMP"
-			elif [[ "${arr_load_data[2]}" -ge "$TEMP_USAGE_THRESHOLD_LOW" ]];
+			elif [[ "${arr_load_data[2]}" -ge "$TEMPERATURE_THRESHOLD_LOW" ]];
 			then
 				temp_threshold_colour_var="COLOR_LOAD_LOW_TEMP"
 			fi
@@ -172,9 +172,9 @@ while read -r line ; do
 			system_load_info=" "
 			system_load_info+="$(bar_color $cpu_threshold_colour_var "${arr_load_data[0]}%")"
 			system_load_info+="@"
-			system_load_info+="$(bar_color $memory_threshold_colour_var "${arr_load_data[1]}c")"
+			system_load_info+="$(bar_color $temp_threshold_colour_var "${arr_load_data[1]}c")"
 			system_load_info+=" "
-			system_load_info+="$(bar_color $temp_threshold_colour_var "${arr_load_data[2]}%")"
+			system_load_info+="$(bar_color $memory_threshold_colour_var "${arr_load_data[2]}%")"
 			system_load_info+=" "
 			;;
 		W*)
