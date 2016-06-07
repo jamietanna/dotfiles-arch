@@ -4,8 +4,17 @@ DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 . $DIR/panel_colors
 . /etc/profile.d/bspwm_panel.sh
 
+CPU_USAGE_THRESHOLD_HIGH=${CPU_USAGE_THRESHOLD_HIGH:-80}
+CPU_USAGE_THRESHOLD_MEDIUM=${CPU_USAGE_THRESHOLD_MEDIUM:-50}
+CPU_USAGE_THRESHOLD_LOW=${CPU_USAGE_THRESHOLD_LOW:-20}
+
 TEMPERATURE_THRESHOLD_HIGH=${TEMPERATURE_THRESHOLD_HIGH:-80}
 TEMPERATURE_THRESHOLD_MEDIUM=${TEMPERATURE_THRESHOLD_MEDIUM:-60}
+TEMPERATURE_THRESHOLD_LOW=${TEMPERATURE_THRESHOLD_LOW:-40}
+
+MEMORY_USAGE_THRESHOLD_HIGH=${MEMORY_USAGE_THRESHOLD_HIGH:-70}
+MEMORY_USAGE_THRESHOLD_MEDIUM=${MEMORY_USAGE_THRESHOLD_MEDIUM:-50}
+MEMORY_USAGE_THRESHOLD_LOW=${MEMORY_USAGE_THRESHOLD_LOW:-30}
 
 BATTERY_THRESHOLD_CRITICAL=${BATTERY_THRESHOLD_CRITICAL:-20}
 BATTERY_THRESHOLD_LOW=${BATTERY_THRESHOLD_LOW:-40}
@@ -120,21 +129,55 @@ while read -r line ; do
 			# load temp and load
 			load_data=$(echo $line | cut -c5-)
 			# http://stackoverflow.com/questions/10586153/split-string-into-an-array-in-bash
-			IFS=' ' read -a arr_load_data <<< "$load_data"
-			IFS='@' read -a arr_cpu_data <<< "$arr_load_data"
+			IFS=',' read -a arr_load_data <<< "$load_data"
 
-			load_colour="COLOR_LOAD_NORMAL_TEMP"
+			# TODO needs to take into account the number of processors {{{
+			cpu_threshold_colour_var=""
+			if [[ "${arr_load_data[0]}" -ge "$CPU_USAGE_THRESHOLD_HIGH" ]];
+			then
+				cpu_threshold_colour_var="COLOR_LOAD_HIGH_CPU"
+			elif [[ "${arr_load_data[0]}" -ge "$CPU_USAGE_THRESHOLD_MEDIUM" ]];
+			then
+				cpu_threshold_colour_var="COLOR_LOAD_MEDIUM_CPU"
+			elif [[ "${arr_load_data[0]}" -ge "$CPU_USAGE_THRESHOLD_LOW" ]];
+			then
+				cpu_threshold_colour_var="COLOR_LOAD_LOW_CPU"
+			else
+				cpu_threshold_colour_var="COLOR_LOAD_NORMAL_CPU"
+			fi
+			# }}}
 
-			load_temperature=$(egrep -o "[0-9]+" <<< "${arr_cpu_data[1]}")
-			if [[ "$load_temperature" -ge "$TEMPERATURE_THRESHOLD_HIGH" ]];
+			memory_threshold_colour_var="COLOR_LOAD_NORMAL_MEMORY"
+			if [[ "${arr_load_data[1]}" -ge "$MEMORY_USAGE_THRESHOLD_HIGH" ]];
 			then
-				load_colour="COLOR_LOAD_HIGH_TEMP"
-			elif [[ "$load_temperature" -ge "$TEMPERATURE_THRESHOLD_MEDIUM" ]];
+				memory_threshold_colour_var="COLOR_LOAD_HIGH_MEMORY"
+			elif [[ "${arr_load_data[1]}" -ge "$MEMORY_USAGE_THRESHOLD_MEDIUM" ]];
 			then
-				load_colour="COLOR_LOAD_MEDIUM_TEMP"
+				memory_threshold_colour_var="COLOR_LOAD_MEDIUM_MEMORY"
+			elif [[ "${arr_load_data[1]}" -ge "$MEMORY_USAGE_THRESHOLD_LOW" ]];
+			then
+				memory_threshold_colour_var="COLOR_LOAD_LOW_MEMORY"
 			fi
 
-			system_load_info=$(bar_color $load_colour " ${load_data} ")
+			temp_threshold_colour_var="COLOR_LOAD_NORMAL_TEMP"
+			if [[ "${arr_load_data[2]}" -ge "$TEMP_USAGE_THRESHOLD_HIGH" ]];
+			then
+				temp_threshold_colour_var="COLOR_LOAD_HIGH_TEMP"
+			elif [[ "${arr_load_data[2]}" -ge "$TEMP_USAGE_THRESHOLD_MEDIUM" ]];
+			then
+				temp_threshold_colour_var="COLOR_LOAD_MEDIUM_TEMP"
+			elif [[ "${arr_load_data[2]}" -ge "$TEMP_USAGE_THRESHOLD_LOW" ]];
+			then
+				temp_threshold_colour_var="COLOR_LOAD_LOW_TEMP"
+			fi
+
+			system_load_info=" "
+			system_load_info+="$(bar_color $cpu_threshold_colour_var "${arr_load_data[0]}%")"
+			system_load_info+="@"
+			system_load_info+="$(bar_color $memory_threshold_colour_var "${arr_load_data[1]}c")"
+			system_load_info+=" "
+			system_load_info+="$(bar_color $temp_threshold_colour_var "${arr_load_data[2]}%")"
+			system_load_info+=" "
 			;;
 		W*)
 			# bspwm internal state

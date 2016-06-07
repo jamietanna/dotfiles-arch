@@ -82,7 +82,7 @@ load_info () {
 		# http://stackoverflow.com/a/10586020
 		local mem_used=$(free | grep Mem | awk '{ print $3/$2 * 100.0 }')
 
-		echo "LOAD$(round $cpu_load)%@$(round $cpu_temp)c $(round $mem_used)%"
+		echo "LOAD$(round $cpu_load),$(round $cpu_temp),$(round $mem_used)"
 		sleep 5
 	done
 }
