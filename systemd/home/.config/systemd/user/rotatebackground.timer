@@ -1,0 +1,10 @@
+[Unit]
+Description=Rotate system background
+
+[Timer]
+OnBootSec=15min
+OnUnitActiveSec=30m
+Persistent=true
+
+[Install]
+WantedBy=timers.target

@@ -1,0 +1,7 @@
+[Unit]
+Description=Rotate system background
+
+[Service]
+Environment=DISPLAY=:0
+ExecStart=/home/jamie/bin/rotatebackground.sh
+ExecStop=/bin/true
