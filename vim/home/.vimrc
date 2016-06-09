@@ -70,6 +70,13 @@ call plug#begin('~/.vim/plugged')
 	" }}}
 
 	" -------------------------------------------------------------------------
+	" => Snippets
+	" -------------------------------------------------------------------------
+	"  {{{
+	Plug 'SirVer/ultisnips' | Plug 'ervandew/supertab' | Plug 'honza/vim-snippets'
+	" }}}
+
+	" -------------------------------------------------------------------------
 	" => Completion
 	" -------------------------------------------------------------------------
 	"  {{{
@@ -232,6 +239,30 @@ nnoremap <leader>O O<esc>
 " => Plugin Settings
 " -----------------------------------------------------------------------------
 " {{{
+
+" -----------------------------------------------------------------------------
+" => SuperTab + YCM + Ultisnips
+" -----------------------------------------------------------------------------
+" {{{
+" http://stackoverflow.com/a/22253548/2257038
+" make YCM compatible with UltiSnips (using supertab)
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+let g:SuperTabDefaultCompletionType = '<C-n>'
+
+" better key bindings for UltiSnipsExpandTrigger
+let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+" }}}
+
+" -----------------------------------------------------------------------------
+" => Ultisnips
+" -----------------------------------------------------------------------------
+"  {{{
+let g:UltiSnipsSnippetDirectories=["UltiSnips", "mysnippets"]
+let g:snips_author = "Jamie Tanna"
+"  }}}
 
 " -----------------------------------------------------------------------------
 " => YCM
