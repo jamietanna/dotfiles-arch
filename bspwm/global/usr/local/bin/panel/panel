@@ -45,15 +45,6 @@ first_time () {
 	echo "V$($HOME/bin/vol.sh get)"
 }
 
-packages_to_update () {
-	# http://www.reddit.com/r/archlinux/comments/2xbf71/script_to_update_arch/coyolos
-	while true;
-	do
-		~/bin/checkupdates.sh
-		sleep $((60*60*3))
-	done
-}
-
 main_loop () {
 	while true;
 	do
@@ -97,7 +88,6 @@ bspc subscribe report > "$PANEL_FIFO" &
 xtitle -sf 'T%s' > "$PANEL_FIFO" &
 clock -sf 'S%a %H:%M' > "$PANEL_FIFO" &
 first_time > "$PANEL_FIFO" &
-packages_to_update > "$PANEL_FIFO" &
 load_info > "$PANEL_FIFO" &
 main_loop > "$PANEL_FIFO" &
 mpc_loop > "$PANEL_FIFO" &

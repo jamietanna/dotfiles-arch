@@ -1,0 +1,7 @@
+[Unit]
+Description=Check whether there are package updates
+
+[Service]
+Environment=DISPLAY=:0
+ExecStart=/home/jamie/bin/checkupdates.sh
+ExecStop=/bin/true
