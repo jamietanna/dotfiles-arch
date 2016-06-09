@@ -41,6 +41,7 @@ unpack () {
 
 	for f in $(find "$1/$2");
 	do
+		cmdstring=""
 		full_path="$(readlink -f "$f")"
 		path_create="${full_path//$working_dir_path/}"
 
@@ -75,19 +76,52 @@ unpack () {
 			fi
 		fi
 
-		cmdstring=""
-		if [[ -f "$f" ]]; then
-			if [ -e "$path_create_final" ];
+		# unpack systemd files correctly {{{
+		# unfortunately we can't symlink the service files into the systemd
+		# folder, so we've got to have a single systemd folder, which will then
+		# be symlinked
+
+		# only unpack the final folder
+		if echo $full_path | grep -q '.config/systemd/user$' && \
+			[[ -d "$full_path" ]];
+		then
+			# make sure that systemd configs aren't stored in other packages
+			if ! echo "$1" | grep -q '/systemd$'
 			then
-				warn "$path_create_final already exists"
-				continue
+				error "Error: Only one folder can store systemd files, stored in the \`systemd\` package"
+			else
+				# symlink the .config/systemd/user folder to the right
+				# directory. note that this the below code will symlink only
+				# files, and would otherwise override this functionality
+				cmdstring="ln -s $full_path $path_create_final"
+				if [[ -e "$path_create_final" ]];
+				then
+					warn "$path_create_final already exists. Skipping"
+					continue
+				fi
 			fi
+		elif echo $full_path | grep -q '.config/systemd/user/'
+		then
+			# skip the individual files
+			continue
+		fi
+		# }}}
 
-			cmdstring="ln -s $full_path $path_create_final"
-		elif [[ -d "$f" ]]; then
-			[ -z "$path_create_final" ] && continue
+		if [[ -z "$cmdstring" ]];
+		then
+			if [[ -f "$f" ]]; then
+				if [ -e "$path_create_final" ];
+				then
+					warn "$path_create_final already exists"
+					continue
+				fi
 
-			cmdstring="mkdir -p $path_create_final"
+				cmdstring="ln -s $full_path $path_create_final"
+			elif [[ -d "$f" ]]; then
+				[ -z "$path_create_final" ] && continue
+
+				cmdstring="mkdir -p $path_create_final"
+			fi
 		fi
 
 		cmd "$2" "$cmdstring"
