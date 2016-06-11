@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 [[ -e $HOME/.xinitrc.local ]] && . $HOME/.xinitrc.local
 
 # [[ -e ... ]] vs [[ -f ... ]] because they're going to be symlinks, not regular files
