@@ -144,7 +144,6 @@ while read -r line ; do
 			else
 				cpu_threshold_colour_var="COLOR_LOAD_NORMAL_CPU_USAGE"
 			fi
-			# }}}
 
 			temp_threshold_colour_var="COLOR_LOAD_NORMAL_TEMP"
 			if [[ "${arr_load_data[1]}" -ge "$TEMPERATURE_THRESHOLD_HIGH" ]];
