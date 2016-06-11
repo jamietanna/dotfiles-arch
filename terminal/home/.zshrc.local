@@ -98,7 +98,21 @@ zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 # {{{
 grml_theme_add_token path_wksp -f path_wksp_prompt '%B' '%b'
 grml_theme_add_token wksp_indicator -f workspace_prompt '%B%F{red}' '%f%b'
-zstyle ':prompt:grml:left:setup' items rc change-root \
+
+function jobs_count () {
+	local count="$(jobs | wc -l)"
+	if [[ "$count" -gt "0" ]]; then
+		REPLY="${count}%% "
+	else
+		REPLY=""
+	fi
+}
+
+grml_theme_add_token jobs_indicator -f jobs_count '%B%F{magenta}' '%f%b'
+
+
+
+zstyle ':prompt:grml:left:setup' items rc jobs_indicator change-root \
 	user at host wksp_indicator path_wksp vcs percent
 # }}}
 
