@@ -36,8 +36,6 @@ bindkey '^a' beginning-of-line
 bindkey '^e' end-of-line
 # }}}
 
-export PATH="$PATH:$HOME/bin"
-
 # -----------------------------------------------------------------------------
 # => Source external files containing aliases and functions
 # -----------------------------------------------------------------------------
