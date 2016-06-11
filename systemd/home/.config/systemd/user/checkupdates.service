@@ -2,6 +2,6 @@
 Description=Check whether there are package updates
 
 [Service]
-Environment=DISPLAY=:0
+Environment=DISPLAY=:0 PANEL_FIFO=/tmp/panel-fifo
 ExecStart=/home/jamie/bin/checkupdates.sh
 ExecStop=/bin/true
