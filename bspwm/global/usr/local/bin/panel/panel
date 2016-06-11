@@ -43,6 +43,7 @@ first_time () {
 	sleep 1
 	echo "H$(hostname)"
 	echo "V$($HOME/bin/vol.sh get)"
+	mpc.sh current
 }
 
 main_loop () {
