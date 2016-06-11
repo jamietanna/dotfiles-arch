@@ -7,6 +7,7 @@
 
 // Based off morhetz/gruvbox-contrib
 
+// Core colours {{{
 #define col_bg                  #282828
 #define col_fg                  #ebdbb2
 #define col_black1              #282828
@@ -44,3 +45,9 @@
 #define col_magenta_dark        col_magenta2
 #define col_cyan_dark           col_cyan2
 #define col_white_dark          col_white2
+// }}}
+
+// {{{
+#define col_focussed			col_green_dark
+#define col_active				col_cyan
+// }}}

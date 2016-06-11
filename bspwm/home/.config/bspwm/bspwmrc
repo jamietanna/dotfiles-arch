@@ -9,6 +9,11 @@ bspc config gapless_monocle     true
 bspc config focus_by_distance   true
 bspc config focus_follows_pointer true
 
+. $HOME/.Xresourceshelper
+bspc config focused_border_color "$(colour_from_xresources "col_focussed")"
+bspc config active_border_color "$(colour_from_xresources "col_active")"
+bspc config normal_border_color "$(colour_from_xresources "col_fg")"
+
 bspc config presel_feedback_color '#FFFFFF'
 bspc monitor -d I II III IV V VI VII VIII IX X
 

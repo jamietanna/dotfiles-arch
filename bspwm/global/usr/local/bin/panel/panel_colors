@@ -71,7 +71,8 @@ _WHITE_DARK="$(rgb_to_rgba "$(colour_from_xresources "col_white_dark")")"
 # Colour aliases for ease-of-use {{{
 _FG_COL="$_WHITE"
 _BG_COL="$_BG"
-_FOCUSSED=$_GREEN_DARK
+_FOCUSSED="$(rgb_to_rgba "$(colour_from_xresources "col_focussed")")"
+_ACTIVE="$(rgb_to_rgba "$(colour_from_xresources "col_active")")"
 _GREY="$_WHITE"
 _VIOLET="$_MAGENTA"
 # }}}
@@ -83,7 +84,7 @@ COLOR_ACTIVE_MONITOR=($_FG $_BG $_FOCUSSED)
 COLOR_INACTIVE_MONITOR=($_FG $_BG)
 
 COLOR_ACTIVE_OCCUPIED=($_FG $_BG $_FOCUSSED)
-COLOR_INACTIVE_OCCUPIED=($_FG $_BG $_CYAN)
+COLOR_INACTIVE_OCCUPIED=($_FG $_BG $_ACTIVE)
 
 COLOR_ACTIVE_URGENT=($_BG $_RED_DARK $_RED)
 COLOR_INACTIVE_URGENT=($_BG $_RED $_BG)
