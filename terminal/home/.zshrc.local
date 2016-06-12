@@ -114,10 +114,16 @@ function jobs_count () {
 grml_theme_add_token jobs_indicator -f jobs_count '%B%F{magenta}' '%f%b'
 # }}}
 
+# Virtualenv {{{
+function virtual_env_prompt () {
+	REPLY="${VIRTUAL_ENV+${VIRTUAL_ENV:t} }"
+}
 
+grml_theme_add_token virtual_env -f virtual_env_prompt '%B%F{yellow}' '%f%b'
+# }}}
 
 zstyle ':prompt:grml:left:setup' items rc jobs_indicator change-root \
-	user at host wksp_indicator path_wksp vcs percent
+	user at host virtual_env wksp_indicator path_wksp vcs percent
 # }}}
 
 # -----------------------------------------------------------------------------
