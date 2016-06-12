@@ -31,6 +31,9 @@ super + q
 
 super + m
 	bspc node -s biggest
+
+super + v
+	dmenu-vms.sh
 # }}}
 
 
