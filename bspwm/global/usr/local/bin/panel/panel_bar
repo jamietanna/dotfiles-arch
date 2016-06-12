@@ -19,6 +19,8 @@ MEMORY_USAGE_THRESHOLD_LOW=${MEMORY_USAGE_THRESHOLD_LOW:-30}
 BATTERY_THRESHOLD_CRITICAL=${BATTERY_THRESHOLD_CRITICAL:-20}
 BATTERY_THRESHOLD_LOW=${BATTERY_THRESHOLD_LOW:-40}
 
+TITLE_MAX_LENGTH=${TITLE_MAX_LENGTH:-100}
+
 num_mon=$(bspc query -M | wc -l)
 
 while read -r line ; do
@@ -123,7 +125,11 @@ while read -r line ; do
 			;;
 		T*)
 			# xtitle output
-			title=$(bar_color COLOR_TITLE " ${line#?} ")
+			line_out="${line#?}"
+			if [[ "${#line_out}" -gt "$TITLE_MAX_LENGTH" ]]; then
+				line_out="$(echo $line_out | cut -c-${TITLE_MAX_LENGTH})..."
+			fi
+			title=$(bar_color COLOR_TITLE " ${line_out} ")
 			;;
 		LOAD*)
 			# load temp and load
