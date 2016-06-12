@@ -2,6 +2,7 @@
 	font = LiberationMono 15
 	format = "<b><u>%s</u></b>\n\n%b"
 	allow_markup = yes
+	follow = keyboard
 
 [urgency_low]
     background = "#262626"
