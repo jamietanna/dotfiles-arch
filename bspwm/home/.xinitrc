@@ -6,9 +6,9 @@
 [[ -e $HOME/.Xmodmap ]] && xmodmap ~/.Xmodmap
 [[ -e $HOME/.currbg ]] && feh --bg-fill $HOME/.currbg
 xbacklight -set 50
-mpc pause
 
 sxhkd &
+dunst &
 
 compton &
 # Escape is a much better use than CapsLock, especially as I very rarely use
