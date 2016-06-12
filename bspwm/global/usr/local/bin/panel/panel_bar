@@ -242,5 +242,10 @@ while read -r line ; do
 			done
 			;;
 	esac
-	printf "%s\n" "%{l}${wm_infos}%{c}${title}%{r}${network}${system_load_info}${battery}${music}${volume}${hostname}${packages}${sys_infos}"
+	panel_output="%{l}${wm_infos}%{c}${title}%{r}${network}${system_load_info}${battery}${music}${volume}${hostname}${packages}${sys_infos}"
+	# render a panel output per monitor
+	for ((i=0;i<num_mon;i++)); do
+		printf "%%{S${i}}%s" "$panel_output"
+	done
+	printf "\n"
 done
