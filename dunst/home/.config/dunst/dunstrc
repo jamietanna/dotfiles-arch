@@ -5,16 +5,16 @@
 	follow = keyboard
 
 [urgency_low]
-    background = "#262626"
-    foreground = "#888888"
+    background = "#458588"
+    foreground = "#ebdbb2"
     timeout = 10
 
 [urgency_normal]
-    background = "#262626"
-    foreground = "#ff5faf"
+    background = "#d65d0e"
+    foreground = "#ebdbb2"
     timeout = 10
 
 [urgency_critical]
-    background = "#e82a41"
-    foreground = "#ffffff"
+    background = "#cc241d"
+    foreground = "#ebdbb2"
     timeout = 0
