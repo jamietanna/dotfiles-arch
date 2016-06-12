@@ -96,9 +96,12 @@ zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 # => GRML-specific settings
 # -----------------------------------------------------------------------------
 # {{{
+# Workspaces {{{
 grml_theme_add_token path_wksp -f path_wksp_prompt '%B' '%b'
 grml_theme_add_token wksp_indicator -f workspace_prompt '%B%F{red}' '%f%b'
+# }}}
 
+# Jobs {{{
 function jobs_count () {
 	local count="$(jobs | wc -l)"
 	if [[ "$count" -gt "0" ]]; then
@@ -109,6 +112,7 @@ function jobs_count () {
 }
 
 grml_theme_add_token jobs_indicator -f jobs_count '%B%F{magenta}' '%f%b'
+# }}}
 
 
 
