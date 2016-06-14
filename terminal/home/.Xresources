@@ -48,15 +48,18 @@ rofi.font:       				LiberationMono 10
 rofi.terminal:   				xterm
 rofi.background: 				col_bg
 rofi.foreground: 				col_fg
-rofi.highlightbg: 				col_cyan
-rofi.highlightfg: 				col_fg
-rofi.bordercolor: 				col_white
+rofi.highlightbg: 				col_bg
+rofi.highlightfg: 				col_focussed
+rofi.bordercolor: 				col_bg
 rofi.color-enabled:				true
+rofi.separator-style:			solid
 
-rofi.color-normal: 				col_cyan,col_bg,col_cyan_dark,col_blue_dark,col_bg
-rofi.color-urgent: 				col_yellow_dark,col_white_true,col_yellow_dark,col_green_dark,col_white_true
-rofi.color-active: 				col_red_dark,col_fg,col_red_dark,col_red,col_fg
-rofi.color-window: 				col_cyan,col_white_true
+!					bg			fg					bgalt  		hlbg   			hlfg
+rofi.color-normal:	col_bg, 	col_fg,				col_bg,		col_bg, 		col_magenta
+rofi.color-urgent:	col_bg, 	col_red,			col_bg,		col_bg, 		col_red_dark
+rofi.color-active:	col_bg, 	col_active,			col_bg,		col_bg, 		col_focussed
+! 					bg			border				separator
+rofi.color-window:	col_bg,		col_bg,				col_orange
 
 #ifdef LOCAL_EXISTS
 #include ".Xresources.local"
