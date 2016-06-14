@@ -26,7 +26,11 @@
 #define col_cyan2               #8ec07c
 #define col_white1              #a89984
 #define col_white2              #ebdbb2
+#define col_orange1             #d65d0e
+#define col_orange2             #fe8019
 #define col_white_true          #FFFFFF
+#define col_grey1               #a89984
+#define col_grey2               #928374
 
 #define col_black               col_black1
 #define col_red                 col_red1
@@ -36,6 +40,8 @@
 #define col_magenta             col_magenta1
 #define col_cyan                col_cyan1
 #define col_white               col_white1
+#define col_orange              col_orange1
+#define col_grey              	col_grey1
 
 #define col_black_dark          col_black2
 #define col_red_dark            col_red2
@@ -45,9 +51,11 @@
 #define col_magenta_dark        col_magenta2
 #define col_cyan_dark           col_cyan2
 #define col_white_dark          col_white2
+#define col_orange_dark         col_orange2
+#define col_grey_dark         	col_grey2
 // }}}
 
-// {{{
+// Helper colours {{{
 #define col_focussed			col_green_dark
 #define col_active				col_cyan
 // }}}
