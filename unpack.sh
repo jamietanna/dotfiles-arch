@@ -69,9 +69,8 @@ unpack () {
 			if echo $f | grep -q ".*\.$(hostname)\.local\$";
 			then
 				path_create_final="${path_create_final//$(hostname)\./}"
-				echo "$path_create_final"
 			else
-				echo "Not matched $f"
+				warn "Not matched $f"
 				continue
 			fi
 		fi
