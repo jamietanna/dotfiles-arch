@@ -39,7 +39,7 @@ unpack () {
 	# TODO remove hack workaround to make `./` from `./folder` disappear
 	working_dir_path="${1//\/.\//\/}"
 
-	for f in $(find "$1/$2");
+	for f in $(find "$1/$2" -type f);
 	do
 		cmdstring=""
 		full_path="$(readlink -f "$f")"
@@ -106,6 +106,14 @@ unpack () {
 		fi
 		# }}}
 
+		dir_of_file="$(dirname "$f")"
+		if [[ ! -d "$dir_of_file" ]];
+		then
+			# if we don't have the directory we require for the file, create it
+			warn "$dir_of_file doesn't exist, creating it now"
+			mkdir -p "$dir_of_file"
+		fi
+
 		if [[ -z "$cmdstring" ]];
 		then
 			if [[ -f "$f" ]]; then
@@ -116,10 +124,6 @@ unpack () {
 				fi
 
 				cmdstring="ln -s $full_path $path_create_final"
-			elif [[ -d "$f" ]]; then
-				[ -z "$path_create_final" ] && continue
-
-				cmdstring="mkdir -p $path_create_final"
 			fi
 		fi
 
