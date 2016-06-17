@@ -50,7 +50,7 @@ unpack () {
 			path_create_final="${path_create//\/home/$HOME}"
 			;;
 			global )
-			path_create_final="${path_create//\/global/\/}"
+			path_create_final="${path_create//\/global/}"
 			;;
 			* )
 			error "invalid unpack location"
