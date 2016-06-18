@@ -97,15 +97,20 @@ while read -r line ; do
 			fi
 			;;
 		B*)
-			percentage=$(echo $line | grep -oP '\d+(?=%)')
-			color_var="COLOR_BATTERY_NORMAL"
-			if [[ $percentage -le $BATTERY_THRESHOLD_CRITICAL ]];
-			then
-				color_var="COLOR_BATTERY_CRITICAL"
-			elif [[ $percentage -le $BATTERY_THRESHOLD_LOW ]];
-			then
-				color_var="COLOR_BATTERY_LOW"
+			if echo "$line" | grep 'Charging'; then
+				color_var="COLOR_BATTERY_CHARGING"
+			else
+				percentage=$(echo $line | grep -oP '\d+(?=%)')
+				color_var="COLOR_BATTERY_NORMAL"
+				if [[ $percentage -le $BATTERY_THRESHOLD_CRITICAL ]];
+				then
+					color_var="COLOR_BATTERY_CRITICAL"
+				elif [[ $percentage -le $BATTERY_THRESHOLD_LOW ]];
+				then
+					color_var="COLOR_BATTERY_LOW"
+				fi
 			fi
+
 			battery=$(bar_color "$color_var" " ${line#?} ")
 			;;
 		H*)
