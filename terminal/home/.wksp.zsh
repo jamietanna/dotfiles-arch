@@ -73,7 +73,7 @@ function workspace_prompt () {
 	then
 		local workspace_name
 		workspace_name="$(get_workspace_name)"
-		REPLY="W:$workspace_name "
+		REPLY="$workspace_name "
 	else
 		REPLY=""
 	fi
