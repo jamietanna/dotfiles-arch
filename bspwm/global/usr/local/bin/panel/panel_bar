@@ -97,7 +97,7 @@ while read -r line ; do
 			fi
 			;;
 		B*)
-			if echo "$line" | grep 'Charging'; then
+			if echo "$line" | grep -q 'Charging'; then
 				color_var="COLOR_BATTERY_CHARGING"
 			else
 				percentage=$(echo $line | grep -oP '\d+(?=%)')
