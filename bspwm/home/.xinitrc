@@ -5,7 +5,7 @@
 [[ -e $HOME/.Xresources ]] && ~/bin/reload_Xresources.sh
 [[ -e $HOME/.Xmodmap ]] && xmodmap ~/.Xmodmap
 [[ -e $HOME/.currbg ]] && feh --bg-fill $HOME/.currbg
-xbacklight -set 50
+xbacklight -set 50 &
 
 sxhkd &
 dunst &
