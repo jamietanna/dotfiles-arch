@@ -7,6 +7,8 @@
 [[ -e $HOME/.currbg ]] && feh --bg-fill $HOME/.currbg
 xbacklight -set 50 &
 
+xset -b &
+
 sxhkd &
 dunst &
 
