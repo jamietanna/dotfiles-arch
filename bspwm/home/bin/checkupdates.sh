@@ -7,7 +7,7 @@ CACHED_CORE_UPDATE_LIST=/var/run/user/$(id -u)/checkupdates.cache
 CACHED_AUR_UPDATE_LIST=/var/run/user/$(id -u)/checkupdates.aur.cache
 MAXLINES=1000
 
-if ! curl -s "http://google.com/" > /dev/null 2>&1;
+if ! curl -Is "http://google.com/" > /dev/null 2>&1;
 then
 	notify-send "No network" "Cannot check for updates as there is no network"
 	exit 1
