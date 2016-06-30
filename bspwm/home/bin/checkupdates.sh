@@ -1,5 +1,29 @@
 #!/usr/bin/env bash
 
+function calculate_diffs() {
+	# calculate_diffs "$core_updates" "$CACHED_CORE_UPDATE_LIST"
+	local updates_str="$1"
+	local cache_file="$2"
+
+	local update_diffs
+	update_diffs="$(diff -u$MAXLINES "$cache_file" <(echo "$updates_str"))"
+	# remove the diff headers
+	update_diffs="$(echo "$update_diffs" | tail -n+4)"
+	# ignore any removed entries
+	update_diffs="$(echo "$update_diffs" | grep --invert-match '^-')"
+	# remove the leading space from our diff
+	update_diffs="$(echo "$update_diffs" | sed 's/^ \(.*\)$/\1/')"
+	# make new entries bold
+	update_diffs="$(echo "$update_diffs" | sed 's/^+\(.*\)$/<b>\1<\/b>/')"
+
+	# if we have specific diffs, display them, otherwise just list all the updates
+	if [[ -n "$update_diffs" ]]; then
+		echo "$update_diffs"
+	else
+		cat "$cache_file"
+	fi
+}
+
 # TODO rotate _some number_ of entries to make sure we don't lose information if we miss the notification
 # TODO show 'new' updates first, then have the 'old' ones? then it reduces cognitive load, and makes it much easier to see how many are new since the last update
 
@@ -44,43 +68,10 @@ fi
 
 echo "$out_str" > "$PANEL_FIFO"
 
-core_update_diffs="$(diff -u$MAXLINES "$CACHED_CORE_UPDATE_LIST" <(echo "$core_updates"))"
-# remove the diff headers
-core_update_diffs="$(echo "$core_update_diffs" | tail -n+4)"
-# ignore any removed entries
-core_update_diffs="$(echo "$core_update_diffs" | grep --invert-match '^-')"
-# remove the leading space from our diff
-core_update_diffs="$(echo "$core_update_diffs" | sed 's/^ \(.*\)$/\1/')"
-# make new entries bold
-core_update_diffs="$(echo "$core_update_diffs" | sed 's/^+\(.*\)$/<b>\1<\/b>/')"
-
-aur_update_diffs="$(diff -u$MAXLINES "$CACHED_AUR_UPDATE_LIST" <(echo "$aur_updates"))"
-# remove the diff headers
-aur_update_diffs="$(echo "$aur_update_diffs" | tail -n+4)"
-# ignore any removed entries
-aur_update_diffs="$(echo "$aur_update_diffs" | grep --invert-match '^-')"
-# remove the leading space from our diff
-aur_update_diffs="$(echo "$aur_update_diffs" | sed 's/^ \(.*\)$/\1/')"
-# make new entries bold
-aur_update_diffs="$(echo "$aur_update_diffs" | sed 's/^+\(.*\)$/<b>\1<\/b>/')"
-
-# if we have specific diffs, display them, otherwise just list all the updates
 updates_out=""
-if [[ -n "$core_update_diffs" ]];
-then
-	updates_out+="$core_update_diffs"
-else
-	updates_out+="$(cat "$CACHED_CORE_UPDATE_LIST")"
-fi
-
+updates_out+="$(calculate_diffs "$core_updates" "$CACHED_CORE_UPDATE_LIST")"
 [[ -n "$updates_out" ]] && updates_out+="\n\n"
-
-if [[ -n "$aur_update_diffs" ]];
-then
-	updates_out+="$aur_update_diffs"
-else
-	updates_out+="$(cat "$CACHED_AUR_UPDATE_LIST")"
-fi
+updates_out+="$(calculate_diffs "$aur_updates" "$CACHED_AUR_UPDATE_LIST")"
 
 if [[ "$1" == "notify" ]];
 then
