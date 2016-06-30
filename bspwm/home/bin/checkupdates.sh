@@ -7,7 +7,7 @@ CACHED_CORE_UPDATE_LIST=/var/run/user/$(id -u)/checkupdates.cache
 CACHED_AUR_UPDATE_LIST=/var/run/user/$(id -u)/checkupdates.aur.cache
 MAXLINES=1000
 
-if ! curl -s "http://google.com/" 2>&1 > /dev/null;
+if ! curl -s "http://google.com/" > /dev/null 2>&1;
 then
 	notify-send "No network" "Cannot check for updates as there is no network"
 	exit 1
@@ -32,7 +32,7 @@ urgency="normal"
 if [[ "$total_update_count" -eq "0" || (-z "$core_updates" && -z "$aur_updates") ]];
 then
 	out_str+=""
-	update_count=0
+	total_update_count=0
 # only match the full `linux` package, not things like `linux-firmware`
 elif echo "$core_updates" | grep "^linux " >/dev/null;
 then
@@ -42,9 +42,9 @@ else
 	out_str+="p$total_update_count"
 fi
 
-echo "$out_str" > $PANEL_FIFO
+echo "$out_str" > "$PANEL_FIFO"
 
-core_update_diffs="$(diff -u$MAXLINES $CACHED_CORE_UPDATE_LIST <(echo "$core_updates"))"
+core_update_diffs="$(diff -u$MAXLINES "$CACHED_CORE_UPDATE_LIST" <(echo "$core_updates"))"
 # remove the diff headers
 core_update_diffs="$(echo "$core_update_diffs" | tail -n+4)"
 # ignore any removed entries
@@ -54,7 +54,7 @@ core_update_diffs="$(echo "$core_update_diffs" | sed 's/^ \(.*\)$/\1/')"
 # make new entries bold
 core_update_diffs="$(echo "$core_update_diffs" | sed 's/^+\(.*\)$/<b>\1<\/b>/')"
 
-aur_update_diffs="$(diff -u$MAXLINES $CACHED_AUR_UPDATE_LIST <(echo "$aur_updates"))"
+aur_update_diffs="$(diff -u$MAXLINES "$CACHED_AUR_UPDATE_LIST" <(echo "$aur_updates"))"
 # remove the diff headers
 aur_update_diffs="$(echo "$aur_update_diffs" | tail -n+4)"
 # ignore any removed entries
@@ -70,7 +70,7 @@ if [[ -n "$core_update_diffs" ]];
 then
 	updates_out+="$core_update_diffs"
 else
-	updates_out+="$(cat $CACHED_CORE_UPDATE_LIST)"
+	updates_out+="$(cat "$CACHED_CORE_UPDATE_LIST")"
 fi
 
 [[ -n "$updates_out" ]] && updates_out+="\n\n"
@@ -79,7 +79,7 @@ if [[ -n "$aur_update_diffs" ]];
 then
 	updates_out+="$aur_update_diffs"
 else
-	updates_out+="$(cat $CACHED_AUR_UPDATE_LIST)"
+	updates_out+="$(cat "$CACHED_AUR_UPDATE_LIST")"
 fi
 
 if [[ "$1" == "notify" ]];
@@ -89,7 +89,7 @@ then
 	# note that we only need to do this when we're displaying it to the user; we
 	# want to show the most changes between updates, which can be best achieved
 	# by only updating our cached list if we're displaying it to the user
-	echo "$core_updates" > $CACHED_CORE_UPDATE_LIST
-	echo "$aur_updates" > $CACHED_AUR_UPDATE_LIST
+	echo "$core_updates" > "$CACHED_CORE_UPDATE_LIST"
+	echo "$aur_updates" > "$CACHED_AUR_UPDATE_LIST"
 fi
 
