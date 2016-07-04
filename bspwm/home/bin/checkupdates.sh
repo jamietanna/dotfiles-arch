@@ -24,6 +24,14 @@ function calculate_diffs() {
 	fi
 }
 
+function calculate_counts() {
+	if [[ -z "$1" ]]; then
+		echo "0"
+	else
+		echo "$1" | wc -l
+	fi
+}
+
 # TODO rotate _some number_ of entries to make sure we don't lose information if we miss the notification
 # TODO show 'new' updates first, then have the 'old' ones? then it reduces cognitive load, and makes it much easier to see how many are new since the last update
 
@@ -43,12 +51,11 @@ fi
 [[ ! -e "$CACHED_AUR_UPDATE_LIST" ]] && touch "$CACHED_AUR_UPDATE_LIST"
 
 core_updates="$(checkupdates)"
-core_update_count=$(echo "$core_updates" | wc -l)
+core_update_count=$(calculate_counts "$core_updates")
 # cower returns a non-zero status code if there are updates
 aur_updates="$(cower -u || true)"
 aur_updates="${aur_updates//:: /}"
-aur_update_count=$(echo "$aur_updates" | wc -l)
-
+aur_update_count=$(calculate_counts "$aur_updates")
 total_update_count="$((core_update_count + aur_update_count))"
 
 out_str="P"
