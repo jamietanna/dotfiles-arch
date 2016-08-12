@@ -62,16 +62,16 @@ out_str="P"
 urgency="normal"
 if [[ "$total_update_count" -eq "0" || (-z "$core_updates" && -z "$aur_updates") ]];
 then
-	out_str+=""
 	total_update_count=0
 # only match the full `linux` package, not things like `linux-firmware`
 elif echo "$core_updates" | grep "^linux " >/dev/null;
 then
 	urgency="critical"
-	out_str+="k$total_update_count"
+	out_str+="k"
 else
-	out_str+="p$total_update_count"
+	out_str+="p"
 fi
+out_str+="${core_update_count}+${aur_update_count}"
 
 echo "$out_str" > "$PANEL_FIFO"
 
