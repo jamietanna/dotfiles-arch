@@ -124,6 +124,30 @@ grml_theme_add_token virtual_env -f virtual_env_prompt '%B%F{yellow}' '%f%b'
 
 zstyle ':prompt:grml:left:setup' items rc jobs_indicator change-root \
 	user at host virtual_env wksp_indicator path_wksp vcs percent
+
+_host_specific_colour() {
+	local colour
+	case "$(hostname | tr '[:upper:]' '[:lower:]')" in
+		theknightswhosayni )
+			colour="cyan"
+			;;
+		nudeorganist )
+			colour="green"
+			;;
+		majesticmoose )
+			colour="magenta"
+			;;
+		thecolonel )
+			colour="blue"
+			;;
+		* )
+			colour="red"
+			;;
+	esac
+	zstyle ':prompt:*:left:items:host' pre "%F{$colour}"
+}
+
+_host_specific_colour
 # }}}
 
 # -----------------------------------------------------------------------------
