@@ -1,0 +1,7 @@
+[user]
+	email = jamie@jamietanna.co.uk
+	name = Jamie Tanna
+[push]
+	default = simple
+[core]
+	excludesfile = /home/jamie/.gitignore_global
