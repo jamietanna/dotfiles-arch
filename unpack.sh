@@ -106,7 +106,7 @@ unpack () {
 		fi
 		# }}}
 
-		dir_of_file="$(dirname "$f")"
+		dir_of_file="$(dirname "$path_create_final")"
 		if [[ ! -d "$dir_of_file" ]];
 		then
 			# if we don't have the directory we require for the file, create it
