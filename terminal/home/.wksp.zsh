@@ -27,7 +27,8 @@ function wksp () {
 
 	if [[ ! -e "$workspace_location" ]];
 	then
-		echo -e "\033[93mWorkspace \`$1\` does not exist. Creating now...\033[0m"
+		echo -e "\033[93mWorkspace \`$1\` does not exist. ^C to cancel, <CR> to continue\033[0m"
+		read _
 		mkdir -p "$workspace_location"
 	fi
 
