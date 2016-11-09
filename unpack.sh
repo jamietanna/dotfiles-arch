@@ -111,7 +111,7 @@ unpack () {
 		then
 			# if we don't have the directory we require for the file, create it
 			warn "$dir_of_file doesn't exist, creating it now"
-			mkdir -p "$dir_of_file"
+			cmd "$2" "mkdir -p $dir_of_file"
 		fi
 
 		if [[ -z "$cmdstring" ]];
