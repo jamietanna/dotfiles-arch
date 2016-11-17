@@ -144,7 +144,7 @@ super + {_,shift + }{1-9,0}
 # -----------------------------------------------------------------------------
 # {{{
 super + alt + Escape
-	i3lock -i $HOME/.currbg
+	lock.sh
 
 super + shift + z
 	systemctl suspend
