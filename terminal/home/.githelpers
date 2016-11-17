@@ -23,15 +23,16 @@ alias gpull="git pull --rebase"
 alias gp="git push"
 # }}}
 
-# Stolen from https://github.com/garybernhardt/dotfiles/blob/2c2a757f4abd406f6b4e1b328b6382d37f7f9036/.githelpers
+# Adapted from https://github.com/garybernhardt/dotfiles/blob/2c2a757f4abd406f6b4e1b328b6382d37f7f9036/.githelpers
 function pretty_git_log () {
-	HASH="%C(yellow)%h%Creset"
-	RELATIVE_TIME="%Cgreen(%ar)%Creset"
-	AUTHOR="%C(bold blue)<%an>%Creset"
-	REFS="%C(bold red)%d%Creset"
-	SUBJECT="%s"
+	local HASH="%C(yellow)%h%Creset"
+	local RELATIVE_TIME="%Cgreen(%ar)%Creset"
+	local AUTHOR="%C(bold blue)<%an>%Creset"
+	local REFS="%C(bold red)%d%Creset"
+	local SUBJECT="%s"
+	local DELIM='|'
 
-	FORMAT="$HASH}$RELATIVE_TIME}$AUTHOR}$REFS $SUBJECT"
+	local FORMAT="${HASH}${DELIM}${RELATIVE_TIME}${DELIM}${AUTHOR}${DELIM}${REFS} ${SUBJECT}"
 
 	git log --graph --pretty="tformat:${FORMAT}" $* |
 		# Replace (2 years ago) with (2 years)
@@ -39,7 +40,7 @@ function pretty_git_log () {
 		# Replace (2 years, 5 months) with (2 years)
 		sed -Ee 's/(^[^<]*), [[:digit:]]+ .*months?\)/\1)/' |
 		# Line columns up based on } delimiter
-		column -s '}' -t |
+		column -s "$DELIM" -t |
 		# Color merge commits specially
 		sed -Ee "s/(Merge (branch|remote-tracking branch|pull request) .*$)/$(printf "\033[91m")\1$(printf "\033[0m")/" |
 		# Page only if we're asked to.
