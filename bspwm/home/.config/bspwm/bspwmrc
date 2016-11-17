@@ -22,3 +22,7 @@ if [[ -e "$HOME/.config/bspwm/bspwmrc.local" ]];
 then
 	. $HOME/.config/bspwm/bspwmrc.local
 fi
+
+# Ensure we're up and running
+sleep 2
+panel &

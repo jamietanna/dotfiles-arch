@@ -18,6 +18,5 @@ compton &
 # leaving the home row.
 setxkbmap -option caps:escape gb &
 
-panel &
 
 exec bspwm
