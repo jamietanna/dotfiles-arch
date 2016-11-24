@@ -161,6 +161,17 @@ zstyle ':completion:*' matcher-list '' \
   'r:[[:ascii:]]||[[:ascii:]]=** r:|=* m:{a-z\-}={A-Z\_}'
 # }}}
 
+# Git prompt specific {{{
+# Show things like unstaged changes (performance hit will be incurred for large
+# repositories)
+zstyle ':vcs_info:*' check-for-changes true
 
+# Use the default GRML config, then add on top the {,un}staged indicators {{{
+zstyle ':vcs_info:*' formats '%F{magenta}(%f%s%F{magenta})%F{yellow}-%F{magenta}[%F{green}%b%F{magenta}]%f%c%u '
+zstyle ':vcs_info:*' stagedstr '%F{green}+%f'
+zstyle ':vcs_info:*' unstagedstr '%F{cyan}*%f'
+# }}}
+# }}}
+# }}}
 
 
