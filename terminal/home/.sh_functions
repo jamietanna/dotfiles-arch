@@ -13,8 +13,8 @@ function rmws () {
 
 function str_contains() {
 	# http://stackoverflow.com/questions/2829613/how-do-you-tell-if-a-string-contains-another-string-in-unix-shell-scripting
-	string="$1"
-	substring="$2"
+	local string="$1"
+	local substring="$2"
 	if test "${string#*$substring}" != "$string"
 	then
 		return 0    # $substring is in $string
