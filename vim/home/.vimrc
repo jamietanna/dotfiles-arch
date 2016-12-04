@@ -48,7 +48,6 @@ call plug#begin('~/.vim/plugged')
 	" -------------------------------------------------------------------------
 	" {{{
 	Plug 'Wincent/command-t/', { 'do': function('BuildCommandT') }
-	Plug 'scrooloose/nerdtree' ", { 'on': ['NERDTree', 'NERDTreeToggle'] }
 	" }}}
 
 	" -------------------------------------------------------------------------
@@ -215,10 +214,6 @@ let mapleader = "\<Space>"
 " and make sure we can toggle it with a <leader>CR
 " why <leader>? because some plugins / etc expect us to be able to <CR>
 :nnoremap <leader><CR> :nohlsearch<cr>
-" we want to be able to open up NERDTree in order to browse our location more
-" easily. We use `T` over `t` because we're using the command-t plugin which
-" hijacks <leader>t
-nnoremap <leader>T :NERDTreeToggle<cr>
 " it is often useful to be able to quickly switch between having spellcheck
 " enabled/disabled
 nnoremap <leader>s :set spell!<cr>
@@ -322,13 +317,6 @@ let g:EclimCompletionMethod = 'omnifunc'
 " TODO why does this break syntax highlighting??
 " https://github.com/tpope/vim-markdown/issues/89
 " let g:markdown_fenced_languages = ['html', 'css', 'python', 'ruby', 'java', 'xml']
-" }}}
-
-" -----------------------------------------------------------------------------
-" => NERDTree
-" -----------------------------------------------------------------------------
-" {{{
-let NERDTreeRespectWildIgnore=1
 " }}}
 
 " }}}
