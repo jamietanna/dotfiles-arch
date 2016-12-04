@@ -35,3 +35,7 @@ $HOME
 As you can see, there is a `home` and a `global` directory - `home` deploys config into `$HOME`, and `global` deploys into `/`. This allows easily pushing config into both user- and system-level adoption.
 
 `$pkgname` denotes config for an application - for instance, `zsh` or `vim`.
+
+To see which dependencies are required by each set of configs, please see the `dependencies` file which details packages from the official repos, as well as the AUR.
+
+Additionally, there may be further steps, for instance `$GITROOT/$package/bootstrap.sh`, which is run when bootstrapping; this will provide a one-time setup that configures the environment.
