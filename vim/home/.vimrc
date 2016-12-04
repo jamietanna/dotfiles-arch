@@ -115,6 +115,7 @@ call plug#begin('~/.vim/plugged')
 	" {{{
 	Plug 'scrooloose/syntastic'
 	Plug 'tpope/vim-surround'
+	Plug 'tpope/vim-dispatch'
 	" Plug 'tpope/vim-markdown'
 	Plug 'ludwig/split-manpage.vim'
 	" Eclim can be installed automagically via the AUR
