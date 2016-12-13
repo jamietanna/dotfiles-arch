@@ -30,7 +30,7 @@ function pretty_git_log () {
 	local AUTHOR="%C(bold blue)<%an>%Creset"
 	local REFS="%C(bold red)%d%Creset"
 	local SUBJECT="%s"
-	local DELIM='|'
+	local DELIM='%%'
 
 	local FORMAT="${HASH}${DELIM}${RELATIVE_TIME}${DELIM}${AUTHOR}${DELIM}${REFS} ${SUBJECT}"
 
