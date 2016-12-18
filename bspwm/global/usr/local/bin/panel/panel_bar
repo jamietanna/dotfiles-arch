@@ -119,7 +119,9 @@ while read -r line ; do
 			;;
 		S*)
 			hour=$(echo "$line" | sed 's/.* \([0-9]*\).*/\1/')
-			if [[ $hour -ge 22 ]] || [[ $hour -lt 9 ]];
+			# http://stackoverflow.com/questions/11123717/removing-leading-zeros-before-passing-the-variable-to-iptables#11130324
+			hour_no_leading_zero=$((10#$hour))
+			if [[ $hour_no_leading_zero -ge 22 ]] || [[ $hour_no_leading_zero -lt 9 ]];
 			then
 				sys_infos=$(bar_color COLOR_CLOCK_LATE " ${line#?} ")
 			else
