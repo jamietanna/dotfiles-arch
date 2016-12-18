@@ -25,6 +25,7 @@ num_mon=$(bspc query -M | wc -l)
 
 while read -r line ; do
 	case $line in
+		# Music {{{
 		M*)
 			line_out=$(echo $line | cut -c 4-)
 			if [[ -z "$line_out" ]];
@@ -46,6 +47,9 @@ while read -r line ; do
 				;;
 			esac
 			;;
+		# }}}
+
+		# Package count {{{
 		P*)
 			package_count=$(echo "$line" | cut -c 3-)
 			case $line in
@@ -63,6 +67,9 @@ while read -r line ; do
 
 			packages="%{A1:~/bin/checkupdates.sh 'notify':}%{A3:~/bin/checkupdates.sh:}$packages%{A}%{A}"
 			;;
+		# }}}
+
+		# Network {{{
 		X*)
 			network=""
 			bar_color_var=""
@@ -88,6 +95,9 @@ while read -r line ; do
 				network+="$(bar_color $bar_color_var " $output ")"
 			done
 			;;
+			# }}}
+
+		# Volume {{{
 		V*)
 			if [[ ${line#?} -eq 0 ]];
 			then
@@ -96,6 +106,9 @@ while read -r line ; do
 				volume=$(bar_color COLOR_VOLUME_ON " ${line#?}% ")
 			fi
 			;;
+		# }}}
+
+		# Battery {{{
 		B*)
 			if echo "$line" | grep -q 'Charging'; then
 				color_var="COLOR_BATTERY_CHARGING"
@@ -113,10 +126,15 @@ while read -r line ; do
 
 			battery=$(bar_color "$color_var" " ${line#?} ")
 			;;
+		# }}}
+
+		# Hostname {{{
 		H*)
-			# hostname
 			hostname=$(bar_color COLOR_HOSTNAME " ${line#?} ")
 			;;
+		# }}}
+
+		# Clock {{{
 		S*)
 			hour=$(echo "$line" | sed 's/.* \([0-9]*\).*/\1/')
 			# http://stackoverflow.com/questions/11123717/removing-leading-zeros-before-passing-the-variable-to-iptables#11130324
@@ -130,16 +148,20 @@ while read -r line ; do
 
 			sys_infos="%{A:~/bin/date.sh:}$sys_infos%{A}"
 			;;
+		# }}}
+
+		# Window title {{{
 		T*)
-			# xtitle output
 			line_out="${line#?}"
 			if [[ "${#line_out}" -gt "$TITLE_MAX_LENGTH" ]]; then
 				line_out="$(echo $line_out | cut -c-${TITLE_MAX_LENGTH})..."
 			fi
 			title=$(bar_color COLOR_TITLE " ${line_out} ")
 			;;
+		# }}}
+
+		# load temp and load {{{
 		LOAD*)
-			# load temp and load
 			load_data=$(echo $line | cut -c5-)
 			# http://stackoverflow.com/questions/10586153/split-string-into-an-array-in-bash
 			IFS=',' read -a arr_load_data <<< "$load_data"
@@ -190,8 +212,10 @@ while read -r line ; do
 			system_load_info+="$(bar_color $memory_threshold_colour_var "${arr_load_data[2]}%")"
 			system_load_info+=" "
 			;;
+		# }}}
+
+		# bspwm internal state {{{
 		W*)
-			# bspwm internal state
 			wm_infos=""
 			IFS=':'
 			set -- ${line#?}
@@ -209,6 +233,7 @@ while read -r line ; do
 							spacing_post=" "
 						fi
 						;;
+
 					m*)
 						# inactive monitor
 						if [ $num_mon -gt 1 ] ; then
@@ -216,35 +241,43 @@ while read -r line ; do
 							spacing_post=" "
 						fi
 						;;
+
 					O*)
 						# focused occupied desktop
 						color_var="COLOR_ACTIVE_OCCUPIED"
 						;;
+
 					F*)
 						# focused free desktop
 						color_var="COLOR_ACTIVE_FREE"
 						;;
+
 					U*)
 						# focused urgent desktop
 						color_var="COLOR_ACTIVE_URGENT"
 						;;
+
 					o*)
 						# occupied desktop
 						color_var="COLOR_INACTIVE_OCCUPIED"
 						;;
+
 					f*)
 						# free desktop
 						color_var="COLOR_INACTIVE_FREE"
 						;;
+
 					u*)
 						# urgent desktop
 						color_var="COLOR_INACTIVE_URGENT"
 						;;
+
 					L*)
 						# layout
 						color_var="COLOR_LAYOUT"
 						spacing_pre=" "
 						;;
+
 				esac
 
 				if [[ -n "$color_var" ]];
@@ -254,6 +287,7 @@ while read -r line ; do
 				shift
 			done
 			;;
+		# }}}
 	esac
 	panel_output="%{l}${wm_infos}%{c}${title}%{r}${network}${system_load_info}${battery}${music}${volume}${hostname}${packages}${sys_infos}"
 	# render a panel output per monitor
