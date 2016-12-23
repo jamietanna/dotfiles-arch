@@ -53,6 +53,23 @@ function pretty_git_log () {
 		fi
 }
 
+function fork_repo_remotes () {
+	# Given an upstream repo that's been cloned, update the remotes to point to
+	# the origin (fork) and upstrem remotes
+	local upstream
+	local origin
+
+	upstream="$(git remote show -n origin |\
+		sed -n '/Push  URL/p;' |\
+		cut -f2- -d: |\
+		cut -c2-)"
+	origin="$(sed 's/\([a-z]\/\)[^\/]*\(\/\)/\1jamietanna\2/' <<< "$upstream")"
+
+	git remote set-url origin "$origin"
+	git remote add upstream "$upstream"
+	git fetch
+}
+
 alias glg="pretty_git_log"
 
 # get to the top of our git repo
