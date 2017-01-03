@@ -1,2 +1,2 @@
 REPOS=(gvim mupdf xdotool ctags)
-AUR=(eclim)
+AUR=()

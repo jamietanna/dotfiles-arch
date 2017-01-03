@@ -107,7 +107,6 @@ call plug#begin('~/.vim/plugged')
 	Plug 'tpope/vim-dispatch'
 	" Plug 'tpope/vim-markdown'
 	Plug 'ludwig/split-manpage.vim'
-	" Eclim can be installed automagically via the AUR
 	" }}}
 call plug#end()
 " }}}
@@ -259,13 +258,6 @@ set statusline+=%*
 " -----------------------------------------------------------------------------
 " {{{
 let g:vimtex_view_method = 'mupdf'
-" }}}
-
-" -----------------------------------------------------------------------------
-" => Eclim
-" -----------------------------------------------------------------------------
-" {{{
-let g:EclimCompletionMethod = 'omnifunc'
 " }}}
 
 " -----------------------------------------------------------------------------
