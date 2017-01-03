@@ -19,16 +19,6 @@ function! BuildCommandT(info)
         !$HOME/dotfiles-arch/vim/install.commandt.sh
     endif
 endfunction
-
-function! BuildYCM(info)
-    " info is a dictionary with 3 fields
-    " - name:   name of the plugin
-    " - status: 'installed', 'updated', or 'unchanged'
-    " - force:  set on PlugInstall! or PlugUpdate!
-    if a:info.status == 'installed' || a:info.status == 'updated' || a:info.force
-        !$HOME/dotfiles-arch/vim/install.ycm.sh
-    endif
-endfunction
 " }}}
 
 " -----------------------------------------------------------------------------
@@ -72,14 +62,14 @@ call plug#begin('~/.vim/plugged')
 	" => Snippets
 	" -------------------------------------------------------------------------
 	"  {{{
-	Plug 'SirVer/ultisnips' | Plug 'ervandew/supertab' | Plug 'honza/vim-snippets'
+	Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 	" }}}
 
 	" -------------------------------------------------------------------------
 	" => Completion
 	" -------------------------------------------------------------------------
 	"  {{{
-	Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM')}
+	Plug 'ajh17/VimCompletesMe'
 	" }}}
 
 	" -------------------------------------------------------------------------
@@ -237,50 +227,18 @@ nnoremap <leader>O O<esc>
 " {{{
 
 " -----------------------------------------------------------------------------
-" => SuperTab + YCM + Ultisnips
-" -----------------------------------------------------------------------------
-" {{{
-" http://stackoverflow.com/a/22253548/2257038
-" make YCM compatible with UltiSnips (using supertab)
-let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
-let g:SuperTabDefaultCompletionType = '<C-n>'
-
-" better key bindings for UltiSnipsExpandTrigger
-let g:UltiSnipsExpandTrigger = "<tab>"
-let g:UltiSnipsJumpForwardTrigger = "<tab>"
-let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
-" }}}
-
-" -----------------------------------------------------------------------------
 " => Ultisnips
 " -----------------------------------------------------------------------------
 "  {{{
+" better key bindings for UltiSnipsExpandTrigger
+let g:UltiSnipsExpandTrigger = "<c-j>"
+let g:UltiSnipsJumpForwardTrigger = "<c-j>"
+let g:UltiSnipsJumpBackwardTrigger = "<c-k>"
+let g:UltiSnipsListSnippets = "<c-l>"
+
 let g:UltiSnipsSnippetDirectories=["UltiSnips", "mysnippets"]
 let g:snips_author = "Jamie Tanna"
 "  }}}
-
-" -----------------------------------------------------------------------------
-" => YCM
-" -----------------------------------------------------------------------------
-" {{{
-let g:ycm_path_to_python_interpreter = '/usr/bin/python'
-autocmd FileType cpp    let g:ycm_global_ycm_extra_conf = '~/.vim/ycm_files/cpp/.ycm_extra_conf.py'
-
-let g:ycm_semantic_triggers =  {
-\   'c' : ['->', '.'],
-\   'objc' : ['->', '.'],
-\   'ocaml' : ['.', '#'],
-\   'cpp,objcpp' : ['->', '.', '::'],
-\   'perl' : ['->'],
-\   'php' : ['->', '::'],
-\   'cs,java,javascript,d,python,perl6,scala,vb,elixir,go' : ['.'],
-\   'vim' : ['re![_a-zA-Z]+[_\w]*\.'],
-\   'ruby' : ['.', '::'],
-\   'lua' : ['.', ':'],
-\   'erlang' : [':'],
-\ }
-" }}}
 
 " -----------------------------------------------------------------------------
 " => Syntastic
@@ -338,5 +296,4 @@ au!
     au BufWritePost .vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc so $MYVIMRC | if has('gui_running') | so $MYGVIMRC | endif
 augroup END
 
-autocmd! User YouCompleteMe if !has('vim_starting') | call youcompleteme#Enable() | endif
 " }}}

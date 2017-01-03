@@ -1,2 +1,2 @@
-REPOS=(gvim cmake mupdf xdotool ctags)
+REPOS=(gvim mupdf xdotool ctags)
 AUR=(eclim)
