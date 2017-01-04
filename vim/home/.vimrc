@@ -10,15 +10,6 @@
 " => Build functions for Vim plugins
 " -----------------------------------------------------------------------------
 " {{{
-function! BuildCommandT(info)
-    " info is a dictionary with 3 fields
-    " - name:   name of the plugin
-    " - status: 'installed', 'updated', or 'unchanged'
-    " - force:  set on PlugInstall! or PlugUpdate!
-    if a:info.status == 'installed' || a:info.status == 'updated' || a:info.force
-        !$HOME/dotfiles-arch/vim/install.commandt.sh
-    endif
-endfunction
 " }}}
 
 " -----------------------------------------------------------------------------
@@ -37,7 +28,6 @@ call plug#begin('~/.vim/plugged')
 	" => Project navigation
 	" -------------------------------------------------------------------------
 	" {{{
-	Plug 'Wincent/command-t/', { 'do': function('BuildCommandT') }
 	" }}}
 
 	" -------------------------------------------------------------------------
