@@ -220,9 +220,9 @@ nnoremap <leader>O O<esc>
 " -----------------------------------------------------------------------------
 "  {{{
 " better key bindings for UltiSnipsExpandTrigger
-let g:UltiSnipsExpandTrigger = "<c-j>"
-let g:UltiSnipsJumpForwardTrigger = "<c-j>"
-let g:UltiSnipsJumpBackwardTrigger = "<c-k>"
+let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 let g:UltiSnipsListSnippets = "<c-l>"
 
 let g:UltiSnipsSnippetDirectories=["UltiSnips", "mysnippets"]
