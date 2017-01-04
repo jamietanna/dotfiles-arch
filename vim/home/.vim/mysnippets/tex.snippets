@@ -24,3 +24,23 @@ snippet ssub "Subsubsection" b
 ${0}
 % }}}
 endsnippet
+
+snippet currentnamepreamble "\currentname preamble" b
+% http://tex.stackexchange.com/a/75183 {{{
+\usepackage{nameref}
+\makeatletter
+\newcommand*{\currentname}{\@currentlabelname}
+\makeatother
+% }}}
+${0}
+endsnippet
+
+snippet frame "Beamer slide" b
+\begin{frame}[${1:t}]{${2:\currentname}}
+${0:${VISUAL}}
+\\end{frame}
+endsnippet
+
+snippet tt "Monospace Text" b
+\texttt{${1}}
+endsnippet
