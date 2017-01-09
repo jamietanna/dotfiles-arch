@@ -2,7 +2,7 @@
 
 DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 . $DIR/panel_colors
-. /etc/profile.d/bspwm_panel.sh
+. $HOME/.config/bspwm/bspwm_panel.sh
 
 CPU_USAGE_THRESHOLD_HIGH="$(($(nproc) * ${CPU_USAGE_THRESHOLD_HIGH:-80}))"
 CPU_USAGE_THRESHOLD_MEDIUM="$(($(nproc) * ${CPU_USAGE_THRESHOLD_MEDIUM:-50}))"

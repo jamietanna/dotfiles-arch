@@ -1,6 +1,6 @@
 #!/bin/sh
-PANEL_LOCAL_FILE="/etc/profile.d/bspwm_panel.sh.local"
-export PATH="$PATH:/usr/local/bin/panel"
+PANEL_LOCAL_FILE="$HOME/.config/bspwm/bspwm_panel.sh.local"
+export PATH="$PATH:$HOME/bin"
 
 export PANEL_FIFO=/tmp/panel-fifo
 export PANEL_HEIGHT=24
