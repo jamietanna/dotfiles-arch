@@ -65,3 +65,8 @@ function grv () {
 	remote="${1:-origin}"
 	git remote -v | grep "$remote" | cut -f2 | cut -f1 -d' ' | tail -n1
 }
+
+function gpu() {
+	local localBranch="$(git rev-parse --abbrev-ref HEAD)"
+	git push -u origin "${1:-$localBranch}"
+}
