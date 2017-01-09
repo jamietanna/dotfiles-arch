@@ -20,7 +20,6 @@ alias ga="git add"
 alias gr="git remote"
 alias glog="git log --stat"
 alias gpull="git pull --rebase"
-alias gp="git push"
 # }}}
 
 # Adapted from https://github.com/garybernhardt/dotfiles/blob/2c2a757f4abd406f6b4e1b328b6382d37f7f9036/.githelpers
@@ -66,13 +65,15 @@ function grv () {
 	git remote -v | grep "$remote" | cut -f2 | cut -f1 -d' ' | tail -n1
 }
 
-function gpu() {
+function gp() {
 	local localBranch="$(git rev-parse --abbrev-ref HEAD)"
 	local branchToPushTo="${1:-$localBranch}"
 	# if we don't already have an upstream, then warn
-	if [[ $(git config "branch.${localBranch}.merge") = '' ]]; then
-		echo "gpu: This will push to ${branchToPushTo}. Continue? <CR> to continue"
+	local pushFlags=""
+	if [[ $(git config "branch.${localBranch}.merge") == '' ]]; then
+		echo "gp: This will push to ${branchToPushTo}. Continue? <CR> to continue"
 		read
+		pushFlags="-u"
 	fi
-	git push -u origin "${branchToPushTo}"
+	git push $pushFlags origin "${branchToPushTo}"
 }
