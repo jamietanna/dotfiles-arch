@@ -35,3 +35,10 @@ function notifysendifyerr () {
 		notify-send "$line"
 	done
 }
+
+function sourceedit() {
+	$EDITOR "$@"
+	for arg in "$@" ; do
+		source "$arg"
+	done
+}
