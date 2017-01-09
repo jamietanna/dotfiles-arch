@@ -56,13 +56,15 @@ main_loop () {
 }
 
 mpc_loop () {
+	local SLEEP_DURATION_IF_ERROR=5
 	while true;
 	do
 		# this blocks until there is a change, which means we have much less
 		# continually polling
-		mpc current --wait > /dev/null
+		mpc current --wait > /dev/null 2>&1
 		# then use the shell script to avoid code duplication
-		mpc.sh current
+		# if the script fails, wait an arbitrary sleep
+		mpc.sh current || sleep $SLEEP_DURATION_IF_ERROR
 	done
 }
 

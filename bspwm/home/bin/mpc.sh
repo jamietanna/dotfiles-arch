@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+. $HOME/.config/bspwm/bspwm_panel.sh
+
 current_status () {
 	echo -n "M"
 
@@ -20,9 +22,17 @@ current_status () {
 	mpc current
 }
 
+# If mpd isn't running, don't do anything
+if ! mpc version >/dev/null 2>&1; then
+	exit 1
+fi
+
 case $1 in
 	"toggle"|"play"|"pause"|"prev"|"next"|"status"|"current" )
 		mpc $1 >/dev/null 2>&1
 		current_status > "$PANEL_FIFO"
-	;;
+		;;
+	* )
+		exit 1
+		;;
 esac
