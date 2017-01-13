@@ -19,6 +19,10 @@ warn () {
 	echo -e "\033[33mWARNING: $@\033[0m"
 }
 
+info () {
+	echo -e "\033[34mINFO: $@\033[0m"
+}
+
 cmd () {
 	if [[ -z "$2" ]]; then
 		warn "Empty command given. Not executing"
@@ -70,7 +74,7 @@ unpack () {
 			then
 				path_create_final="${path_create_final//$(hostname)\./}"
 			else
-				warn "Not matched $f"
+				info "Not matched $f"
 				continue
 			fi
 		fi
@@ -110,7 +114,7 @@ unpack () {
 		if [[ ! -d "$dir_of_file" ]];
 		then
 			# if we don't have the directory we require for the file, create it
-			warn "$dir_of_file doesn't exist, creating it now"
+			info "$dir_of_file doesn't exist, creating it now"
 			cmd "$2" "mkdir -p $dir_of_file"
 		fi
 
