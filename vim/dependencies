@@ -1,2 +1,2 @@
-REPOS=(gvim mupdf xdotool ctags)
+REPOS=(gvim mupdf xdotool ctags lua)
 AUR=()
