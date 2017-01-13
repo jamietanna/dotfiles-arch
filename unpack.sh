@@ -123,7 +123,11 @@ unpack () {
 			if [[ -f "$f" ]]; then
 				if [ -e "$path_create_final" ];
 				then
-					warn "$path_create_final already exists"
+					if [[ -h "$path_create_final" ]]; then
+						info "$path_create_final is already symlinked"
+					else
+						warn "$path_create_final already exists"
+					fi
 					continue
 				fi
 
