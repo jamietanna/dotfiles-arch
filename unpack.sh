@@ -29,7 +29,7 @@ cmd () {
 		return
 	fi
 	debug "CMD: $2"
-	if [ "$1" == "home" ];
+	if [[ "$1" == "home" ]];
 	then
 		$2
 	else
@@ -121,7 +121,7 @@ unpack () {
 		if [[ -z "$cmdstring" ]];
 		then
 			if [[ -f "$f" ]]; then
-				if [ -e "$path_create_final" ];
+				if [[ -e "$path_create_final" ]];
 				then
 					if [[ -L "$path_create_final" ]]; then
 						info "$path_create_final is already symlinked"
@@ -140,12 +140,12 @@ unpack () {
 	done
 }
 
-if [ -z "$1" ];
+if [[ -z "$1" ]];
 then
 	error "Please enter name of package to install"
 	exit 1
 fi
 
-[ -d "$DIR/$1/home" ] && unpack "$DIR/$1" "home"
+[[ -d "$DIR/$1/home" ]] && unpack "$DIR/$1" "home"
 	# this one is sudo !!
-[ -d "$DIR/$1/global" ] && unpack "$DIR/$1" "global"
+[[ -d "$DIR/$1/global" ]] && unpack "$DIR/$1" "global"
