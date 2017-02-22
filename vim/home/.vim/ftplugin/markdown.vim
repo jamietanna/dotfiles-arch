@@ -26,4 +26,6 @@ set tabstop=2
 hi markdownItalic cterm=italic
 hi markdownBold cterm=bold
 hi markdownBoldItalic cterm=bold,italic
+
+set linebreak
 " }}}
