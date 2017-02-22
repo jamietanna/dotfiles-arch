@@ -211,6 +211,10 @@ nnoremap <leader>p :set paste!<cr>
 " current one
 nnoremap <leader>o o<esc>
 nnoremap <leader>O O<esc>
+
+nnoremap <leader>< :cprev<cr>
+nnoremap <leader>> :cnext<cr>
+nnoremap <leader>l :copen<cr>
 " }}}
 
 " -----------------------------------------------------------------------------
