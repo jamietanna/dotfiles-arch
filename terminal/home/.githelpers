@@ -22,6 +22,7 @@ alias gr="git remote"
 alias glog="git log --stat"
 alias gpull="git pull --rebase"
 alias gp="git push"
+alias gcm="git commit --amend"
 # }}}
 
 # Adapted from https://github.com/garybernhardt/dotfiles/blob/2c2a757f4abd406f6b4e1b328b6382d37f7f9036/.githelpers
