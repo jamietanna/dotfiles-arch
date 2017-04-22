@@ -13,7 +13,7 @@
 # {{{
 alias gc="git commit"
 alias gcm="git commit --amend"
-alias gst="git status"
+alias gst="git status -s --branch"
 alias gco="git checkout"
 alias gd="git diff"
 alias gdc="git diff --cached"
