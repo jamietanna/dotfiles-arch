@@ -46,7 +46,16 @@ call plug#begin('~/.vim/plugged')
 	" => Snippets
 	" -------------------------------------------------------------------------
 	"  {{{
-	Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+	Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets' "{{{
+	let g:UltiSnipsSnippetDirectories=["mysnippets"]
+	" better key bindings for UltiSnipsExpandTrigger
+	let g:UltiSnipsExpandTrigger = "<tab>"
+	let g:UltiSnipsJumpForwardTrigger = "<tab>"
+	let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+	let g:UltiSnipsListSnippets = "<c-l>"
+
+	let g:snips_author = "Jamie Tanna"
+	"  }}}
 	" }}}
 
 	" -------------------------------------------------------------------------
@@ -221,20 +230,6 @@ nnoremap <leader>l :copen<cr>
 " => Plugin Settings
 " -----------------------------------------------------------------------------
 " {{{
-
-" -----------------------------------------------------------------------------
-" => Ultisnips
-" -----------------------------------------------------------------------------
-"  {{{
-" better key bindings for UltiSnipsExpandTrigger
-let g:UltiSnipsExpandTrigger = "<tab>"
-let g:UltiSnipsJumpForwardTrigger = "<tab>"
-let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
-let g:UltiSnipsListSnippets = "<c-l>"
-
-let g:UltiSnipsSnippetDirectories=["UltiSnips", "mysnippets"]
-let g:snips_author = "Jamie Tanna"
-"  }}}
 
 " -----------------------------------------------------------------------------
 " => Vimtex
