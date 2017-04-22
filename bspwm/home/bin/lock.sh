@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-i3lock -ti $HOME/.currbg
+env DISPLAY=:0 i3lock -ti $HOME/.currbg
