@@ -164,6 +164,10 @@ au BufRead,BufNewFile *.tex set filetype=tex
 " fix our SignColumn - make sure we have proper colour highlighting!
 hi clear SignColumn
 
+set termguicolors " Enable true color support
+let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+
 set background=dark
 colorscheme gruvbox
 
