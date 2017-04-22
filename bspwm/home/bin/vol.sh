@@ -1,5 +1,7 @@
 #!/bin/bash
 
+. $HOME/.config/bspwm/bspwm_panel.sh
+
 get_volume () {
 	status=$(pulseaudio-ctl full-status)
 	if [[ "$(echo "$status" | cut -d' ' -f2)" == "yes" ]];
