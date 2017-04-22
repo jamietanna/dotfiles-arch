@@ -273,4 +273,8 @@ augroup END
 if filereadable(expand("~/.vimrc.local"))
 	source ~/.vimrc.local
 endif
+
+nnoremap <leader>< :cprev<CR>
+nnoremap <leader>> :cnext<CR>
+nnoremap <leader>l :copen<CR>
 " }}}
