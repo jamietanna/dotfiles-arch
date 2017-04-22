@@ -1,0 +1,21 @@
+snippet {% "Liquid control statement"
+{% $1 %}$0
+endsnippet
+
+snippet {{ "Liquid output statement"
+{{ $1 }}$0
+endsnippet
+
+snippet %if "Liquid for loop"
+{% if $1 %}
+$2
+{% endif %}
+$0
+endsnippet
+
+snippet %for "Liquid for loop"
+{% for $1 in $2 %}
+$3
+{% endfor %}
+$0
+endsnippet
