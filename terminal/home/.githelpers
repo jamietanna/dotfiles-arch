@@ -88,10 +88,11 @@ function grv () {
 function gpu() {
 	local localBranch="$(git rev-parse --abbrev-ref HEAD)"
 	local branchToPushTo="${1:-$localBranch}"
+	local remoteToPushTo="${2:-origin}"
 	# if we don't already have an upstream, then warn
 	if [[ $(git config "branch.${localBranch}.merge") = '' ]]; then
-		echo "gpu: This will push to ${branchToPushTo}. Continue? <CR> to continue"
+		echo -n  "gpu: This will push ${localBranch} to ${remoteToPushTo}/${branchToPushTo}. Continue? <CR> to continue "
 		read
 	fi
-	git push -u origin "${branchToPushTo}"
+	git push -u "${remoteToPushTo}" "${branchToPushTo}"
 }
