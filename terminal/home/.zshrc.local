@@ -122,8 +122,32 @@ function virtual_env_prompt () {
 grml_theme_add_token virtual_env -f virtual_env_prompt '%B%F{yellow}' '%f%b'
 # }}}
 
+# chefdkenv {{{
+function chefdk_env_prompt () {
+	REPLY=""
+	if echo "$PATH" | grep -q '/chefdk/'; then
+		# REPLY="👨‍🍳"
+		REPLY='Chef '
+	fi
+}
+
+grml_theme_add_token chefdk_env -f chefdk_env_prompt '%B%F{yellow}' '%f%b'
+# }}}
+
+# kitchen_env {{{
+function kitchen_env_prompt () {
+	REPLY=""
+	if env | grep -q KITCHEN_YAML;
+	then
+		REPLY='K(V) '
+	fi
+}
+
+grml_theme_add_token kitchen_env -f kitchen_env_prompt '%B%F{yellow}' '%f%b'
+# }}}
+
 zstyle ':prompt:grml:left:setup' items rc jobs_indicator change-root \
-	user at host virtual_env wksp_indicator path_wksp vcs percent
+	user at host chefdk_env kitchen_env virtual_env wksp_indicator path_wksp vcs percent
 
 _host_specific_colour() {
 	local colour
@@ -159,7 +183,6 @@ zstyle ':completion:*' matcher-list '' \
   'm:{a-z\-}={A-Z\_}' \
   'r:[^[:alpha:]]||[[:alpha:]]=** r:|=* m:{a-z\-}={A-Z\_}' \
   'r:[[:ascii:]]||[[:ascii:]]=** r:|=* m:{a-z\-}={A-Z\_}'
-# }}}
 
 # Git prompt specific {{{
 # Show things like unstaged changes (performance hit will be incurred for large
