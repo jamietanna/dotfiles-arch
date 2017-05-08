@@ -92,6 +92,11 @@ call plug#begin('~/.vim/plugged')
 	"  {{{
 	" essential for TeX editing
 	Plug 'lervag/vimtex'
+
+	" Ruby/Chef {{{
+	Plug 'tpope/vim-rake' | Plug 'tpope/vim-projectionist'
+	" }}}
+
 	" }}}
 
 	" -------------------------------------------------------------------------
@@ -295,5 +300,9 @@ autocmd BufNewFile,BufRead * if expand('%:p') =~'**/*/.*-cookbook.*/.*\(attribut
 autocmd BufNewFile,BufRead * if expand('%:p') =~'**/*/.*-cookbook.*/metadata\.rb' | set filetype=ruby.chef | endif
 autocmd BufNewFile,BufRead * if expand('%:p') =~'**/*/.*-cookbook.*/templates/' | set filetype=eruby.chef | endif
 " }}}
+
+" TODO: It looks like we need this to be set before referencing it, otherwise it
+" doesn't work?
+let g:projectionist_heuristics = {}
 
 " }}}
