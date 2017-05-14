@@ -11,3 +11,5 @@
 	insteadOf = https://gitlab.com/
 [commit]
 	verbose = true
+[remote "origin"]
+	fetch = +refs/environments/*:refs/remotes/origin/environments/*
