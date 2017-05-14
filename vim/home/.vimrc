@@ -296,9 +296,9 @@ nnoremap <leader>l :copen<CR>
 " See the License for the specific language governing permissions and
 " limitations under the License.
 
-autocmd BufNewFile,BufRead * if expand('%:p') =~'**/*/.*-cookbook.*/.*\(attributes\|definitions\|libraries\|providers\|recipes\|resources\)/.*\.rb' | set filetype=ruby.chef | endif
-autocmd BufNewFile,BufRead * if expand('%:p') =~'**/*/.*-cookbook.*/metadata\.rb' | set filetype=ruby.chef | endif
-autocmd BufNewFile,BufRead * if expand('%:p') =~'**/*/.*-cookbook.*/templates/' | set filetype=eruby.chef | endif
+autocmd BufNewFile,BufRead * if expand('%:p') =~'**/*/.*cookbook.*/.*\(attributes\|definitions\|libraries\|providers\|recipes\|resources\)/.*\.rb' | set filetype=ruby.chef | endif
+autocmd BufNewFile,BufRead * if expand('%:p') =~'**/*/.*cookbook.*/metadata\.rb' | set filetype=ruby.chef | endif
+autocmd BufNewFile,BufRead * if expand('%:p') =~'**/*/.*cookbook.*/templates/' | set filetype=eruby.chef | endif
 " }}}
 
 " TODO: It looks like we need this to be set before referencing it, otherwise it
