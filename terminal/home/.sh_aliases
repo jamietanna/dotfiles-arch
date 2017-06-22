@@ -6,3 +6,5 @@ alias tmux="tmux -2"
 
 alias igrep="grep -i"
 
+alias ytoj='ruby -ryaml -rjson -e "puts(YAML.load(ARGF.read).to_json)"'
+alias jtoy='ruby -ryaml -rjson -e "puts(JSON.load(ARGF.read).to_yaml)"'
