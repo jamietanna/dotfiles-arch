@@ -1,6 +1,9 @@
 nnoremap <leader>t :w<CR>:Dispatch chef exec rspec %<CR>
 
 let g:projectionist_heuristics = {
+	\ '*': {
+	\   'make': 'rake'
+	\ },
 	\ 'recipes/*.rb': {
 		\ 'alternate': 'spec/unit/recipes/{}_spec.rb'
 		\ },
