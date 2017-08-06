@@ -1,4 +1,4 @@
-nnoremap <leader>t :w<CR>:Dispatch chef exec rspec %<CR>
+nnoremap <leader>t :w<CR>:Dispatch<CR>
 
 let g:projectionist_heuristics = {
 	\ '*': {
