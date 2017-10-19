@@ -233,7 +233,7 @@ nnoremap <leader>O O<esc>
 nnoremap <leader>< :cprev<cr>
 nnoremap <leader>> :cnext<cr>
 nnoremap <leader>l :copen<cr>
-" }}}
+nnoremap <leader>t :w<cr>:Dispatch<cr>
 
 " -----------------------------------------------------------------------------
 " => Plugin Settings
