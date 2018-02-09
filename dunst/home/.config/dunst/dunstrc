@@ -1,6 +1,6 @@
 [global]
     format = "<b><u>%s</u></b>\n\n%b"
-    allow_markup = yes
+    markup = yes
     follow = keyboard
     sort = yes
     history_length = 20
