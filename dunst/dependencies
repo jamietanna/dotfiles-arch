@@ -1,2 +1,2 @@
-REPOS=(dunst)
+REPOS=(dunst noto-fonts-emoji)
 AUR=()
