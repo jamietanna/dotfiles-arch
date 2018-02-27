@@ -27,24 +27,8 @@ alias gcm="git commit --amend"
 
 # Adapted from https://github.com/garybernhardt/dotfiles/blob/2c2a757f4abd406f6b4e1b328b6382d37f7f9036/.githelpers
 function pretty_git_log () {
-	local HASH="%C(yellow)%h%Creset"
-	local RELATIVE_TIME="%Cgreen(%ar)%Creset"
-	local AUTHOR="%C(bold blue)<%an>%Creset"
-	local REFS="%C(bold red)%d%Creset"
-	local SUBJECT="%s"
-	local DELIM='%%'
-
-	local FORMAT="${HASH}${DELIM}${RELATIVE_TIME}${DELIM}${AUTHOR}${DELIM}${REFS} ${SUBJECT}"
-
-	git log --graph --pretty="tformat:${FORMAT}" "$@" |
-		# Replace (2 years ago) with (2 years)
-		sed -Ee 's/(^[^<]*) ago\)/\1)/' |
-		# Replace (2 years, 5 months) with (2 years)
-		sed -Ee 's/(^[^<]*), [[:digit:]]+ .*months?\)/\1)/' |
-		# Line columns up based on } delimiter
-		column -s "$DELIM" -t |
-		# Color merge commits specially
-		sed -Ee "s/(Merge (branch|remote-tracking branch|pull request) .*$)/$(printf "\033[91m")\1$(printf "\033[0m")/" |
+	git log --graph --color=always --pretty="tformat:$(pretty_git_log_format_string)" "$@" |
+		pretty_git_graph_format |
 		# Page only if we're asked to.
 		if [ -n "$GIT_NO_PAGER" ]; then
 			cat
@@ -52,6 +36,37 @@ function pretty_git_log () {
 			# Page only if needed.
 			less --quit-if-one-screen --no-init --RAW-CONTROL-CHARS --chop-long-lines
 		fi
+}
+
+function pretty_git_log_format_delim() {
+	echo '^'
+}
+
+function pretty_git_log_format_delim_replace() {
+	echo "\\$(pretty_git_log_format_delim)"
+}
+
+function pretty_git_log_format_string() {
+	local HASH="%C(yellow)%h%Creset"
+	local RELATIVE_TIME="%Cgreen(%ar)%Creset"
+	local AUTHOR="%C(bold blue)<%an>%Creset"
+	local REFS="%C(bold red)%d%Creset"
+	local SUBJECT="%s"
+	local DELIM="$(pretty_git_log_format_delim)"
+
+	local FORMAT="${HASH}${DELIM}${RELATIVE_TIME}${DELIM}${AUTHOR}${DELIM}${REFS} ${SUBJECT}"
+	echo "$FORMAT"
+}
+
+pretty_git_graph_format() {
+	# Replace (2 years ago) with (2 years)
+	sed -Ee 's/(^[^<]*) ago\)/\1)/' |
+		# Replace (2 years, 5 months) with (2 years)
+		sed -Ee 's/(^[^<]*), [[:digit:]]+ .*months?\)/\1)/' |
+		# Line columns up based on delimiter
+		sed -Ee "s/$(pretty_git_log_format_delim_replace)/\\t/g" |
+		# Color merge commits specially
+		sed -Ee "s/(Merge (branch|remote-tracking branch|pull request) .*$)/$(printf "\033[91m")\1$(printf "\033[0m")/"
 }
 
 function fork_repo_remotes () {
