@@ -46,7 +46,7 @@ Xft.dpi: 92
 
 rofi.font:       				LiberationMono 10
 rofi.fuzzy:						true
-rofi.terminal:   				xterm
+rofi.terminal:   				st
 rofi.background: 				col_bg
 rofi.foreground: 				col_fg
 rofi.highlightbg: 				col_bg
@@ -65,3 +65,6 @@ rofi.color-window:	col_bg,		col_bg,				col_orange
 #ifdef LOCAL_EXISTS
 #include ".Xresources.local"
 #endif
+
+st.borderpx:    0
+st.bold_font:   1

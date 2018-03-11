@@ -14,6 +14,7 @@ Xft.dpi: 120
 !	above
 ! -----------------------------------------------------------------------------
 ! {{{
-XTerm*faceName:	Liberation Mono:style=Regular:size=10
+st.font: Liberation Mono:pixelsize=16:antialias=true:autohint=true;
+
 rofi.font:		LiberationMono 14
 ! }}}
