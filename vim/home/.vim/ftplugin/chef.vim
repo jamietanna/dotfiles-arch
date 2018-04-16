@@ -23,6 +23,15 @@ let g:projectionist_heuristics = {
 			\ 'alternate': 'resources/{}.rb',
 			\ 'dispatch': 'rspec {file}'
 		\ },
+		\ 'libraries/*.rb': {
+			\ 'type': 'library',
+			\ 'alternate': 'spec/unit/libraries/{}_spec.rb'
+			\ },
+		\ 'spec/unit/libraries/*_spec.rb': {
+			\ 'type': 'spec',
+			\ 'alternate': 'libraries/{}.rb',
+			\ 'dispatch': 'rspec {file}'
+		\ },
 		\ 'providers/*.rb': {
 			\ 'type': 'provider',
 			\ 'alternate': 'spec/unit/providers/{}_spec.rb'
