@@ -55,12 +55,12 @@ fi
 core_updates="$(checkupdates)"
 core_update_count=$(calculate_counts "$core_updates")
 # cower returns a non-zero status code if there are updates
-aur_updates="$(cower -u || true)"
+aur_updates="$(cower -u 2>/dev/null || true)"
 aur_updates="${aur_updates//:: /}"
 aur_update_count=$(calculate_counts "$aur_updates")
 total_update_count="$((core_update_count + aur_update_count))"
 
-out_str="P"
+out_str=""
 urgency="normal"
 if [[ "$total_update_count" -eq "0" || (-z "$core_updates" && -z "$aur_updates") ]];
 then
@@ -69,13 +69,11 @@ then
 elif echo "$core_updates" | grep "^linux " >/dev/null;
 then
 	urgency="critical"
-	out_str+="k"
-else
-	out_str+="p"
+	out_str+="%{F#f00}"
 fi
-out_str+="${core_update_count}+${aur_update_count}"
+out_str+=" ${core_update_count}+${aur_update_count}%{F-}"
 
-echo "$out_str" > "$PANEL_FIFO"
+echo "$out_str"
 
 updates_out=""
 updates_out+="$(calculate_diffs "$core_updates" "$CACHED_CORE_UPDATE_LIST")"
