@@ -18,11 +18,15 @@ alias gco="git checkout"
 alias gd="git diff"
 alias gdc="git diff --cached"
 alias ga="git add"
+alias gap="git add -p"
 alias gr="git remote"
 alias glog="git log --stat"
-alias gpull="git pull --rebase"
+alias glp="git log --patch"
+alias gpl="git pull"
+alias gplr="git pull --rebase"
 alias gp="git push"
-alias gcm="git commit --amend"
+alias gsh="git show"
+alias greb="git rebase"
 # }}}
 
 # Adapted from https://github.com/garybernhardt/dotfiles/blob/2c2a757f4abd406f6b4e1b328b6382d37f7f9036/.githelpers
