@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-. $HOME/.config/bspwm/bspwm_panel.sh
-
 function calculate_diffs() {
 	# calculate_diffs "$core_updates" "$CACHED_CORE_UPDATE_LIST"
 	local updates_str="$1"
