@@ -174,13 +174,13 @@ super + shift + m
 	st -e ncmpcpp
 
 super + space
-	mpc.sh toggle
+	mpc toggle
 
 super + greater
-	mpc.sh next
+	mpc next
 
 super + less
-	mpc.sh prev
+	mpc prev
 
 super + Return
 	st
