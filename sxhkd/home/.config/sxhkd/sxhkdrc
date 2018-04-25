@@ -206,19 +206,20 @@ super + Return
 
 # -----------------------------------------------------------------------------
 # => XF86 Media Meys
+# TODO use `@` to make sure we can chain a load together?
 # -----------------------------------------------------------------------------
 # {{{
 XF86HomePage
 	chromium
 
 XF86AudioLowerVolume
-	$HOME/bin/vol.sh down
+	pulseaudio-ctl down
 
 XF86AudioRaiseVolume
-	$HOME/bin/vol.sh up
+	pulseaudio-ctl up
 
 XF86AudioMute
-	$HOME/bin/vol.sh toggle
+	pulseaudio-ctl toggle
 
 XF86MonBrightnessUp
 	xbacklight -inc 10
