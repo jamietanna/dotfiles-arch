@@ -16,9 +16,9 @@ banner () {
 	echo -e "\033[95m========================================\033[0m"
 }
 
-if ! which pacaur >/dev/null 2>&1;
+if ! which yay >/dev/null 2>&1;
 then
-	error "pacaur cannot be found. Exiting."
+	error "yay cannot be found. Exiting."
 	exit 1
 fi
 
@@ -44,7 +44,7 @@ do
 		. $dependencies_path
 		banner "Installing packages\n\tRepos:\t${REPOS[@]}\n\tAUR:\t${AUR[@]}"
 		# --needed so we don't reinstall unnecessary pacakges
-		pacaur -S "${REPOS[@]} ${AUR[@]}" --needed || error "Error: could not install some packages"
+		yay -S "${REPOS[@]} ${AUR[@]}" --needed || error "Error: could not install some packages"
 	fi
 
 	# make sure we have the correct dependencies to bootstrap the system

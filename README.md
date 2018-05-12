@@ -10,7 +10,7 @@ In each package directory (see [Directory Structure](#directory-structure) for c
 
 To simply use my dotfiles for yourself, you need to run `$GITROOT/unpack.sh $package` where `$package` is i.e. `bspwm`, `vim`, etc. Note that this may unpack to both your home directory, and global locations on disk.
 
-To completely set up the same environment that I have, you will need to bootstrap. To do this, simply run `$GITROOT/bootstrap.sh`. This will set up my dotfiles and any packages required to use them. Note that for this method you will need the AUR helper `pacaur`, or will need to edit the `bootstrap.sh` script to use your own helper.
+To completely set up the same environment that I have, you will need to bootstrap. To do this, simply run `$GITROOT/bootstrap.sh`. This will set up my dotfiles and any packages required to use them. Note that for this method you will need the AUR helper `yay`, or will need to edit the `bootstrap.sh` script to use your own helper.
 
 ## Directory Structure
 
