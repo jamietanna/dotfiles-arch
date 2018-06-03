@@ -115,3 +115,8 @@ function gpu() {
 	fi
 	git push -u "${remoteToPushTo}" "${branchToPushTo}"
 }
+
+function git-branch-cleanup() {
+	git branch --merged | egrep -v "(^\*|master|develop)" | xargs git branch -d
+	git remote prune origin
+}
