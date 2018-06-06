@@ -42,3 +42,11 @@ function sourceedit() {
 		source "$arg"
 	done
 }
+
+function mroot() {
+	declare -r GITROOT="$(gitroot)"
+	while [[ "$GITROOT" != "$PWD" ]]; do
+		test -f pom.xml && break
+		cd ..
+	done
+}
