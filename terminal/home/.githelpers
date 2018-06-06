@@ -122,3 +122,14 @@ function git-branch-cleanup() {
 	git branch --merged | egrep -v "(^\*|master|develop)" | xargs git branch -d
 	git remote prune origin
 }
+
+function gcob() {
+	local branches
+	branches="$(git branch --format '%(refname:short)')"
+	if grep -q "^$1$" <<< "$branches" ; then
+		echo "Branch $1 already exists, checking it out..."
+		git checkout "$1"
+	else
+		git checkout -b "$1" "$2"
+	fi
+}
