@@ -219,7 +219,7 @@ XF86AudioRaiseVolume
 	pulseaudio-ctl up
 
 XF86AudioMute
-	pulseaudio-ctl toggle
+	pulseaudio-ctl mute
 
 XF86MonBrightnessUp
 	xbacklight -inc 10
