@@ -20,8 +20,9 @@ set spell spelllang=en
 " => Aesthetics
 " -----------------------------------------------------------------------------
 " {{{
+set expandtab
 " Markdown looks better with only two tabs
-set tabstop=2
+set tabstop=2 shiftwidth=2
 " Corectly format italics and bold in the terminal, if supported
 hi markdownItalic cterm=italic
 hi markdownBold cterm=bold
