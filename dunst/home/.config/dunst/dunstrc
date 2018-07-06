@@ -40,4 +40,8 @@
     foreground = "#ebdbb2"
     timeout = 0
 
+[spotify]
+    appname = Spotify
+    format = "<b> <u>%s</u></b>\n\n%b"
+
 # vim: ft=cfg fdm=marker et ts=4
