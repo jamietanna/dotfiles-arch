@@ -1,2 +1,2 @@
-REPOS=(xorg-xrdb xorg-xmodmap feh xorg-xbacklight xorg-setxkbmap xorg-xinit ttf-liberation acpi mpd mpc alsa-utils lm_sensors bc libnotify)
-AUR=(rofi bspwm-git pulseaudio-ctl ttf-font-awesome-4 otf-font-awesome-4 polybar-git)
+REPOS=(xorg-xrdb xorg-xmodmap feh xorg-xbacklight xorg-setxkbmap xorg-xinit ttf-liberation acpi alsa-utils lm_sensors bc libnotify)
+AUR=(rofi bspwm-git pulseaudio-ctl ttf-font-awesome-4 otf-font-awesome-4 polybar-git spotify)

@@ -171,16 +171,16 @@ super + w
 # -----------------------------------------------------------------------------
 # {{{
 super + shift + m
-	st -e ncmpcpp
+	spotify
 
 super + space
-	mpc toggle
+	playerctl play-pause
 
 super + greater
-	mpc next
+	playerctl next
 
 super + less
-	mpc prev
+	playerctl previous
 
 super + Return
 	st

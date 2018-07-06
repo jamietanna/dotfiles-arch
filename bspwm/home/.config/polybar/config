@@ -52,7 +52,7 @@ modules-left = bspwm
 # xwindow
 modules-center = xwindow
 # cpu @ temp, memory, battery% remaining, song, volume, hostname, date '%a %H:%M'
-modules-right = mpd updates volume battery hostname date
+modules-right = spotify updates volume battery hostname date
 
 font-0 = LiberationMono:size=09
 font-1 = unifont:fontformat=truetype:size=8:antialias=false
@@ -198,17 +198,9 @@ click-left = rofi -show ssh
 
 content-padding = 1
 
-[module/mpd]
-type = internal/mpd
-format-online = <label-song> <toggle>
-
-icon-prev = 
-icon-stop = 
-icon-play = 
-icon-pause = 
-icon-next = 
-
-label-song-maxlen = 50
-label-song-ellipsis = true
+[module/spotify]
+type = custom/script
+exec = ~/bin/spotify-current.rb
+click-left = playerctl play-pause
 
 # vim: ft=dosini
