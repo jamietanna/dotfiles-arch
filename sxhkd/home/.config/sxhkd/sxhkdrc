@@ -210,7 +210,7 @@ super + Return
 # -----------------------------------------------------------------------------
 # {{{
 XF86HomePage
-	chromium
+	firefox-nightly
 
 XF86AudioLowerVolume
 	pulseaudio-ctl down
