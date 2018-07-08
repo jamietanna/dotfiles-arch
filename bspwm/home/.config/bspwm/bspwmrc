@@ -23,7 +23,5 @@ then
 	. $HOME/.config/bspwm/bspwmrc.local
 fi
 
-for mon in $(polybar -m | cut -f1 -d:); do
-	polybar -r $(cut -f1 -d: <<< "$mon") &
-done
+polybars.sh
 nm-applet &
