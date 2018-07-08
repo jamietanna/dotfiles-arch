@@ -228,11 +228,11 @@ XF86MonBrightnessDown
 	xbacklight -dec 10
 
 XF86AudioPrev
-	mpc.sh prev
+	playerctl previous
 
 XF86AudioPlay
-	mpc.sh toggle
+	playerctl play-pause
 
 XF86AudioNext
-	mpc.sh next
+	playerctl next
 # }}}
