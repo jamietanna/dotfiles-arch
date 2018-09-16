@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 bspc monitor DVI-D-0 -d IX X
-bspc monitor DP-1 -d I II III IV V VI VII VIII
+bspc monitor DP-4 -d I II III IV V VI VII VIII
 
 bspc rule -a Thunderbird desktop=^9
 bspc rule -a mpv state=pseudo_tiled
