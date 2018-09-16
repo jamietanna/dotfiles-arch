@@ -163,6 +163,8 @@ au BufRead,BufNewFile TODO set filetype=markdown
 " start Vimtex; this means that when we use multiple TeX files in a project,
 " we now will get Vimtex working in each file out-of-the-box
 au BufRead,BufNewFile *.tex set filetype=tex
+" Asciicasts are just JSON files
+au BufRead,BufNewFile *.cast set filetype=json
 " }}}
 
 " -----------------------------------------------------------------------------
