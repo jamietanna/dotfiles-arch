@@ -13,8 +13,8 @@ DATA = `acpi -b`.freeze
 remainder = DATA.match(/([0-9]{2}):([0-9]{2}):([0-9]{2})/)
 percentage = DATA.match(/([0-9]+)%/)[0]
 
-background = ''
-foreground = ''
+background = '-'
+foreground = '-'
 
 output = ''
 charging_indicator = ''
