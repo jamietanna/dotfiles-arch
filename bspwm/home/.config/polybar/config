@@ -179,7 +179,7 @@ ramp-headphones-0 = 
 
 [module/battery]
 type = custom/script
-exec = bat.sh
+exec = bat.rb
 interval = 30
 
 ; type = internal/battery
