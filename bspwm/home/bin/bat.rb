@@ -24,15 +24,15 @@ if DATA.match?(/Discharging/)
   mins = remainder[1].to_i
   secs = remainder[2].to_i
 
-  if percentage.to_i <= 10 ||
+  if percentage.to_i <= 30 ||
       hours == 0 && mins <= 30
-    background = extract_xresources_field 'col_red'
-    foreground = extract_xresources_field 'col_white'
+    foreground = extract_xresources_field 'col_red'
   end
 
-  if percentage.to_i <= 30 ||
+  if percentage.to_i <= 10 ||
       hours == 0
-    foreground = extract_xresources_field 'col_red'
+    background = extract_xresources_field 'col_red'
+    foreground = extract_xresources_field 'col_white'
   end
 
 else
