@@ -22,7 +22,6 @@ charging_indicator = ''
 if DATA.match?(/Discharging/)
   hours = remainder[0].to_i
   mins = remainder[1].to_i
-  secs = remainder[2].to_i
 
   if percentage.to_i <= 30 ||
       hours == 0 && mins <= 30
