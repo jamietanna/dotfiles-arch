@@ -26,9 +26,7 @@ if DATA.match?(/Discharging/)
   if percentage.to_i <= 30 ||
       hours == 0 && mins <= 30
     foreground = extract_xresources_field 'col_red'
-  end
-
-  if percentage.to_i <= 10 ||
+  elsif percentage.to_i <= 10 ||
       hours == 0
     background = extract_xresources_field 'col_red'
     foreground = extract_xresources_field 'col_white'
