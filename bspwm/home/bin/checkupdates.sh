@@ -52,9 +52,7 @@ fi
 
 core_updates="$(checkupdates)"
 core_update_count=$(calculate_counts "$core_updates")
-# cower returns a non-zero status code if there are updates
-aur_updates="$(cower -u 2>/dev/null || true)"
-aur_updates="${aur_updates//:: /}"
+aur_updates="$(yay -Qum 2>/dev/null)"
 aur_update_count=$(calculate_counts "$aur_updates")
 total_update_count="$((core_update_count + aur_update_count))"
 
