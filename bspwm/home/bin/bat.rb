@@ -5,7 +5,7 @@ def extract_xresources_field(colour_name)
     l = file.find do |line|
       line =~ /^#define #{colour_name}\w+/
     end
-    l.split('#')[2].chomp
+    '#' + l.split('#')[2].chomp
   end
 end
 
