@@ -46,7 +46,7 @@ Xft.dpi: 92
 
 rofi.font:       				LiberationMono 10
 rofi.fuzzy:						true
-rofi.terminal:   				st
+rofi.terminal:   				xst
 rofi.background: 				col_bg
 rofi.foreground: 				col_fg
 rofi.highlightbg: 				col_bg
