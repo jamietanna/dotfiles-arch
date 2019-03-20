@@ -15,5 +15,3 @@
 	verbose = true
 [remote "origin"]
 	fetch = +refs/environments/*:refs/remotes/origin/environments/*
-[diff]
-	submodule = log
