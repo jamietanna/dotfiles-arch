@@ -2,7 +2,7 @@
 	email = jamie@jamietanna.co.uk
 	name = Jamie Tanna
 [push]
-	default = simple
+	default = current
 [core]
 	excludesfile = /home/jamie/.gitignore_global
 [diff]
