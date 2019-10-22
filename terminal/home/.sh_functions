@@ -51,7 +51,9 @@ function mroot() {
 	done
 }
 
+
 function jwt() {
+	# pipe in the JWT to pretty-print via stdin
 	# https://www.jvt.me/posts/2018/08/31/pretty-printing-jwt-ruby/
-	ruby -rjson -rbase64 -e "ARGF.read.split('.')[0,2].each_with_index { |f, i| j = JSON.parse(Base64.urlsafe_decode64(f)); jj j; break if i.zero? && j.key?('enc')}" "$1"
+	ruby -rjson -rbase64 -e "ARGF.read.split('.')[0,2].each_with_index { |f, i| j = JSON.parse(Base64.urlsafe_decode64(f)); jj j; break if i.zero? && j.key?('enc')}"
 }
