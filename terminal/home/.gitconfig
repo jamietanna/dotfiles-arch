@@ -19,3 +19,4 @@
 	prune = true
 [diff]
 	submodule = log
+	noprefix = true
