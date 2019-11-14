@@ -16,3 +16,4 @@
 	verbose = true
 [remote "origin"]
 	fetch = +refs/environments/*:refs/remotes/origin/environments/*
+	prune = true
