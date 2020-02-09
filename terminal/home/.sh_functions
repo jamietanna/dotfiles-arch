@@ -62,3 +62,9 @@ function jwt() {
 function epoch() {
 	date --date="@$1"
 }
+
+function qs() {
+	# https://www.jvt.me/posts/2019/11/30/node-parse-url-querystring/
+	# pipe in the URL with a querystring via stdin
+	node -r fs -r querystring -r url -e 'console.log(JSON.stringify(querystring.parse(url.parse(fs.readFileSync("/dev/stdin", "utf-8")).query), null, 4))'
+}
