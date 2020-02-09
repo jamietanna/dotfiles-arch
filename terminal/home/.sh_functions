@@ -68,3 +68,13 @@ function qs() {
 	# pipe in the URL with a querystring via stdin
 	node -r fs -r querystring -r url -e 'console.log(JSON.stringify(querystring.parse(url.parse(fs.readFileSync("/dev/stdin", "utf-8")).query), null, 4))'
 }
+
+function esc() {
+	# https://www.jvt.me/posts/2019/05/31/url-decode-ruby-cli/
+	ruby -rcgi -e 'puts CGI.escape(ARGF.read)'
+}
+
+function unesc() {
+	# https://www.jvt.me/posts/2019/05/31/url-decode-ruby-cli/
+	ruby -rcgi -e 'puts CGI.unescape(ARGF.read)'
+}
