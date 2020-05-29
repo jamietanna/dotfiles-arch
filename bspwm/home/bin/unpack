@@ -1,0 +1,19 @@
+#!/usr/bin/env ruby
+require 'json'
+
+content = ARGF.read.strip
+if content.start_with? '{'
+  puts JSON.pretty_generate(JSON.parse(content))
+  exit 0
+elsif content.start_with? 'eyJ' # it's Base64-encoded JSON
+  if content.include? '.' # JWT
+    puts `jwt <<< #{content}`
+    exit 0
+  else # Base64-encoded JSON
+    require 'base64'
+    puts JSON.pretty_generate(JSON.parse(Base64.urlsafe_decode64(content)))
+    exit 0
+  end
+end
+
+exit 1
