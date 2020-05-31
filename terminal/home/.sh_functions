@@ -63,18 +63,6 @@ function epoch() {
 	date --date="@$1"
 }
 
-function qs() {
-	# https://www.jvt.me/posts/2019/11/30/node-parse-url-querystring/
-	# pipe in the URL with a querystring via stdin
-	# allows for a parameter to output as $1
-	node -r fs -r process -r querystring -r url -e 'q = querystring.parse(url.parse(fs.readFileSync("/dev/stdin", "utf-8")).query);console.log((process.argv.slice(0)[1]) ? (q[process.argv.slice(0)[1]] || "") : JSON.stringify(q, null, 4));' -- "$1"
-}
-
-function fragment() {
-	# allows for a parameter to output as $1
-	node -r querystring -r url -e 'q = querystring.parse(url.parse(fs.readFileSync("/dev/stdin", "utf-8")).hash.replace("#", ""));console.log((process.argv.slice(0)[1]) ? (q[process.argv.slice(0)[1]] || "") : JSON.stringify(q, null, 4));' -- "$1"
-}
-
 function esc() {
 	# https://www.jvt.me/posts/2019/05/31/url-decode-ruby-cli/
 	ruby -rcgi -e 'puts CGI.escape(ARGF.read)'

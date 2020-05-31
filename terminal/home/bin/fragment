@@ -1,0 +1,16 @@
+#!/usr/bin/env node
+// Very similar to https://www.jvt.me/posts/2019/11/30/node-parse-url-querystring/
+const fs = require('fs');
+const process = require('process');
+const url = require('url');
+const querystring = require('querystring');
+
+const theUrl = fs.readFileSync("/dev/stdin", "utf-8");
+const params = querystring.parse(url.parse(theUrl).query);
+const parameter = process.argv.slice(0)[2];
+
+if (parameter) {
+	console.log(params[parameter] || "");
+} else {
+	console.log(JSON.stringify(params, null, 4));
+}
