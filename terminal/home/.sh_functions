@@ -55,13 +55,3 @@ function mroot() {
 function epoch() {
 	date --date="@$1"
 }
-
-function esc() {
-	# https://www.jvt.me/posts/2019/05/31/url-decode-ruby-cli/
-	ruby -rcgi -e 'puts CGI.escape(ARGF.read)'
-}
-
-function unesc() {
-	# https://www.jvt.me/posts/2019/05/31/url-decode-ruby-cli/
-	ruby -rcgi -e 'puts CGI.unescape(ARGF.read)'
-}
