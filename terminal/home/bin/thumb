@@ -1,0 +1,26 @@
+#!/usr/bin/env ruby
+require 'json/jwt'
+
+def read_key(fname)
+  f = File.read fname
+
+  begin
+    return OpenSSL::PKey::RSA.new(f)
+  rescue Exception
+    # ignore
+  end
+
+  begin
+    return OpenSSL::PKey::EC.new(f)
+  rescue Exception
+    # ignore
+  end
+end
+
+hash = ARGV[1] || 'sha256'
+
+key = read_key(ARGV[0])
+key = key.public_key unless key.public?
+
+jwk = JSON::JWK.new(key)
+puts jwk.thumbprint(hash)
