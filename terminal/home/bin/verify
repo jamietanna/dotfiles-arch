@@ -1,0 +1,16 @@
+#!/usr/bin/env ruby
+require 'jwt'
+
+jwt = File.read ARGV[0]
+maybe_secret = ARGV[1]
+algorithm = ARGV[2] || 'HS256'
+
+if File.exists? maybe_secret
+  maybe_secret = OpenSSL::PKey.read(File.read maybe_secret)
+end
+
+begin
+  JWT.decode jwt, maybe_secret, true, { algorithm: algorithm }
+rescue JWT::VerificationError
+  exit 1
+end
