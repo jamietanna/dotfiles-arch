@@ -1,0 +1,13 @@
+#!/usr/bin/env ruby
+require 'json'
+# via https://www.jvt.me/posts/2020/06/23/byte-array-to-string-ruby/
+h = JSON.parse(ARGF.read)
+
+data =
+  if h.is_a? Array
+    h
+  else
+    h['data']
+  end
+
+puts data.pack('C*').force_encoding('UTF-8')
