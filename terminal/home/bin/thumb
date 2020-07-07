@@ -2,7 +2,21 @@
 require 'json/jwt'
 
 def read_key(fname)
-  OpenSSL::PKey.read(File.read fname)
+  contents = File.read fname
+
+  begin
+    return OpenSSL::X509::Certificate.new(contents).public_key
+  rescue
+    # ignore
+  end
+
+  begin
+    return OpenSSL::PKey.read contents
+  rescue
+    # ignore
+  end
+
+  raise "#{fname} could not be parsed as a certificate, public or private key"
 end
 
 hash = ARGV[1] || 'sha256'
