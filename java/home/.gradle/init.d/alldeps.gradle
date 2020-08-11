@@ -1,0 +1,7 @@
+projectsEvaluated {
+  rootProject.allprojects {
+    if (!tasks.findByName('allDeps')) {
+      task allDeps(type: DependencyReportTask) {}
+    }
+  }
+}
