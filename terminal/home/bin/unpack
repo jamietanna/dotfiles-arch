@@ -1,9 +1,29 @@
 #!/usr/bin/env ruby
 require 'json'
 
+# https://www.jvt.me/posts/2020/08/24/sort-recursive-hash-ruby/
+def recursive_sort(v, &block)
+  if v.class == Hash
+    v.sorted_hash(&block)
+  elsif v.class == Array
+    v.collect {|a| recursive_sort(a, &block)}
+  else
+    v
+  end
+end
+
+class Hash
+  def sorted_hash(&block)
+    self.class[
+      self.each do |k,v|
+        self[k] = recursive_sort(v, &block)
+      end.sort(&block)]
+  end
+end
+
 content = ARGF.read.strip
 if content.start_with? '{'
-  puts JSON.pretty_generate(JSON.parse(content))
+  puts JSON.pretty_generate(recursive_sort(JSON.parse(content)))
   exit 0
 elsif content.start_with? 'eyJ' # it's Base64-encoded JSON
   if content.include? '.' # JWT
