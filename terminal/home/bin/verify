@@ -1,16 +1,37 @@
 #!/usr/bin/env ruby
 require 'jwt'
+require 'net/http'
+
+def parse_jwks(jwks_uri)
+  res = Net::HTTP.get_response(URI(jwks_uri))
+  JSON.parse(res.body, symbolize_names: true) # jwt expects symbols for all Hash keys
+end
 
 jwt = File.read ARGV[0]
-maybe_secret = ARGV[1]
+maybe_secret_or_jwks = ARGV[1]
 algorithm = ARGV[2] || 'HS256'
 
-if File.exists? maybe_secret
-  maybe_secret = OpenSSL::PKey.read(File.read maybe_secret)
+opts = {
+  algorithm: algorithm,
+}
+
+if maybe_secret_or_jwks.start_with? 'http'
+  jwk_loader = ->(options) do
+    @cached_keys = nil if options[:invalidate] # need to reload the keys
+    @cached_keys ||= { keys: parse_jwks(maybe_secret_or_jwks)[:keys] }
+  end
+
+  opts[:jwks] = jwk_loader
+else
+  maybe_secret = maybe_secret_or_jwks
+
+  if File.exists? maybe_secret
+    maybe_secret = OpenSSL::PKey.read(File.read maybe_secret)
+  end
 end
 
 begin
-  JWT.decode jwt, maybe_secret, true, { algorithm: algorithm }
+  JWT.decode jwt, maybe_secret, true, opts
 rescue JWT::VerificationError
   exit 1
 end
