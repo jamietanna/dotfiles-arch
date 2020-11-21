@@ -1,2 +1,2 @@
-REPOS=(xterm scrot ncmpcpp openssh playerctl)
+REPOS=(xterm scrot openssh playerctl)
 AUR=(sxhkd-git i3lock-lixxia-git pulseaudio-ctl firefox-nightly)
