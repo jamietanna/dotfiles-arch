@@ -1,2 +1,2 @@
-REPOS=(ttf-liberation xorg-xrdb zsh grml-zsh-config git tmux xterm)
+REPOS=(ttf-liberation xorg-xrdb zsh grml-zsh-config git tmux xterm pkgfile)
 AUR=(rofi)
