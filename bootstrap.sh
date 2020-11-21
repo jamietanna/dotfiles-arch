@@ -44,7 +44,7 @@ do
 		. $dependencies_path
 		banner "Installing packages\n\tRepos:\t${REPOS[@]}\n\tAUR:\t${AUR[@]}"
 		# --needed so we don't reinstall unnecessary pacakges
-		yay -S "${REPOS[@]} ${AUR[@]}" --needed || error "Error: could not install some packages"
+		yay -S ${REPOS[@]} ${AUR[@]} --needed || error "Error: could not install some packages"
 	fi
 
 	# make sure we have the correct dependencies to bootstrap the system
