@@ -1,5 +1,5 @@
-XTerm*termName:xterm-256color
-XTerm*faceName:Liberation Mono:style=Regular:size=12
+UXTerm*termName:xterm-256color
+UXTerm*faceName:Liberation Mono:style=Regular:size=12
 ! 115 = 92 * 1.25
 ! Xft.dpi: 115
 Xft.dpi: 92
@@ -46,7 +46,7 @@ Xft.dpi: 92
 
 rofi.font:       				LiberationMono 10
 rofi.fuzzy:						true
-rofi.terminal:   				xst
+rofi.terminal:   				uxterm
 rofi.background: 				col_bg
 rofi.foreground: 				col_fg
 rofi.highlightbg: 				col_bg
@@ -65,6 +65,3 @@ rofi.color-window:	col_bg,		col_bg,				col_orange
 #ifdef LOCAL_EXISTS
 #include ".Xresources.local"
 #endif
-
-st.borderpx:    0
-st.bold_font:   1

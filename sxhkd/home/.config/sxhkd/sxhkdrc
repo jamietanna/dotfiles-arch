@@ -183,7 +183,7 @@ super + less
 	playerctl previous
 
 super + Return
-	xst
+	uxterm
 # }}}
 
 # -----------------------------------------------------------------------------
