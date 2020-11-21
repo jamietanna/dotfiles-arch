@@ -65,9 +65,10 @@ call plug#begin('~/.vim/plugged')
 	Plug 'vim-ruby/vim-ruby', { 'for': 'ruby'}
 	" https://github.com/vim-ruby/vim-ruby/issues/357
 	packadd! matchit
-	Plug 'Shougo/neocomplete.vim' "{{{
-	let g:neocomplete#enable_at_startup = 1
-	let g:neocomplete#enable_smart_case = 1
+	Plug 'Shougo/deoplete.nvim' "{{{
+	let g:deoplete#enable_at_startup = 1
+	Plug 'roxma/nvim-yarp'
+	Plug 'roxma/vim-hug-neovim-rpc'
 	"}}}
 	" }}}
 
@@ -311,4 +312,5 @@ autocmd BufNewFile,BufRead * if expand('%:p') =~'**/*/.*cookbook.*/templates/' |
 " doesn't work?
 let g:projectionist_heuristics = {}
 
+call deoplete#custom#option('smart_case', 1)
 " }}}
