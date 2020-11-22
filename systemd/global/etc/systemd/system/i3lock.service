@@ -1,0 +1,18 @@
+[Unit]
+Description=Lock the screen with i3lock
+# Ensure that we run this service before the machine can actually go to sleep
+Before=sleep.target
+
+[Service]
+User=jamie
+# Because the i3lock process blocks while it's running, this needs to be
+# `forking`, otherwise systemd would never supsend while `i3lock` is running
+Type=forking
+# There's usually only one interactive Xorg session running, so it's almost
+# certainly going to be the 0th display
+Environment=DISPLAY=:0
+ExecStart=/home/jamie/bin/lock.sh
+
+[Install]
+# Ensure that this is called when we're trying to suspend the machine
+WantedBy=suspend.target
