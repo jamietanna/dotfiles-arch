@@ -118,6 +118,7 @@ call plug#begin('~/.vim/plugged')
 	Plug 'tpope/vim-dispatch'
 	" Plug 'tpope/vim-markdown'
 	Plug 'ludwig/split-manpage.vim'
+	Plug 'junegunn/fzf' | Plug 'junegunn/fzf.vim'
 	" }}}
 call plug#end()
 " }}}
