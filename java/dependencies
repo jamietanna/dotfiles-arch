@@ -1,2 +1,2 @@
-REPOS=(jdk11-openjdk jdk8-openjdk)
+REPOS=(maven gradle jdk-openjdk jdk8-openjdk jdk11-openjdk)
 AUR=(intellij-idea-ultimate-edition intellij-idea-ultimate-edition-jre)
