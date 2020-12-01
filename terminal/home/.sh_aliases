@@ -15,6 +15,6 @@ alias cinit='eval "$(chef shell-init "$(basename $SHELL)")"'
 
 alias pj="python -mjson.tool"
 
-alias jj="ruby -rjson -e 'Dir.glob(ARGV[0]).each { |f| j = JSON.parse(File.read(f)); File.open(f, \"w\") { |o| o.write(JSON.pretty_generate(j)) } }'"
+alias jj="ruby -rjson -e 'Dir.glob(ARGV[0]).each { |f| j = JSON.parse(File.read(f)); File.open(f, \"w\") { |o| o.write(JSON.pretty_generate(j) + "\n") } }'"
 
 alias javaDebug="java -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=5000"
