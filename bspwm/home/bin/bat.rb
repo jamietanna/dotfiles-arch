@@ -36,12 +36,15 @@ else
   charging_indicator = '+'
 end
 
+remainder_s = ''
+remainder_s = remainder[0] if remainder
+
 output = "%{B#{background}}" +
   "%{F#{foreground}}" +
   percentage +
   ' ' +
   charging_indicator +
-  remainder[0] +
+  remainder_s +
   '%{F-}%{B-}'
 
 puts output
