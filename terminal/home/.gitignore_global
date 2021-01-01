@@ -12,3 +12,4 @@ worktree
 .idea/**/*
 .worktree*
 worktrees
+*.attach_pid*
