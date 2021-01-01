@@ -3,6 +3,8 @@
 	name = Jamie Tanna
 [push]
 	default = current
+[pull]
+	rebase = true
 [core]
 	excludesfile = /home/jamie/.gitignore_global
 [diff]
