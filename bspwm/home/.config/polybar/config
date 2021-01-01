@@ -37,15 +37,15 @@ inherit = bar/bspwm
 tray-position = right
 tray-padding = 2
 
-[bar/DVI-D-0]
-monitor = DVI-D-0
+[bar/DP-2]
+monitor = DP-2
 inherit = bar/bspwm
+tray-position = right
+tray-padding = 2
 
 [bar/DP-4]
 monitor = DP-4
 inherit = bar/bspwm
-tray-position = right
-tray-padding = 2
 
 [bar/bspwm]
 ; https://github.com/JLErvin/dotfiles/blob/master/xps/.config/polybar/config for https://camo.githubusercontent.com/8a3ab8a143cf71a319d0f4bdb97483fdf23c02a2/687474703a2f2f692e696d6775722e636f6d2f47554c6b4762762e6a7067 {{{
