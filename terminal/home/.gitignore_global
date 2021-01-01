@@ -10,3 +10,5 @@ Session.vim
 worktree
 *.iml
 .idea/**/*
+.worktree*
+worktrees
