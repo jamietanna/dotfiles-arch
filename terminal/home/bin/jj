@@ -1,0 +1,28 @@
+#!/usr/bin/env ruby
+require 'json'
+
+def recursive_sort(v, &block)
+  if v.class == Hash
+    v.sorted_hash(&block)
+  elsif v.class == Array
+    v.collect {|a| recursive_sort(a, &block)}
+  else
+    v
+  end
+end
+
+class Hash
+  def sorted_hash(&block)
+    self.class[
+      self.each do |k,v|
+        self[k] = recursive_sort(v, &block)
+      end.sort(&block)]
+  end
+end
+
+Dir.glob(ARGV[0]).each do |f|
+  j = JSON.parse(File.read(f))
+  File.open(f, 'w') do |o|
+    o.write(JSON.pretty_generate(recursive_sort(j)) + "\n")
+  end
+end
