@@ -1,0 +1,90 @@
+#!/usr/bin/env ruby
+require 'json'
+
+def parse(lines)
+  request = {}
+  multiline = nil
+
+  lines.each do |line|
+    # we're no longer in a multi-line parameter list if the line starts with i.e.
+    # `Body`, as multilines are preceded by whitespace
+    multiline = nil if line.match?(/^[A-Z]/)
+
+    # ignore unset options
+    next if line.match?(/<none>/)
+
+    if line.start_with? 'Request URI'
+      request['uri'] = line.sub(/^Request URI:\s+/, '')
+    elsif line.start_with? 'Request method'
+      request['method'] = line.sub(/^Request method:\s+/, '')
+    elsif line.start_with? 'Proxy'
+      request['proxy'] = line.sub(/^Proxy:\s+/, '')
+    elsif line.start_with? 'Query params'
+      # these are ignored, as the URI provides them, but are matched just to hide
+      # the warnings
+      multiline = 'query'
+      request[multiline] = []
+      request[multiline] << line.sub(/^Query params:\s+/, '')
+    elsif line.start_with? 'Form params'
+      multiline = 'form'
+      request[multiline] = []
+      request[multiline] << line.sub(/^Form params:\s+/, '')
+    elsif line.start_with? 'Cookies'
+      multiline = 'cookies'
+      request[multiline] = []
+      request[multiline] << line.sub(/^Cookies:\s+/, '')
+    elsif line.start_with? 'Headers'
+      multiline = 'headers'
+      request[multiline] = []
+      request[multiline] << line.sub(/^Headers:\s+/, '')
+    elsif line.start_with? 'Body'
+      multiline = 'body'
+      request[multiline] = []
+      request[multiline] << line.sub(/^Body:\s+/, '')
+    elsif multiline
+      request[multiline] << line.sub(/^\s+/, '')
+    else
+      $stderr.puts "Not supported: #{line}"
+    end
+  end
+
+  request
+end
+
+def to_curl(request)
+  curl = %w(curl)
+  curl << "-X #{request['method']}"
+  curl << "'#{request['uri']}'"
+
+  if request['headers']
+    request['headers'].each do |header|
+      curl << "-H '#{header.sub(/=/, ':')}'"
+    end
+  end
+
+  if request['cookies']
+    request['cookies'].each do |cookie|
+      curl << "--cookie '#{cookie}'"
+    end
+  end
+
+  if request['form']
+    request['form'].each do |form|
+      curl << "-d '#{form}'"
+    end
+  end
+
+  if request['proxy']
+    curl << "--proxy '#{request['proxy']}'"
+  end
+
+  if request['body']
+    body = request['body'].join ''
+    curl << "-d '#{body}'"
+  end
+
+  curl.join(' ').gsub(/\n/, '')
+end
+
+request = parse(File.readlines(ARGV[0]))
+puts to_curl(request)
