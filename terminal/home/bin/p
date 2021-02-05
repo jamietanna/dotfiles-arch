@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+if which pbpaste >/dev/null 2>&1; then
+	pbpaste
+elif which xsel >/dev/null 2>&1; then
+	xsel --clipboard
+else
+	exit 1
+fi
