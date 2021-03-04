@@ -233,6 +233,9 @@ XF86AudioPrev
 XF86AudioPlay
 	playerctl play-pause
 
+@ctrl + alt + Tab
+	playerctl play-pause
+
 XF86AudioNext
 	playerctl next
 # }}}
