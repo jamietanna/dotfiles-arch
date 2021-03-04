@@ -5,3 +5,5 @@ bspc monitor DP-4 -d VII VIII IX X
 
 bspc rule -a Thunderbird desktop=^9
 bspc rule -a mpv state=pseudo_tiled
+
+xset s off -dpms
