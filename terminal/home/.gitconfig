@@ -6,7 +6,7 @@
 [pull]
 	rebase = true
 [core]
-	excludesfile = /home/jamie/.gitignore_global
+	excludesfile = ~/.gitignore_global
 [diff]
 	submodule = log
 	noprefix = true
