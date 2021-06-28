@@ -25,6 +25,11 @@ content = ARGF.read.strip
 if content.start_with? '{'
   jj recursive_sort(JSON.parse(content))
   exit 0
+elsif content.start_with? '"'
+  # https://www.jvt.me/posts/2021/06/28/parse-encoded-json-string-ruby/
+  $SAFE = 4
+  jj recursive_sort(JSON.parse(eval content))
+  exit 0
 elsif content.start_with? 'eyJ' # it's Base64-encoded JSON
   if content.include? '.' # JWT
     puts `jwt <<< #{content}`
