@@ -242,3 +242,9 @@ XF86AudioNext
 
 super + Pause
 	~/bin/toggle-bluetooth
+
+ctrl + grave
+	dunstctl history-pop
+
+ctrl + space
+	dunstctl close

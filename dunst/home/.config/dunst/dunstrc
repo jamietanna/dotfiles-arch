@@ -19,12 +19,6 @@
     transparency = 0
     # }}}
 
-[shortcuts]
-    close = ctrl+space
-    close_all = ctrl+shift+space
-    history = ctrl+grave
-    context = ctrl+shift+period
-
 [urgency_low]
     background = "#458588"
     foreground = "#ebdbb2"
