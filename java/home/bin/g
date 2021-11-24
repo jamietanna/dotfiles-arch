@@ -1,2 +1,14 @@
 #!/usr/bin/env bash
-$(git rev-parse --show-toplevel)/gradlew "$@"
+root="$(git rev-parse --show-toplevel)"
+while [[ "$PWD" != "$root" ]]; do
+  if [[ -f "gradlew" ]]; then
+    "./gradlew" "$@"
+  fi
+  cd ..
+done
+
+if [[ -f "gradlew" ]]; then
+  "./gradlew" "$@"
+fi
+
+exit 1
