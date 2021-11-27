@@ -1,2 +1,2 @@
-REPOS=(xorg-server xorg-xrdb xorg-xmodmap feh xorg-xbacklight xorg-setxkbmap xorg-xinit ttf-liberation acpi alsa-utils lm_sensors bc libnotify xsel xclip pacman-contrib xclip xsel imagemagick)
+REPOS=(xorg-server xorg-xrdb xorg-xmodmap feh acpilight xorg-setxkbmap xorg-xinit ttf-liberation acpi alsa-utils lm_sensors bc libnotify xsel xclip pacman-contrib xclip xsel imagemagick)
 AUR=(rofi bspwm-git pulseaudio-ctl ttf-font-awesome-4 otf-font-awesome-4 polybar-git spotify i3lock-color)
