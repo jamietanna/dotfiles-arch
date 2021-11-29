@@ -248,3 +248,15 @@ ctrl + grave
 
 ctrl + space
 	dunstctl close
+
+# https://github.com/albertored11/bsptab#example-keybindings-for-sxhkd
+# add to tabbed container
+ctrl + alt + {Left,Down,Up,Right}
+    tabc attach $(bspc query -N -n) {$(bspc query -N -n west),$(bspc query -N -n south),$(bspc query -N -n north),$(bspc query -N -n east)}
+
+# create/remove from tabbed container
+super + shift + t
+    id=$(bspc query -N -n); \
+    [[ "$(tabc printclass $id)" == "tabbed" ]] \
+    && tabc detach $id \
+    || tabc create $id
