@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+require 'yaml'
+require 'json'
+
+puts(JSON.load(ARGF.read).to_yaml)
