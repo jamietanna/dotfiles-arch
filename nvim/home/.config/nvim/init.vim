@@ -9,6 +9,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-dispatch'
 
 Plug 'lambdalisue/suda.vim'
+Plug 'airblade/vim-gitgutter'
 
 	Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets' "{{{
 	let g:UltiSnipsSnippetDirectories=["mysnippets"]
