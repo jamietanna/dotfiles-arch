@@ -166,3 +166,5 @@ let fc['.*'] = { 'takeover': 'never' }
 if exists('g:started_by_firenvim')
   " TODO call LspStop
 end
+
+packadd! matchit
