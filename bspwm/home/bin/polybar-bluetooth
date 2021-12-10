@@ -1,0 +1,33 @@
+#!/usr/bin/env ruby
+
+def name mac
+  output = `bluetoothctl info #{mac} | grep Name`
+  return unless $?.exitstatus == 0
+
+  output.split(' ')[1..].join ' '
+end
+
+def battery_info mac
+  address = mac.gsub(/:/, '_')
+  percentage_info = `dbus-send --print-reply=literal --system --dest=org.bluez /org/bluez/hci0/dev_#{address} org.freedesktop.DBus.Properties.Get string:"org.bluez.Battery1" string:"Percentage" 2>/dev/null`
+  return unless $?.exitstatus == 0
+
+  percentage = percentage_info.split(' ')[-1].to_i
+
+  output = case percentage
+            when 0..10
+              "%{F#cc241d}"
+            when 11..30
+              "%{F#d79921}"
+            when 30..100
+              "%{F#98971a}"
+            end
+  output += "#{name(mac)}"
+  "#{output}%{F-}"
+end
+
+output = %w(DA:DE:0B:1C:2B:0A DA:DE:0B:1C:2B:09 38:18:4C:BF:46:FE).map do | mac |
+  battery_info mac
+end
+
+puts " #{output.join ' '}"
