@@ -184,6 +184,10 @@ super + less
 
 super + Return
 	uxterm
+
+super + Pause
+  toggle-headphones
+
 # }}}
 
 # -----------------------------------------------------------------------------
