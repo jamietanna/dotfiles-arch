@@ -204,3 +204,4 @@ export TERM=xterm-256color
 export PATH="$PATH:$HOME/bin"
 
 export HISTSIZE=30000
+export PATH="$PATH:/home/jamie/.local/share/gem/ruby/3.0.0/bin"
