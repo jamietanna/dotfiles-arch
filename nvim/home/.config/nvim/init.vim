@@ -8,6 +8,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-dispatch'
 
+Plug 'tpope/vim-abolish'
 Plug 'lambdalisue/suda.vim'
 Plug 'airblade/vim-gitgutter'
 
