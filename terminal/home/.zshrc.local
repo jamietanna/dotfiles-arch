@@ -202,3 +202,5 @@ zstyle ':vcs_info:*' unstagedstr '%F{cyan}*%f'
 export TERM=xterm-256color
 
 export PATH="$PATH:$HOME/bin"
+
+export HISTSIZE=30000
