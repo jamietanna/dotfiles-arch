@@ -14,4 +14,4 @@ icon = case status
          ''
        end
 
-puts "#{icon} #{`playerctl metadata xesam:albumArtist 2>/dev/null`.delete "\n"} - #{`playerctl metadata xesam:title 2>/dev/null`.delete "\n"}"
+puts "#{icon} #{`playerctl metadata xesam:artist 2>/dev/null`.delete "\n"} - #{`playerctl metadata xesam:title 2>/dev/null`.delete "\n"}"
