@@ -240,6 +240,9 @@ XF86AudioPlay
 @ctrl + alt + Tab
 	playerctl play-pause
 
+super + ctrl + alt + Tab
+  pulseaudio-ctl mute-input
+
 XF86AudioNext
 	playerctl next
 # }}}

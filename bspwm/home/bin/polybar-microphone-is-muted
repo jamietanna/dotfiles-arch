@@ -1,0 +1,24 @@
+#!/usr/bin/env ruby
+status = `pulseaudio-ctl full-status`
+input = status.split(' ')[2]
+muted = input == 'yes'
+out = ""
+if muted
+  out += "%{B#cc241d}"
+  out += "%{F#ebdbb2}"
+  out += " "
+
+  out += ""
+
+  out += " "
+else
+  out += " "
+
+  out += ""
+
+  out += " "
+end
+
+out += "%{F-}"
+
+puts out
