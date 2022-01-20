@@ -38,6 +38,7 @@ colorscheme gruvbox
 lua << EOF
 require'lspconfig'.tsserver.setup{}
 require'lspconfig'.solargraph.setup{}
+require'lspconfig'.gopls.setup{}
 require'lspconfig'.jsonls.setup{
   cmd = { 'vscode-json-languageserver', '--stdio' },
   commands = {
