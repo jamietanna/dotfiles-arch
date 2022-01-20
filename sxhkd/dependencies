@@ -1,2 +1,2 @@
 REPOS=(xterm scrot openssh playerctl keepassxc)
-AUR=(sxhkd-git pulseaudio-ctl firefox-nightly)
+AUR=(sxhkd-git firefox-nightly)

@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
-status = `pulseaudio-ctl full-status`
-input = status.split(' ')[2]
+status = `pactl get-source-mute '@DEFAULT_SOURCE@'`.strip
+input = status.split(':')[1].strip
 muted = input == 'yes'
 out = ""
 if muted
