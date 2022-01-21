@@ -243,6 +243,9 @@ XF86AudioPlay
 super + ctrl + alt + Tab
   pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
+super + shift + a
+  pactl set-source-mute @DEFAULT_SOURCE@ toggle
+
 XF86AudioNext
 	playerctl next
 # }}}
