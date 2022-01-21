@@ -12,7 +12,6 @@ xset -b &
 sxhkd &
 dunst &
 
-compton &
 # Escape is a much better use than CapsLock, especially as I very rarely use
 # all caps anyway. It makes it significantly easier to hit, and means not
 # leaving the home row.
