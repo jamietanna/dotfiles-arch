@@ -22,7 +22,14 @@ then
 	exit 1
 fi
 
-for folder in $(find . -maxdepth 1 -type d);
+if [[ -z "$1" ]];
+then
+  to_bootstrap=$(find . -maxdepth 1 -type d)
+else
+  to_bootstrap="$1"
+fi
+
+for folder in $to_bootstrap;
 do
 	dependencies_path="$folder/dependencies"
 	bootstrap_script="$folder/bootstrap.sh"
