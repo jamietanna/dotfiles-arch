@@ -1,0 +1,3 @@
+REPOS=()
+AUR=(firefox-nightly)
+
