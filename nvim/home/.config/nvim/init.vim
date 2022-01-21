@@ -170,3 +170,5 @@ if exists('g:started_by_firenvim')
 end
 
 packadd! matchit
+
+set wildignore+=node_modules
