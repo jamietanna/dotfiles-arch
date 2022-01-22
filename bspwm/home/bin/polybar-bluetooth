@@ -15,7 +15,9 @@ def battery_info mac
   percentage = percentage_info.split(' ')[-1].to_i
 
   output = case percentage
-            when 0..10
+            when 0..5
+              "%{B#cc241d}"
+            when 5..10
               "%{F#cc241d}"
             when 11..30
               "%{F#d79921}"
@@ -23,7 +25,7 @@ def battery_info mac
               "%{F#98971a}"
             end
   output += "#{name(mac)}"
-  "#{output}%{F-}"
+  "#{output}%{B-}%{F-}"
 end
 
 output = %w(DA:DE:0B:1C:2B:0A DA:DE:0B:1C:2B:09 38:18:4C:BF:46:FE).map do | mac |
