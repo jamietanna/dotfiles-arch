@@ -1,0 +1,25 @@
+#!/usr/bin/env ruby
+def pad(s)
+  ' ' + s + ' '
+end
+
+device = '38:18:4C:BF:46:FE'.gsub(/:/, '_')
+
+status = `pactl list sinks short`.split("\n").select { |l| l.include? device }
+exit 1 if status.empty?
+
+out = ''
+
+if status[0].include? 'headset-head-unit'
+
+  out += '%{B#458588}'
+  out += '%{F#ebdbb2}'
+  out += pad ''
+else
+  out += pad ''
+
+end
+
+out += '%{F-}'
+out += '%{B-}'
+puts out
