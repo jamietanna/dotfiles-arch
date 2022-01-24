@@ -188,6 +188,9 @@ super + Return
 super + Pause
   toggle-headphones
 
+super + shift + Pause
+  toggle-headphones-profile
+
 # }}}
 
 # -----------------------------------------------------------------------------

@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+device="38:18:4C:BF:46:FE"
+device="${device//:/_}"
+
+if pactl list sinks short | grep "$device" | grep "headset-head-unit" -q
+then
+  pactl set-card-profile bluez_card.$device a2dp-sink-aptx_hd
+else
+  pactl set-card-profile bluez_card.$device headset-head-unit-msbc
+fi
