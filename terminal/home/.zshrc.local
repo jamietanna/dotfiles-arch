@@ -199,7 +199,7 @@ zstyle ':vcs_info:*' unstagedstr '%F{cyan}*%f'
 
 
 # enable truecolour support in Tmux+Vim
-export TERM=xterm-256color
+export TERM=xterm-kitty
 
 export PATH="$PATH:$HOME/bin:$HOME/go/bin"
 

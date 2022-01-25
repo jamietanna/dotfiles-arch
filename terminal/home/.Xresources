@@ -1,5 +1,3 @@
-UXTerm*termName:xterm-256color
-UXTerm*faceName:Liberation Mono:style=Regular:size=12
 ! 115 = 92 * 1.25
 ! Xft.dpi: 115
 Xft.dpi: 92
@@ -46,7 +44,7 @@ Xft.dpi: 92
 
 rofi.font:       				LiberationMono 10
 rofi.fuzzy:						true
-rofi.terminal:   				uxterm
+rofi.terminal:   				kitty
 rofi.background: 				col_bg
 rofi.foreground: 				col_fg
 rofi.highlightbg: 				col_bg

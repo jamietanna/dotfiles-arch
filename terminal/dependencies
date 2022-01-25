@@ -1,2 +1,2 @@
-REPOS=(ttf-liberation xorg-xrdb zsh grml-zsh-config git tmux xterm pkgfile ruby glances man nodejs npm ruby-jwt ruby-json-jwt ruby-jose rsync)
+REPOS=(ttf-liberation xorg-xrdb zsh grml-zsh-config git tmux pkgfile ruby glances man nodejs npm ruby-jwt ruby-json-jwt ruby-jose rsync)
 AUR=(rofi)
