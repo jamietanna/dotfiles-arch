@@ -3,12 +3,15 @@ root="$(git rev-parse --show-toplevel)"
 while [[ "$PWD" != "$root" ]]; do
   if [[ -f "gradlew" ]]; then
     "./gradlew" "$@"
+    exit $?
   fi
   cd ..
 done
 
 if [[ -f "gradlew" ]]; then
   "./gradlew" "$@"
+  exit $?
+else
+  exit 1
 fi
 
-exit 1
