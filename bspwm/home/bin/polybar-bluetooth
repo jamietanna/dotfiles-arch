@@ -30,6 +30,8 @@ end
 
 output = %w(DA:DE:0B:1C:2B:0A DA:DE:0B:1C:2B:09 38:18:4C:BF:46:FE).map do | mac |
   battery_info mac
-end
+end.compact
+
+exit 0 if output.empty?
 
 puts " #{output.join ' '}"
