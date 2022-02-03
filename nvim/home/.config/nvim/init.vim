@@ -101,6 +101,8 @@ nnoremap <leader>f <cmd>lua vim.lsp.buf.formatting()<CR>
 " https://stackoverflow.com/a/16988346/2257038
 syntax match nonascii "[^\x00-\x7F]"
 highlight nonascii guibg=Red ctermbg=1
+syntax match smartquotes "[‘’“”]"
+highlight! smartquotes guibg=Red ctermbg=1
 
 lua <<EOF
   local cmp = require'cmp'
