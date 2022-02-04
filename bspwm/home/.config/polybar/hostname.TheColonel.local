@@ -1,1 +1,3 @@
 content = TheColonel
+; TODO - same as in shell?
+content-underline = ${colors.red}
