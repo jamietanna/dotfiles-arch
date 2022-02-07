@@ -1,3 +1,2 @@
 content = MajesticMoose
-; TODO - same as in shell?
-content-underline = ${colors.red}
+content-underline = ${colors.magenta}
