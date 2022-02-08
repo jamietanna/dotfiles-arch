@@ -1,0 +1,4 @@
+#!/usr/bin/env ruby
+require 'json'
+
+p ARGF.read
