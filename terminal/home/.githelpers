@@ -30,7 +30,6 @@ alias greb="git rebase"
 alias gcm="git commit --amend"
 alias gshowm="git log --format='%B' -1"
 alias gap="git add --patch"
-alias gch="git diff-tree --no-commit-id --name-only -r"
 alias gs="git diff --name-only --cached"
 # }}}
 
