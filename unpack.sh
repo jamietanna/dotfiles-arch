@@ -124,7 +124,11 @@ unpack () {
 				if [[ -e "$path_create_final" ]];
 				then
 					if [[ -L "$path_create_final" ]]; then
-						info "$path_create_final is already symlinked"
+						if [[ "$(readlink -f "$full_path")" == "$(readlink -f "$path_create_final")" ]]; then
+							debug "$path_create_final is already symlinked to the right path"
+						else
+							warn "$path_create_final is a symlink, but not of $full_path as expected"
+						fi
 					else
 						warn "$path_create_final already exists"
 					fi
