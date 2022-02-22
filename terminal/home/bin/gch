@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 require 'English'
 
-commitish = ARGV[0]
+commitish = ARGV[0] || 'HEAD'
 changed = `git diff-tree --no-commit-id --name-only -r '#{commitish}'`.split "\n"
 exit $CHILD_STATUS.exitstatus unless $CHILD_STATUS.exitstatus.zero?
 
