@@ -32,6 +32,10 @@ alias gshowm="git log --format='%B' -1"
 alias gap="git add --patch"
 # }}}
 
+function gu() {
+  echo "origin/$(git branch --show)"
+}
+
 # Adapted from https://github.com/garybernhardt/dotfiles/blob/2c2a757f4abd406f6b4e1b328b6382d37f7f9036/.githelpers
 function pretty_git_log () {
 	git log --graph --color=always --pretty="tformat:$(pretty_git_log_format_string)" "$@" |
