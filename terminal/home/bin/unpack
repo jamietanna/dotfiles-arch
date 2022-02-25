@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 require 'json'
+require 'English'
 
 # https://www.jvt.me/posts/2020/08/24/sort-recursive-hash-ruby/
 def recursive_sort(v, &block)
@@ -40,30 +41,9 @@ elsif content.start_with? 'eyJ' # it's Base64-encoded JSON
     exit 0
   end
 elsif content.start_with?('http') || content.start_with?('https')
-  # try to parse the URL
-  require 'uri'
-  require 'cgi'
-  uri = URI.parse(content)
-  parsed = {
-    uri: uri.to_s,
-    base: "#{uri.scheme}://#{uri.host}",
-    path: uri.path,
-  }
-  parsed[:query] = if uri.query
-           CGI.parse(uri.query)
-         else
-           {}
-         end
-  parsed[:fragment] = if uri.fragment
-                        unless uri.fragment.include?('&')
-                          uri.fragment
-                        else
-                          CGI.parse(uri.fragment)
-                        end
-                      else
-                        {}
-                      end
-  jj parsed
+  out = `url <<< '#{content}'`
+  exit $CHILD_STATUS.exitstatus unless $CHILD_STATUS.exitstatus.zero?
+  puts out
   exit 0
 end
 
