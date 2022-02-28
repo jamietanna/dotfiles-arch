@@ -8,7 +8,7 @@
     sticky_history = yes
 
     # Aesthetical settings {{{
-    font = Liberation Mono, Noto Emoji 12
+    font = Liberation Mono
     # place notifications in the top right of the screen
     geometry = "300x5-30+20"
     alignment = center
