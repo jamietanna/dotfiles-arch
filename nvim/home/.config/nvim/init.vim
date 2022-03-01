@@ -94,6 +94,7 @@ au BufRead,BufNewFile *.html.erb set filetype=html.eruby
 " remove trailing whitespace on write
 autocmd BufWritePre * :%s/\s\+$//e
 
+autocmd BufWritePre * lua vim.lsp.buf.formatting_sync()
 
 nnoremap <leader>f <cmd>lua vim.lsp.buf.formatting()<CR>
 
