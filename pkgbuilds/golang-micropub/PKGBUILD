@@ -1,0 +1,47 @@
+pkgname=micropub-go-git
+pkgver=r1.c24a397
+pkgrel=1
+pkgdesc=""
+arch=('x86_64')
+url="https://gitlab.com/jamietanna/micropub-go/"
+license=('Apache')
+groups=()
+depends=()
+makedepends=('git' 'go')
+provides=("${pkgname%-VCS}")
+conflicts=("${pkgname%-VCS}")
+replaces=()
+backup=()
+options=()
+install=
+source=("$pkgname::git+https://gitlab.com/jamietanna/micropub-go.git")
+noextract=()
+md5sums=('SKIP')
+
+pkgver() {
+  cd "$srcdir/${pkgname%-VCS}"
+  printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+}
+
+prepare() {
+  cd "$srcdir/${pkgname%-VCS}"
+  mkdir -p build/
+}
+
+build() {
+  cd "$srcdir/${pkgname%-VCS}"
+  go build \
+    -trimpath \
+    -buildmode=pie \
+    -mod=readonly \
+    -modcacherw \
+    -ldflags "-linkmode external -extldflags \"${LDFLAGS}\"" \
+    -o build
+      ./build/micropub completion zsh > build/_micropub
+}
+
+package() {
+  cd "$srcdir/${pkgname%-VCS}"
+  install -Dm755 build/micropub "$pkgdir"/usr/bin/micropub
+  install -Dm644 build/_micropub "$pkgdir"/usr/local/share/zsh/site-functions/_micropub
+}
