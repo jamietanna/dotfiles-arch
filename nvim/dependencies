@@ -1,2 +1,2 @@
-REPOS=(neovim xdotool lua python python-pynvim fzf vscode-json-languageserver gopls efm-langserver shellcheck)
+REPOS=(neovim xdotool lua python python-pynvim fzf vscode-json-languageserver gopls efm-langserver shellcheck vscode-html-languageserver)
 AUR=(ruby-solargraph typescript-language-server)
