@@ -27,7 +27,7 @@ def pretty_json(s)
 end
 
 content = ARGF.read.strip
-if content.start_with? '{'
+if content.start_with? '{' || content.start_with? '['
   jj pretty_json(content)
   exit 0
 elsif content.start_with? '"'
