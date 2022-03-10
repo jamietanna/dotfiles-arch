@@ -22,14 +22,18 @@ class Hash
   end
 end
 
+def pretty_json(s)
+  recursive_sort(JSON.parse(s))
+end
+
 content = ARGF.read.strip
 if content.start_with? '{'
-  jj recursive_sort(JSON.parse(content))
+  jj pretty_json(content)
   exit 0
 elsif content.start_with? '"'
   # https://www.jvt.me/posts/2021/06/28/parse-encoded-json-string-ruby/
   $SAFE = 4
-  jj recursive_sort(JSON.parse(eval content))
+  jj pretty_json(eval content)
   exit 0
 elsif content.start_with? 'eyJ' # it's Base64-encoded JSON
   if content.include? '.' # JWT
@@ -37,7 +41,7 @@ elsif content.start_with? 'eyJ' # it's Base64-encoded JSON
     exit 0
   else # Base64-encoded JSON
     require 'base64'
-    jj recursive_sort(JSON.parse(Base64.urlsafe_decode64(content)))
+    jj pretty_json(Base64.urlsafe_decode64(content))
     exit 0
   end
 elsif content.start_with?('http') || content.start_with?('https')
