@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+ruby -r date -e "puts($*)"
