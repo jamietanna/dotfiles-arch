@@ -1,5 +1,5 @@
 pkgname=micropub-go-git
-pkgver=r3.098ab32
+pkgver=r6.76e6430
 pkgrel=1
 pkgdesc=""
 arch=('x86_64')
