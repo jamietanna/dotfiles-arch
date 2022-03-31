@@ -11,6 +11,7 @@ Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-abolish'
 Plug 'lambdalisue/suda.vim'
 Plug 'airblade/vim-gitgutter'
+Plug 'fatih/vim-go'
 
 	Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets' "{{{
 	let g:UltiSnipsSnippetDirectories=["mysnippets"]
