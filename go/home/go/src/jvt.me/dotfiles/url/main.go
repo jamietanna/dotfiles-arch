@@ -18,6 +18,22 @@ type UrlResponse struct {
 	Fragment    map[string][]string `json:"fragment"`
 }
 
+func ArgfRead() (string, error) {
+	var bytes []byte
+	var err error
+
+	if len(os.Args) >= 2 {
+		bytes, err = os.ReadFile(os.Args[1])
+	} else {
+		bytes, err = io.ReadAll(os.Stdin)
+	}
+
+	if err != nil {
+		return "", err
+	}
+	return strings.TrimSuffix(string(bytes), "\n"), nil
+}
+
 func parse(s string) map[string][]string {
 	if !strings.Contains(s, "&") {
 		return make(map[string][]string)
@@ -31,7 +47,7 @@ func parse(s string) map[string][]string {
 }
 
 func main() {
-	input_url_bytes, err := io.ReadAll(os.Stdin)
+	input_url_bytes, err := ArgfRead()
 	if err != nil {
 		os.Exit(1)
 	}
