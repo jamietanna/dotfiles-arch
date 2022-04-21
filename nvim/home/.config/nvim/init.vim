@@ -66,6 +66,7 @@ require'lspconfig'.efm.setup{
 require'lspconfig'.html.setup{
   cmd = { 'vscode-html-languageserver', '--stdio' },
 }
+require'lspconfig'.vimls.setup{}
 EOF
 
 
