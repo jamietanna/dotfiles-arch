@@ -195,3 +195,17 @@ packadd! matchit
 set wildignore+=node_modules
 
 vnoremap <leader>u y0"_DpV:'<,'>!unpack<CR>
+
+let g:projectionist_heuristics = {
+      \ "*.go":
+      \ {
+      \   "*.go": {
+      \     "alternate": "{}_test.go",
+      \     "type": "source"
+      \   },
+      \   "*_test.go": {
+      \     "alternate": "{}.go",
+      \     "type": "test"
+      \   }
+      \ }
+      \ }
