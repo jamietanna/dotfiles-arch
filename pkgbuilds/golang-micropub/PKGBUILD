@@ -1,5 +1,5 @@
 pkgname=micropub-go-git
-pkgver=r6.76e6430
+pkgver=r89.d701559
 pkgrel=1
 pkgdesc=""
 arch=('x86_64')
@@ -36,7 +36,8 @@ build() {
     -mod=readonly \
     -modcacherw \
     -ldflags "-linkmode external -extldflags \"${LDFLAGS}\"" \
-    -o build
+    -o build \
+    ./cmd/micropub
       ./build/micropub completion zsh > build/_micropub
 }
 
