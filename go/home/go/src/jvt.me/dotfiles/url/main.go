@@ -35,10 +35,6 @@ func ArgfRead() (string, error) {
 }
 
 func parse(s string) map[string][]string {
-	if !strings.Contains(s, "&") {
-		return make(map[string][]string)
-	}
-
 	q, err := url.ParseQuery(s)
 	if err != nil {
 		return make(map[string][]string)
