@@ -1,3 +1,5 @@
+//go:generate oapi-codegen -generate types --package=main  -o ./bitly.gen.go https://dev.bitly.com/v4/v4.json
+
 package main
 
 import (
@@ -11,25 +13,6 @@ import (
 
 	"github.com/spf13/viper"
 )
-
-type Shorten struct {
-	LongUrl string `json:"long_url"`
-}
-
-type BitlinkUpdate struct {
-	Archived       *bool     `json:"archived,omitempty"`
-	ClientId       *string   `json:"client_id,omitempty"`
-	CreatedAt      *string   `json:"created_at,omitempty"`
-	CreatedBy      *string   `json:"created_by,omitempty"`
-	CustomBitlinks *[]string `json:"custom_bitlinks,omitempty"`
-	Id             *string   `json:"id,omitempty"`
-	IsDeleted      *bool     `json:"is_deleted,omitempty"`
-	LaunchpadIds   *[]string `json:"launchpad_ids,omitempty"`
-	Link           *string   `json:"link,omitempty"`
-	LongUrl        *string   `json:"long_url,omitempty"`
-	Tags           *[]string `json:"tags,omitempty"`
-	Title          *string   `json:"title,omitempty"`
-}
 
 const (
 	API_URL = "https://api-ssl.bitly.com/v4/shorten"
