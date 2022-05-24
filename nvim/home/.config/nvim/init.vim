@@ -4,6 +4,7 @@ Plug 'neovim/nvim-lspconfig'
 Plug 'williamboman/nvim-lsp-installer'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+Plug 'tpope/vim-projectionist'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-dispatch'
@@ -65,6 +66,7 @@ require'lspconfig'.efm.setup{
 require'lspconfig'.html.setup{
   cmd = { 'vscode-html-languageserver', '--stdio' },
 }
+require'lspconfig'.vimls.setup{}
 EOF
 
 
@@ -194,3 +196,17 @@ packadd! matchit
 set wildignore+=node_modules
 
 vnoremap <leader>u y0"_DpV:'<,'>!unpack<CR>
+
+let g:projectionist_heuristics = {
+      \ "*.go":
+      \ {
+      \   "*.go": {
+      \     "alternate": "{}_test.go",
+      \     "type": "source"
+      \   },
+      \   "*_test.go": {
+      \     "alternate": "{}.go",
+      \     "type": "test"
+      \   }
+      \ }
+      \ }

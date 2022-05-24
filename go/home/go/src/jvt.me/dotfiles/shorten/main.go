@@ -1,38 +1,20 @@
+//go:generate oapi-codegen -generate types,client --package=main  -o ./bitly.gen.go https://dev.bitly.com/v4/v4.json
+
 package main
 
 import (
-	"encoding/json"
+	"context"
 	"fmt"
 	"io"
-	"io/ioutil"
-	"net/http"
 	"os"
 	"strings"
 
+	"github.com/deepmap/oapi-codegen/pkg/securityprovider"
 	"github.com/spf13/viper"
 )
 
-type Shorten struct {
-	LongUrl string `json:"long_url"`
-}
-
-type BitlinkUpdate struct {
-	Archived       *bool     `json:"archived,omitempty"`
-	ClientId       *string   `json:"client_id,omitempty"`
-	CreatedAt      *string   `json:"created_at,omitempty"`
-	CreatedBy      *string   `json:"created_by,omitempty"`
-	CustomBitlinks *[]string `json:"custom_bitlinks,omitempty"`
-	Id             *string   `json:"id,omitempty"`
-	IsDeleted      *bool     `json:"is_deleted,omitempty"`
-	LaunchpadIds   *[]string `json:"launchpad_ids,omitempty"`
-	Link           *string   `json:"link,omitempty"`
-	LongUrl        *string   `json:"long_url,omitempty"`
-	Tags           *[]string `json:"tags,omitempty"`
-	Title          *string   `json:"title,omitempty"`
-}
-
 const (
-	API_URL = "https://api-ssl.bitly.com/v4/shorten"
+	API_URL = "https://api-ssl.bitly.com/v4"
 )
 
 func ArgfRead() (string, error) {
@@ -62,46 +44,32 @@ func main() {
 	if !viper.IsSet("access_token") {
 		panic(fmt.Errorf("No access_token set"))
 	}
+	bearerTokenProvider, err := securityprovider.NewSecurityProviderBearerToken(viper.GetString("access_token"))
+	if err != nil {
+		panic(err)
+	}
 
 	url, err := ArgfRead()
 	if err != nil {
 		panic(err)
 	}
-	shortenBody := Shorten{
+	shortenBody := CreateBitlinkJSONRequestBody{
 		LongUrl: url,
 	}
-	bytes, err := json.Marshal(shortenBody)
+
+	client, err := NewClientWithResponses(API_URL, WithRequestEditorFn(bearerTokenProvider.Intercept))
 	if err != nil {
 		panic(err)
 	}
 
-	payload := strings.NewReader(string(bytes))
-
-	req, _ := http.NewRequest("POST", API_URL, payload)
-
-	req.Header.Add("Content-Type", "application/json")
-	req.Header.Add("Authorization", "Bearer "+viper.GetString("access_token"))
-
-	res, err := http.DefaultClient.Do(req)
+	req, err := client.CreateBitlinkWithResponse(context.Background(), shortenBody)
 	if err != nil {
 		panic(err)
 	}
 
-	defer res.Body.Close()
-	body, err := ioutil.ReadAll(res.Body)
-	if err != nil {
-		panic(err)
+	if req.StatusCode() != 200 {
+		panic(fmt.Errorf("failed to create Bitlink: HTTP %d", req.StatusCode()))
 	}
 
-	if 200 != res.StatusCode {
-		panic(fmt.Errorf("HTTP %d returned, with body: %s", res.StatusCode, string(body)))
-	}
-
-	var response BitlinkUpdate
-	err = json.Unmarshal(body, &response)
-	if err != nil {
-		panic(err)
-	}
-
-	fmt.Println(*response.Link)
+	fmt.Println(*req.JSON200.Link)
 }
