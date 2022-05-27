@@ -272,6 +272,15 @@ let g:projectionist_heuristics = {
       \ }
       \ }
 
+let g:markdown_fenced_languages = [
+      \ 'vim',
+      \ 'help',
+      \ 'sh',
+      \ 'bash',
+      \ 'ruby',
+      \ 'go',
+      \]
+
 nnoremap <leader>r <cmd>lua vim.lsp.buf.rename()<CR>
 nnoremap <leader>k <cmd>lua vim.lsp.buf.hover()<CR>
 nnoremap <leader>l :lua vim.diagnostic.open_float()<CR>
