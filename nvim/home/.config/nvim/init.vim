@@ -40,10 +40,26 @@ set background=dark
 colorscheme gruvbox
 
 lua << EOF
-require'lspconfig'.tsserver.setup{}
-require'lspconfig'.solargraph.setup{}
-require'lspconfig'.gopls.setup{}
+  local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+  local lspconfig = require('lspconfig')
+  local on_attach = function(client, bufnr)
+  local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+  local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+
+  buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+end
+require'lspconfig'.tsserver.setup{
+  capabilities = capabilities,
+}
+require'lspconfig'.solargraph.setup{
+  capabilities = capabilities,
+}
+require'lspconfig'.gopls.setup{
+  on_attach = on_attach,
+  capabilities = capabilities,
+}
 require'lspconfig'.jsonls.setup{
+  capabilities = capabilities,
   cmd = { 'vscode-json-languageserver', '--stdio' },
   commands = {
     Format = {
@@ -54,6 +70,7 @@ require'lspconfig'.jsonls.setup{
     }
 }
 require'lspconfig'.efm.setup{
+  capabilities = capabilities,
   init_options = {documentFormatting = true},
     filetypes = {"sh"},
     settings = {
@@ -66,9 +83,19 @@ require'lspconfig'.efm.setup{
     }
 }
 require'lspconfig'.html.setup{
+  capabilities = capabilities,
   cmd = { 'vscode-html-languageserver', '--stdio' },
 }
-require'lspconfig'.vimls.setup{}
+require'lspconfig'.vimls.setup{
+  capabilities = capabilities,
+}
+require'lspconfig'.terraformls.setup{
+  capabilities = capabilities,
+}
+require'lspconfig'.yamlls.setup{
+  capabilities = capabilities,
+
+}
 EOF
 
 
