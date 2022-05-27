@@ -32,6 +32,8 @@ Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 
 Plug 'aklt/plantuml-syntax'
 
+Plug 'tpope/vim-projectionist'
+
 call plug#end()
 
 set background=dark
