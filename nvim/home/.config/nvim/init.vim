@@ -212,3 +212,9 @@ let g:projectionist_heuristics = {
       \   }
       \ }
       \ }
+
+nnoremap <leader>r <cmd>lua vim.lsp.buf.rename()<CR>
+nnoremap <leader>k <cmd>lua vim.lsp.buf.hover()<CR>
+nnoremap <leader>l :lua vim.diagnostic.open_float()<CR>
+nnoremap <leader>, :lua vim.diagnostic.goto_prev()<CR>
+nnoremap <leader>. :lua vim.diagnostic.goto_next()<CR>
